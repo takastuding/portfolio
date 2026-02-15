@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy-950: #020617;
+  --color-navy-900: #0f172a;
+  --color-navy-800: #1e293b;
+  --color-navy-700: #334155;
+
+  --color-gold-400: #facc15;
+  --color-gold-500: #eab308;
+  --color-gold-600: #ca8a04;
+
+  --font-sans: "Noto Sans JP", sans-serif;
+
+  --animate-fade-in-up: fadeInUp 0.8s ease-out forwards;
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 shadow-xl;
+  }
+
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-sm border border-white/10 shadow-lg hover:bg-white/10 transition-all duration-300;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-gold-400 to-gold-600;
+  }
+}
+
+body {
+  @apply bg-navy-950 text-slate-100 font-sans antialiased selection:bg-gold-500/30;
+  background-image:
+    radial-gradient(circle at 50% 0%, rgba(15, 23, 42, 1) 0%, rgba(2, 6, 23, 1) 100%);
+  min-height: 100vh;
+}
