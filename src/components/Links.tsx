@@ -1,54 +1,105 @@
-import { ExternalLink, ArrowUpRight } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import { motion } from 'framer-motion';
+
+// SVG Icons for each platform
+const NoteIcon = () => (
+    <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+    </svg>
+);
+
+const XIcon = () => (
+    <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+    </svg>
+);
+
+const ThreadsIcon = () => (
+    <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+        <path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.142c-.126-.742-.375-1.332-.75-1.757-.513-.586-1.312-.883-2.378-.888h-.015c-.845 0-1.994.298-2.692 1.388l-1.722-1.056c.976-1.578 2.643-2.45 4.428-2.45h.023c3.269.017 5.059 2.077 5.072 5.61 0 .107-.003.212-.01.316.79.538 1.407 1.24 1.824 2.079.7 1.408.733 3.476-.712 4.981-1.798 1.842-4.063 2.67-7.198 2.694z"/>
+    </svg>
+);
+
+const CrowdWorksIcon = () => (
+    <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/>
+    </svg>
+);
 
 export const Links = () => {
     const links = [
         {
             name: 'note',
-            description: '日々の気づきや専門知識のアウトプット',
-            url: '#', // Placeholder
-            color: 'from-green-400 to-green-600',
-            textColor: 'text-green-400',
-            image: '/images/link-note.png',
+            handle: '@brainy_racoon772',
+            description: '社労士・FPの専門知識をわかりやすく発信。日々の気づきや制度解説を記事にしています。',
+            url: 'https://note.com/brainy_racoon772',
+            icon: NoteIcon,
+            accent: 'from-emerald-500/20 to-emerald-700/5',
+            border: 'border-emerald-500/20',
+            iconBg: 'bg-emerald-500/10',
+            iconColor: 'text-emerald-400',
+            label: 'note',
         },
         {
             name: 'X (Twitter)',
-            description: 'リアルタイムな情報発信',
-            url: '#', // Placeholder
-            color: 'from-slate-700 to-slate-900',
-            textColor: 'text-slate-400',
-            image: '/images/link-twitter.png',
+            handle: '@sharoushi_info',
+            description: '社労士・FP・年金に関するリアルタイムな情報発信。役立つ制度情報をシェアしています。',
+            url: 'https://x.com/sharoushi_info?s=21',
+            icon: XIcon,
+            accent: 'from-slate-500/20 to-slate-700/5',
+            border: 'border-slate-500/20',
+            iconBg: 'bg-slate-500/10',
+            iconColor: 'text-slate-300',
+            label: 'X / Twitter',
+        },
+        {
+            name: 'Threads',
+            handle: '@sharo_log',
+            description: '日常の気づきや労務・FPに関するショートコンテンツを発信しています。',
+            url: 'https://www.threads.com/@sharo_log?igshid=NTc4MTIwNjQ2YQ==',
+            icon: ThreadsIcon,
+            accent: 'from-purple-500/20 to-purple-700/5',
+            border: 'border-purple-500/20',
+            iconBg: 'bg-purple-500/10',
+            iconColor: 'text-purple-400',
+            label: 'Threads',
         },
         {
             name: 'CrowdWorks',
-            description: 'お仕事のご依頼はこちら',
-            url: '#', // Placeholder
-            color: 'from-orange-400 to-orange-600',
-            textColor: 'text-orange-400',
-            image: '/images/link-crowdworks.png',
+            handle: 'プロフィールを見る',
+            description: 'お仕事のご依頼はこちらから。執筆・監修・相談など幅広くお引き受けします。',
+            url: '#',
+            icon: CrowdWorksIcon,
+            accent: 'from-orange-500/20 to-orange-700/5',
+            border: 'border-orange-500/20',
+            iconBg: 'bg-orange-500/10',
+            iconColor: 'text-orange-400',
+            label: 'CrowdWorks',
         },
     ];
 
     return (
-        <section id="links" className="py-20 relative overflow-hidden">
-            {/* Background decoration */}
-            <div className="absolute top-1/2 right-0 w-96 h-96 bg-gold-500/5 rounded-full blur-3xl -translate-y-1/2" />
+        <section id="links" className="py-24 relative overflow-hidden">
+            <div className="absolute top-1/2 right-0 w-96 h-96 bg-gold-500/4 rounded-full blur-3xl -translate-y-1/2" />
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/4 rounded-full blur-3xl" />
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <motion.div 
+            <div className="relative max-w-6xl mx-auto px-6 lg:px-8">
+                <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    className="lg:text-center mb-16"
+                    className="mb-16"
                 >
-                    <h2 className="text-base text-gold-500 font-semibold tracking-wide uppercase">Links</h2>
-                    <p className="mt-2 text-3xl leading-8 font-bold text-white sm:text-4xl">
-                        SNS・外部サイト
+                    <p className="section-label mb-3">Links</p>
+                    <h2 className="text-3xl sm:text-4xl font-bold text-white">SNS・外部サイト</h2>
+                    <div className="mt-4 h-px w-16 bg-gradient-to-r from-gold-400 to-transparent" />
+                    <p className="mt-4 text-slate-400 max-w-lg">
+                        各SNSやプラットフォームで情報発信中です。お気軽にフォローしてください。
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
                     {links.map((link, index) => (
                         <motion.a
                             key={link.name}
@@ -58,36 +109,28 @@ export const Links = () => {
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
-                            className="group glass p-1 rounded-2xl hover:scale-[1.02] transition-all duration-300 shadow-lg hover:shadow-[0_0_30px_rgba(234,179,8,0.2)]"
+                            transition={{ duration: 0.5, delay: index * 0.08 }}
+                            className={`group relative rounded-2xl p-5 border ${link.border} glass-card card-hover overflow-hidden block`}
                         >
-                            <div className="bg-navy-900/80 rounded-xl overflow-hidden h-full flex flex-col justify-between relative">
-                                {/* Background Image */}
-                                <div className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity duration-500">
-                                    <img 
-                                        src={link.image} 
-                                        alt={link.name} 
-                                        className="w-full h-full object-cover"
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-b from-navy-900/60 via-navy-900/80 to-navy-900"></div>
+                            {/* Hover accent */}
+                            <div className={`absolute inset-0 bg-gradient-to-br ${link.accent} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl`} />
+
+                            <div className="relative z-10">
+                                <div className="flex items-start justify-between mb-4">
+                                    <div className={`w-11 h-11 rounded-xl ${link.iconBg} border ${link.border} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                                        <span className={link.iconColor}>
+                                            <link.icon />
+                                        </span>
+                                    </div>
+                                    <ExternalLink className="w-4 h-4 text-slate-600 group-hover:text-gold-400 transition-colors" />
                                 </div>
 
-                                <div className="relative z-10 p-6">
-                                    <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${link.color}`} />
+                                <p className="text-white font-bold text-base mb-0.5">{link.name}</p>
+                                <p className="text-slate-500 text-xs mb-3">{link.handle}</p>
+                                <p className="text-slate-400 text-xs leading-relaxed">{link.description}</p>
 
-                                    <div>
-                                        <div className="flex justify-between items-start mb-4">
-                                            <h3 className={`text-xl font-bold ${link.textColor} group-hover:text-white transition-colors`}>
-                                                {link.name}
-                                            </h3>
-                                            <ArrowUpRight className="text-slate-500 group-hover:text-gold-400 group-hover:scale-110 transition-all" />
-                                        </div>
-                                        <p className="text-slate-300 text-sm">{link.description}</p>
-                                    </div>
-
-                                    <div className="mt-6 pt-4 border-t border-slate-700 flex items-center text-xs font-medium text-slate-400 group-hover:text-gold-400 transition-colors">
-                                        View Profile <ExternalLink className="ml-1 h-3 w-3" />
-                                    </div>
+                                <div className="mt-4 pt-3 border-t border-white/5 flex items-center text-xs text-slate-500 group-hover:text-gold-400 transition-colors font-medium">
+                                    {link.label}を開く
                                 </div>
                             </div>
                         </motion.a>

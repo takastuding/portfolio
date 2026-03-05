@@ -1,52 +1,62 @@
-import { PenTool, Users, FileText } from 'lucide-react';
+import { PenTool, Users, FileText, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export const Services = () => {
     const services = [
         {
             title: '執筆・監修',
-            description: '金融、年金、社会保険に関する記事の執筆や監修を行います。難解な制度を読者に分かりやすく解説します。',
+            description: '金融、年金、社会保険に関する記事の執筆や監修。難解な制度を読者に分かりやすく解説します。',
             icon: PenTool,
-            image: '/images/service-writing.png',
+            tags: ['Web記事', '監修', 'SEO対応'],
+            accent: 'from-emerald-400/20 to-emerald-600/5',
+            border: 'border-emerald-500/15',
+            iconBg: 'bg-emerald-500/10',
+            iconColor: 'text-emerald-400',
         },
         {
             title: '個別相談・コンサルティング',
-            description: 'ライフプランニング、年金相談、資産運用に関するアドバイスを提供します。FP1級の知識を活かした包括的な提案が可能です。',
+            description: 'ライフプランニング、年金相談、資産運用に関するアドバイス。FP1級の知識を活かした包括的な提案が可能です。',
             icon: Users,
-            image: '/images/service-consulting.png',
+            tags: ['年金相談', '資産形成', 'FP1級'],
+            accent: 'from-gold-400/20 to-gold-600/5',
+            border: 'border-gold-500/15',
+            iconBg: 'bg-gold-500/10',
+            iconColor: 'text-gold-400',
         },
         {
             title: '行政手続代行',
-            description: '（※将来的な展開として）助成金申請や各種社会保険手続きの代行など、煩雑な業務をサポートします。',
+            description: '助成金申請や各種社会保険手続きの代行など、煩雑な業務をサポート。（将来的展開予定）',
             icon: FileText,
-            image: '/images/service-procedures.png',
+            tags: ['助成金', '手続代行', '社会保険'],
+            accent: 'from-blue-400/20 to-blue-600/5',
+            border: 'border-blue-500/15',
+            iconBg: 'bg-blue-500/10',
+            iconColor: 'text-blue-400',
         },
     ];
 
     return (
-        <section id="services" className="py-20 relative overflow-hidden">
-            {/* Background Gradient */}
-            <div className="absolute inset-0 bg-navy-900/50 -z-10" />
-            <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-gold-500/5 rounded-full blur-3xl -z-10" />
+        <section id="services" className="py-24 relative overflow-hidden">
+            <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, transparent 0%, rgba(10,22,40,0.5) 50%, transparent 100%)' }} />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-gold-500/4 rounded-full blur-3xl" />
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <motion.div 
+            <div className="relative max-w-6xl mx-auto px-6 lg:px-8">
+                <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    className="lg:text-center mb-16"
+                    className="mb-16"
                 >
-                    <h2 className="text-base text-gold-500 font-semibold tracking-wide uppercase">Services</h2>
-                    <p className="mt-2 text-3xl leading-8 font-bold text-white sm:text-4xl">
-                        提供サービス
-                    </p>
-                    <p className="mt-4 max-w-2xl text-xl text-slate-300 lg:mx-auto">
+                    <p className="section-label mb-3">Services</p>
+                    <h2 className="text-3xl sm:text-4xl font-bold text-white">提供サービス</h2>
+                    <div className="mt-4 h-px w-16 bg-gradient-to-r from-gold-400 to-transparent" />
+                    <p className="mt-4 text-slate-400 max-w-lg">
                         CrowdWorksなどを通じて、以下の業務を中心にお引き受けしております。
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
                     {services.map((service, index) => (
                         <motion.div
                             key={service.title}
@@ -54,31 +64,35 @@ export const Services = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
-                            className="glass-card rounded-2xl overflow-hidden relative group"
+                            className={`relative rounded-2xl p-6 border ${service.border} glass-card group card-hover overflow-hidden`}
                         >
-                            {/* Background Image */}
-                            <div className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity duration-500">
-                                <img 
-                                    src={service.image} 
-                                    alt={service.title} 
-                                    className="w-full h-full object-cover"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-b from-navy-900/80 via-navy-900/90 to-navy-950"></div>
-                            </div>
+                            {/* Accent gradient */}
+                            <div className={`absolute inset-0 bg-gradient-to-br ${service.accent} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl`} />
 
-                            <div className="relative z-10 p-8">
-                                <div className="flex items-center justify-center h-14 w-14 rounded-xl bg-gradient-to-br from-gold-400 to-gold-600 text-navy-900 mb-6 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
-                                    <service.icon className="h-7 w-7" aria-hidden="true" />
+                            <div className="relative z-10">
+                                <div className={`w-12 h-12 rounded-xl ${service.iconBg} border ${service.border} flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300`}>
+                                    <service.icon className={`w-5 h-5 ${service.iconColor}`} />
                                 </div>
-                                <h3 className="text-xl font-bold text-white mb-4 group-hover:text-gold-400 transition-colors">{service.title}</h3>
-                                <p className="text-slate-300 leading-relaxed text-sm">
+
+                                <h3 className="text-white font-bold text-lg mb-3 group-hover:text-gold-300 transition-colors">
+                                    {service.title}
+                                </h3>
+                                <p className="text-slate-400 text-sm leading-relaxed mb-5">
                                     {service.description}
                                 </p>
-                            </div>
 
-                            {/* Decorative Icon */}
-                            <div className="absolute top-4 right-4 opacity-5 group-hover:opacity-10 transition-opacity">
-                                <service.icon className="w-24 h-24 text-white" />
+                                <div className="flex flex-wrap gap-2 mb-5">
+                                    {service.tags.map(tag => (
+                                        <span key={tag} className="px-2.5 py-1 rounded-full bg-white/5 text-slate-400 text-xs border border-white/5">
+                                            {tag}
+                                        </span>
+                                    ))}
+                                </div>
+
+                                <div className="flex items-center text-xs font-medium text-slate-500 group-hover:text-gold-400 transition-colors">
+                                    詳細はお問い合わせください
+                                    <ArrowRight className="ml-1 w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                                </div>
                             </div>
                         </motion.div>
                     ))}
