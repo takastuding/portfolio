@@ -50,7 +50,7 @@ export const Hero = () => {
                         </h1>
 
                         <p className="text-lg text-slate-400 leading-relaxed mb-10 max-w-lg">
-                            金融機関出身の社会保険労務士として、企業経営者・個人事業主の
+                            大手損害保険会社出身の社会保険労務士として、企業経営者・個人事業主の
                             労務管理・社会保険・資産形成を包括的にサポートします。
                         </p>
 
@@ -73,7 +73,7 @@ export const Hero = () => {
                         <div className="grid grid-cols-3 gap-6 pt-8 border-t border-white/5">
                             {[
                                 { icon: Award, label: '3つの資格', sub: '社労士・FP1級・年金' },
-                                { icon: TrendingUp, label: '金融出身', sub: '地方銀行での実務経験' },
+                                { icon: TrendingUp, label: '保険業界出身', sub: '大手損害保険会社での実務経験' },
                                 { icon: Users, label: '副業対応', sub: '執筆・監修・相談' },
                             ].map(({ icon: Icon, label, sub }) => (
                                 <div key={label} className="group">

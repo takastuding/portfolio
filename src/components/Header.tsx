@@ -32,15 +32,21 @@ export const Header = () => {
                         transition={{ duration: 0.5 }}
                         className="flex items-center gap-3 group"
                     >
-                        <div className="relative w-8 h-8">
-                            <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-gold-400 to-gold-600 opacity-20 group-hover:opacity-40 transition-opacity blur-sm" />
-                            <div className="relative w-8 h-8 rounded-lg bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center shadow-lg">
-                                <span className="text-[#050b18] font-bold text-sm font-mono">S</span>
+                        {/* ロゴ：縦線アクセント＋テキスト */}
+                        <div className="flex items-center gap-2">
+                            <div className="relative flex items-center">
+                                <div className="w-1 h-8 rounded-full bg-gradient-to-b from-gold-300 to-gold-500 shadow-[0_0_8px_rgba(251,191,36,0.5)]" />
+                                <div className="w-1 h-5 rounded-full bg-gold-500/30 ml-0.5" />
+                            </div>
+                            <div className="flex flex-col leading-none">
+                                <span className="text-white font-bold text-base tracking-tight group-hover:text-gold-300 transition-colors">
+                                    社労士・FP事務所
+                                </span>
+                                <span className="text-gold-400/70 text-[10px] font-medium tracking-widest uppercase mt-0.5">
+                                    SR &amp; FP Office
+                                </span>
                             </div>
                         </div>
-                        <span className="text-white font-semibold text-sm tracking-wide group-hover:text-gold-400 transition-colors">
-                            社労士・FP事務所
-                        </span>
                     </motion.a>
 
                     <motion.nav

@@ -9,7 +9,7 @@ export const Profile = () => {
     ];
 
     const career = [
-        { icon: Building2, year: '大学卒業後', title: '地方銀行 入行', desc: '法人融資・資産運用相談業務に従事' },
+        { icon: Building2, year: '大学卒業後', title: '大手損害保険会社 入社', desc: '保険業務や顧客対応業務に従事' },
         { icon: Award, year: '在職中', title: '社会保険労務士 資格取得', desc: '中小企業の「人」と「お金」の課題解決を目指して' },
         { icon: BookOpen, year: '現在', title: '副業として活動中', desc: '執筆・監修・個別相談など幅広く対応' },
     ];
@@ -49,7 +49,7 @@ export const Profile = () => {
                                 </svg>
                             </div>
                             <h3 className="text-white font-bold text-lg mb-1">社労士・FP専門家</h3>
-                            <p className="text-slate-400 text-sm mb-4">金融機関勤務 / 副業フリーランス</p>
+                            <p className="text-slate-400 text-sm mb-4">損害保険会社勤務 / 副業フリーランス</p>
                             <div className="flex flex-wrap justify-center gap-2">
                                 {['社労士', 'FP1級', '年金2級'].map(tag => (
                                     <span key={tag} className="px-3 py-1 rounded-full bg-gold-500/10 text-gold-400 text-xs font-medium border border-gold-500/20">{tag}</span>
@@ -92,12 +92,12 @@ export const Profile = () => {
                             </h3>
                             <div className="space-y-4 text-slate-300 leading-relaxed">
                                 <p>
-                                    大学卒業後、地方銀行に入行。法人融資、資産運用相談業務に従事する中で、
+                                    大学卒業後、大手損害保険会社に就職。保険業務や顧客対応に従事する中で、
                                     中小企業の経営者が抱える「人」と「お金」の課題に直面し、
                                     より専門的なサポートを行うために社会保険労務士資格を取得しました。
                                 </p>
                                 <p>
-                                    現在は金融機関に勤務しながら、副業として執筆活動や監修、個別相談などを行っています。
+                                    現在は損害保険会社に勤務しながら、副業として執筆活動や監修、個別相談などを行っています。
                                 </p>
                                 <div className="mt-4 p-4 rounded-xl bg-gold-500/5 border border-gold-500/15">
                                     <p className="text-gold-300 font-medium text-sm">
