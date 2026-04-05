@@ -13,8 +13,6 @@
   --color-amber-700: #b45309;
   --font-sans: "Noto Sans JP", "Inter", sans-serif;
   --font-display: "Zen Old Mincho", serif;
-  --animate-fade-in-up: fadeInUp 0.8s ease-out forwards;
-  --animate-float: float 6s ease-in-out infinite;
 
   @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(24px); }
@@ -23,6 +21,31 @@
   @keyframes float {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-12px); }
+  }
+  /* CSS-only infinite animations（Framer Motionより軽量） */
+  @keyframes spin-cw {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  @keyframes spin-ccw {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
+  }
+  @keyframes floatY {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-6px); }
+  }
+  @keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.6); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  @keyframes countUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes progressBar {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
   }
 }
 
@@ -52,9 +75,6 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-  .glow-amber {
-    box-shadow: 0 4px 20px rgba(217, 119, 6, 0.25), 0 0 60px rgba(217, 119, 6, 0.1);
-  }
   .section-label {
     font-size: 0.7rem;
     font-weight: 700;
@@ -71,6 +91,22 @@
   }
   .font-display {
     font-family: "Zen Old Mincho", serif;
+  }
+  /* CSS-only orbit animations（GPUアクセラレーション） */
+  .animate-spin-cw-slow {
+    animation: spin-cw 30s linear infinite;
+    will-change: transform;
+  }
+  .animate-spin-ccw-slow {
+    animation: spin-ccw 20s linear infinite;
+    will-change: transform;
+  }
+  .animate-float-badge {
+    will-change: transform;
+  }
+  /* セクション区切りの波形 */
+  .section-divider {
+    background: linear-gradient(180deg, #faf9f6 0%, #f5f3ee 100%);
   }
 }
 
