@@ -1,19 +1,22 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Award, TrendingUp, Users } from 'lucide-react';
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 
 const title1 = '「人」と「お金」の';
 const title2 = '課題を同時に解決';
 
 export const Hero = () => {
     const sectionRef = useRef<HTMLElement>(null);
-    const [mousePos, setMousePos] = useState({ x: -9999, y: -9999 });
+    const spotlightRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
-            if (sectionRef.current) {
+            if (sectionRef.current && spotlightRef.current) {
                 const rect = sectionRef.current.getBoundingClientRect();
-                setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                spotlightRef.current.style.background =
+                    `radial-gradient(600px circle at ${x}px ${y}px, rgba(251,191,36,0.10), transparent 40%)`;
             }
         };
         const section = sectionRef.current;
@@ -33,12 +36,10 @@ export const Hero = () => {
 
     return (
         <section ref={sectionRef} id="home" className="relative min-h-screen flex items-center overflow-hidden">
-            {/* Cursor spotlight */}
+            {/* Cursor spotlight - useRefで直接DOM操作しReact再レンダリングを回避 */}
             <div
-                className="pointer-events-none absolute inset-0 z-10 transition-opacity duration-300"
-                style={{
-                    background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(251,191,36,0.10), transparent 40%)`,
-                }}
+                ref={spotlightRef}
+                className="pointer-events-none absolute inset-0 z-10"
             />
 
             {/* Background grid */}
