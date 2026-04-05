@@ -69,7 +69,7 @@ export const Services = () => {
                     <h2 className="font-display text-3xl sm:text-4xl font-bold text-stone-800">提供サービス</h2>
                     <div className="mt-4 h-px w-16 bg-gradient-to-r from-amber-500 to-transparent" />
                     <p className="mt-4 text-stone-500 max-w-lg">
-                        CrowdWorksなどを通じて、以下の業務を中心にお引き受けしております。
+                        橋本社会保険労務士事務所では、CrowdWorksなどを通じて以下の業務を中心にお引き受けしております。
                     </p>
                 </motion.div>
 

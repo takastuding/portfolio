@@ -61,10 +61,10 @@ export const Header = () => {
                             </div>
                             <div className="flex flex-col leading-none">
                                 <span className="text-stone-800 font-bold text-base tracking-tight group-hover:text-amber-700 transition-colors">
-                                    社労士・FP事務所
+                                    橋本社会保険労務士事務所
                                 </span>
                                 <span className="text-amber-600/70 text-[10px] font-medium tracking-widest uppercase mt-0.5">
-                                    SR &amp; FP Office
+                                    Hashimoto SR Office
                                 </span>
                             </div>
                         </div>

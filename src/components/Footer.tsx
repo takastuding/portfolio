@@ -49,7 +49,7 @@ export const Footer = () => {
                             <div className="w-1 h-4 rounded-full bg-amber-300/40 ml-0.5" />
                         </div>
                         <div className="flex flex-col leading-none ml-1">
-                            <p className="text-stone-800 font-bold text-sm tracking-tight">社労士・FP専門家</p>
+                            <p className="text-stone-800 font-bold text-sm tracking-tight">橋本社会保険労務士事務所</p>
                             <p className="text-amber-600/70 text-[10px] font-medium tracking-widest uppercase mt-0.5">社労士 / FP1級 / 年金アドバイザー2級</p>
                         </div>
                     </div>

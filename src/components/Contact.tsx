@@ -29,7 +29,7 @@ export const Contact = () => {
                         className="space-y-6"
                     >
                         <p className="text-stone-600 text-lg leading-relaxed">
-                            お仕事のご依頼・ご相談は、CrowdWorksのメッセージ機能またはメールよりお気軽にご連絡ください。
+                            橋本社会保険労務士事務所へのご依頼・ご相談は、CrowdWorksのメッセージ機能またはメールよりお気軽にご連絡ください。
                         </p>
 
                         <div className="flex items-center gap-3 text-stone-500 text-sm">

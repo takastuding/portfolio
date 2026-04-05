@@ -42,6 +42,15 @@ export const Hero = () => {
                 className="pointer-events-none absolute inset-0 z-10"
             />
 
+            {/* Unsplash 背景画像（オフィス・プロフェッショナル） */}
+            <div className="absolute inset-0 overflow-hidden">
+                <img
+                    src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&auto=format&fit=crop&q=60"
+                    alt=""
+                    className="w-full h-full object-cover object-center opacity-[0.06]"
+                />
+            </div>
+
             {/* Background grid */}
             <div className="absolute inset-0 bg-[linear-gradient(rgba(217,119,6,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(217,119,6,0.04)_1px,transparent_1px)] bg-[size:60px_60px]" />
             <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-amber-300/10 rounded-full blur-3xl pointer-events-none" />
@@ -62,7 +71,7 @@ export const Hero = () => {
                             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-50 border border-amber-200 text-amber-700 text-xs font-semibold tracking-widest uppercase mb-8"
                         >
                             <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
-                            社会保険労務士 / FP1級 / 年金アドバイザー
+                            橋本社会保険労務士事務所 / FP1級 / 年金アドバイザー
                         </motion.div>
 
                         <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-stone-800 leading-[1.2] tracking-tight mb-6">

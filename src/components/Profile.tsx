@@ -40,20 +40,25 @@ export const Profile = () => {
                         transition={{ duration: 0.6, delay: 0.1 }}
                         className="lg:col-span-2 space-y-6"
                     >
-                        <div className="rounded-2xl p-8 text-center border border-amber-100 bg-white shadow-[0_4px_24px_rgba(0,0,0,0.07)]">
-                            <div className="w-24 h-24 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-amber-50 to-amber-100 border border-amber-200 flex items-center justify-center">
-                                <svg viewBox="0 0 80 80" fill="none" className="w-16 h-16" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="40" cy="28" r="14" fill="#fbbf24" fillOpacity="0.25" stroke="#d97706" strokeWidth="1.5" />
-                                    <circle cx="40" cy="26" r="9" fill="#fbbf24" fillOpacity="0.4" />
-                                    <path d="M18 64c0-12.15 9.85-22 22-22h0c12.15 0 22 9.85 22 22" stroke="#d97706" strokeWidth="1.5" strokeLinecap="round" fill="none" />
-                                </svg>
+                        <div className="rounded-2xl overflow-hidden border border-amber-100 bg-white shadow-[0_4px_24px_rgba(0,0,0,0.07)]">
+                            {/* Unsplash プロフィール写真 */}
+                            <div className="relative h-48 overflow-hidden">
+                                <img
+                                    src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&auto=format&fit=crop&crop=face"
+                                    alt="橋本社会保険労務士事務所 代表"
+                                    className="w-full h-full object-cover object-top"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-white/60 to-transparent" />
                             </div>
-                            <h3 className="text-stone-800 font-bold text-lg mb-1">社労士・FP専門家</h3>
-                            <p className="text-stone-500 text-sm mb-4">損害保険会社勤務 / 副業フリーランス</p>
-                            <div className="flex flex-wrap justify-center gap-2">
-                                {['社労士', 'FP1級', '年金2級'].map(tag => (
-                                    <span key={tag} className="px-3 py-1 rounded-full bg-amber-50 text-amber-700 text-xs font-medium border border-amber-200">{tag}</span>
-                                ))}
+                            <div className="p-6 text-center">
+                                <h3 className="text-stone-800 font-bold text-lg mb-1">橋本 ◯◯</h3>
+                                <p className="text-amber-700 text-sm font-semibold mb-1">橋本社会保険労務士事務所 代表</p>
+                                <p className="text-stone-500 text-xs mb-4">損害保険会社勤務 / 副業フリーランス</p>
+                                <div className="flex flex-wrap justify-center gap-2">
+                                    {['社労士', 'FP1級', '年金2級'].map(tag => (
+                                        <span key={tag} className="px-3 py-1 rounded-full bg-amber-50 text-amber-700 text-xs font-medium border border-amber-200">{tag}</span>
+                                    ))}
+                                </div>
                             </div>
                         </div>
 
