@@ -32,8 +32,8 @@ const socialLinks = [
 
 export const Footer = () => {
     return (
-        <footer className="border-t border-white/5 py-10 relative overflow-hidden">
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[150px] bg-gold-500/3 rounded-full blur-3xl" />
+        <footer className="border-t border-stone-200 py-10 relative overflow-hidden bg-white">
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[100px] bg-amber-100/20 rounded-full blur-3xl" />
 
             <div className="relative max-w-6xl mx-auto px-6 lg:px-8">
                 <motion.div
@@ -43,17 +43,14 @@ export const Footer = () => {
                     transition={{ duration: 0.5 }}
                     className="flex flex-col md:flex-row justify-between items-center gap-6"
                 >
-                    <div className="flex items-center gap-3">
-                        {/* ロゴ：縦線アクセント＋テキスト */}
-                        <div className="flex items-center gap-2">
-                            <div className="relative flex items-center">
-                                <div className="w-1 h-7 rounded-full bg-gradient-to-b from-gold-300 to-gold-500 shadow-[0_0_6px_rgba(251,191,36,0.4)]" />
-                                <div className="w-1 h-4 rounded-full bg-gold-500/30 ml-0.5" />
-                            </div>
-                            <div className="flex flex-col leading-none">
-                                <p className="text-white font-bold text-sm tracking-tight">社労士・FP専門家</p>
-                                <p className="text-gold-400/60 text-[10px] font-medium tracking-widest uppercase mt-0.5">社労士 / FP1級 / 年金アドバイザー2級</p>
-                            </div>
+                    <div className="flex items-center gap-2">
+                        <div className="relative flex items-center">
+                            <div className="w-1 h-7 rounded-full bg-gradient-to-b from-amber-400 to-amber-600 shadow-[0_0_6px_rgba(217,119,6,0.35)]" />
+                            <div className="w-1 h-4 rounded-full bg-amber-300/40 ml-0.5" />
+                        </div>
+                        <div className="flex flex-col leading-none ml-1">
+                            <p className="text-stone-800 font-bold text-sm tracking-tight">社労士・FP専門家</p>
+                            <p className="text-amber-600/70 text-[10px] font-medium tracking-widest uppercase mt-0.5">社労士 / FP1級 / 年金アドバイザー2級</p>
                         </div>
                     </div>
 
@@ -65,14 +62,14 @@ export const Footer = () => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 aria-label={link.name}
-                                className="w-9 h-9 rounded-xl glass border border-white/5 flex items-center justify-center text-slate-500 hover:text-gold-400 hover:border-gold-500/30 transition-all duration-200"
+                                className="w-9 h-9 rounded-xl bg-stone-100 border border-stone-200 flex items-center justify-center text-stone-400 hover:text-amber-600 hover:border-amber-300 hover:bg-amber-50 transition-all duration-200"
                             >
                                 {link.icon}
                             </a>
                         ))}
                     </div>
 
-                    <p className="text-slate-600 text-xs">
+                    <p className="text-stone-400 text-xs">
                         &copy; {new Date().getFullYear()} All rights reserved.
                     </p>
                 </motion.div>

@@ -1,7 +1,6 @@
 import { ExternalLink } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-// SVG Icons for each platform
 const NoteIcon = () => (
     <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
         <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
@@ -34,11 +33,13 @@ export const Links = () => {
             description: '社労士・FPの専門知識をわかりやすく発信。日々の気づきや制度解説を記事にしています。',
             url: 'https://note.com/brainy_racoon772',
             icon: NoteIcon,
-            accent: 'from-emerald-500/20 to-emerald-700/5',
-            border: 'border-emerald-500/20',
-            iconBg: 'bg-emerald-500/10',
-            iconColor: 'text-emerald-400',
+            bg: 'bg-emerald-50',
+            border: 'border-emerald-200',
+            hoverBorder: 'hover:border-emerald-400',
+            iconBg: 'bg-emerald-100',
+            iconColor: 'text-emerald-600',
             label: 'note',
+            glow: 'hover:shadow-[0_8px_40px_rgba(16,185,129,0.18)]',
         },
         {
             name: 'X (Twitter)',
@@ -46,11 +47,13 @@ export const Links = () => {
             description: '社労士・FP・年金に関するリアルタイムな情報発信。役立つ制度情報をシェアしています。',
             url: 'https://x.com/sharoushi_info?s=21',
             icon: XIcon,
-            accent: 'from-slate-500/20 to-slate-700/5',
-            border: 'border-slate-500/20',
-            iconBg: 'bg-slate-500/10',
-            iconColor: 'text-slate-300',
+            bg: 'bg-stone-50',
+            border: 'border-stone-200',
+            hoverBorder: 'hover:border-stone-400',
+            iconBg: 'bg-stone-100',
+            iconColor: 'text-stone-700',
             label: 'X / Twitter',
+            glow: 'hover:shadow-[0_8px_40px_rgba(0,0,0,0.12)]',
         },
         {
             name: 'Threads',
@@ -58,11 +61,13 @@ export const Links = () => {
             description: '日常の気づきや労務・FPに関するショートコンテンツを発信しています。',
             url: 'https://www.threads.com/@sharo_log?igshid=NTc4MTIwNjQ2YQ==',
             icon: ThreadsIcon,
-            accent: 'from-purple-500/20 to-purple-700/5',
-            border: 'border-purple-500/20',
-            iconBg: 'bg-purple-500/10',
-            iconColor: 'text-purple-400',
+            bg: 'bg-purple-50',
+            border: 'border-purple-200',
+            hoverBorder: 'hover:border-purple-400',
+            iconBg: 'bg-purple-100',
+            iconColor: 'text-purple-600',
             label: 'Threads',
+            glow: 'hover:shadow-[0_8px_40px_rgba(147,51,234,0.15)]',
         },
         {
             name: 'CrowdWorks',
@@ -70,18 +75,20 @@ export const Links = () => {
             description: 'お仕事のご依頼はこちらから。執筆・監修・相談など幅広くお引き受けします。',
             url: '#',
             icon: CrowdWorksIcon,
-            accent: 'from-orange-500/20 to-orange-700/5',
-            border: 'border-orange-500/20',
-            iconBg: 'bg-orange-500/10',
-            iconColor: 'text-orange-400',
+            bg: 'bg-orange-50',
+            border: 'border-orange-200',
+            hoverBorder: 'hover:border-orange-400',
+            iconBg: 'bg-orange-100',
+            iconColor: 'text-orange-600',
             label: 'CrowdWorks',
+            glow: 'hover:shadow-[0_8px_40px_rgba(234,88,12,0.15)]',
         },
     ];
 
     return (
         <section id="links" className="py-24 relative overflow-hidden">
-            <div className="absolute top-1/2 right-0 w-96 h-96 bg-gold-500/4 rounded-full blur-3xl -translate-y-1/2" />
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/4 rounded-full blur-3xl" />
+            <div className="absolute top-1/2 right-0 w-96 h-96 bg-amber-100/20 rounded-full blur-3xl -translate-y-1/2" />
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-100/20 rounded-full blur-3xl" />
 
             <div className="relative max-w-6xl mx-auto px-6 lg:px-8">
                 <motion.div
@@ -91,10 +98,10 @@ export const Links = () => {
                     transition={{ duration: 0.6 }}
                     className="mb-16"
                 >
-                    <p className="section-label mb-3">Links</p>
-                    <h2 className="text-3xl sm:text-4xl font-bold text-white">SNS・外部サイト</h2>
-                    <div className="mt-4 h-px w-16 bg-gradient-to-r from-gold-400 to-transparent" />
-                    <p className="mt-4 text-slate-400 max-w-lg">
+                    <p className="section-label mb-3">03 — Links</p>
+                    <h2 className="font-display text-3xl sm:text-4xl font-bold text-stone-800">SNS・外部サイト</h2>
+                    <div className="mt-4 h-px w-16 bg-gradient-to-r from-amber-500 to-transparent" />
+                    <p className="mt-4 text-stone-500 max-w-lg">
                         各SNSやプラットフォームで情報発信中です。お気軽にフォローしてください。
                     </p>
                 </motion.div>
@@ -110,26 +117,25 @@ export const Links = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: index * 0.08 }}
-                            className={`group relative rounded-2xl p-5 border ${link.border} glass-card card-hover overflow-hidden block`}
+                            whileHover={{ y: -6, scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            className={`group relative rounded-2xl p-5 border ${link.border} ${link.hoverBorder} ${link.bg} ${link.glow} overflow-hidden block transition-all duration-300 shadow-sm`}
                         >
-                            {/* Hover accent */}
-                            <div className={`absolute inset-0 bg-gradient-to-br ${link.accent} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl`} />
-
                             <div className="relative z-10">
                                 <div className="flex items-start justify-between mb-4">
-                                    <div className={`w-11 h-11 rounded-xl ${link.iconBg} border ${link.border} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                                    <div className={`w-11 h-11 rounded-xl ${link.iconBg} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
                                         <span className={link.iconColor}>
                                             <link.icon />
                                         </span>
                                     </div>
-                                    <ExternalLink className="w-4 h-4 text-slate-600 group-hover:text-gold-400 transition-colors" />
+                                    <ExternalLink className="w-4 h-4 text-stone-300 group-hover:text-amber-500 transition-colors" />
                                 </div>
 
-                                <p className="text-white font-bold text-base mb-0.5">{link.name}</p>
-                                <p className="text-slate-500 text-xs mb-3">{link.handle}</p>
-                                <p className="text-slate-400 text-xs leading-relaxed">{link.description}</p>
+                                <p className="text-stone-800 font-bold text-base mb-0.5">{link.name}</p>
+                                <p className="text-stone-400 text-xs mb-3">{link.handle}</p>
+                                <p className="text-stone-500 text-xs leading-relaxed">{link.description}</p>
 
-                                <div className="mt-4 pt-3 border-t border-white/5 flex items-center text-xs text-slate-500 group-hover:text-gold-400 transition-colors font-medium">
+                                <div className="mt-4 pt-3 border-t border-stone-200/60 flex items-center text-xs text-stone-400 group-hover:text-amber-600 transition-colors font-semibold">
                                     {link.label}を開く
                                 </div>
                             </div>
