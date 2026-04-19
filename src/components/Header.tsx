@@ -14,7 +14,7 @@ export const Header = () => {
     }, []);
 
     useEffect(() => {
-        const sections = ['home', 'profile', 'services', 'links', 'contact'];
+        const sections = ['home', 'profile', 'services', 'templates', 'how-it-works', 'booking', 'contact'];
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
@@ -34,8 +34,9 @@ export const Header = () => {
         { name: 'ホーム', href: '#home', id: 'home' },
         { name: 'プロフィール', href: '#profile', id: 'profile' },
         { name: 'サービス', href: '#services', id: 'services' },
-        { name: 'SNS・リンク', href: '#links', id: 'links' },
-        { name: 'お問い合わせ', href: '#contact', id: 'contact' },
+        { name: 'ひな形サブスク', href: '#templates', id: 'templates' },
+        { name: '相談の流れ', href: '#how-it-works', id: 'how-it-works' },
+        { name: '予約', href: '#booking', id: 'booking' },
     ];
 
     return (
@@ -98,13 +99,13 @@ export const Header = () => {
                             </motion.a>
                         ))}
                         <motion.a
-                            href="#contact"
+                            href="#booking"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.3, delay: 0.4 }}
                             className="ml-4 px-5 py-2 text-sm font-semibold rounded-lg bg-amber-600 text-white hover:bg-amber-700 transition-all duration-200 shadow-[0_2px_12px_rgba(217,119,6,0.3)] hover:shadow-[0_4px_20px_rgba(217,119,6,0.4)]"
                         >
-                            相談する
+                            相談予約
                         </motion.a>
                     </motion.nav>
 

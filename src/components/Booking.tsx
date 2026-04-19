@@ -111,20 +111,6 @@ export const Booking = () => {
 
             if (error) throw error;
 
-            // 予約成功 → 確認メールをメーラーで送信
-            const subject = encodeURIComponent(`【予約確認】${selectedDate.label} ${selectedTime}〜`);
-            const body = encodeURIComponent(
-                `${form.name} 様\n\n以下の内容でご予約を承りました。\n\n` +
-                `日時: ${selectedDate.label} ${selectedTime}〜\n` +
-                `相談内容: ${form.type}\n\n` +
-                `ご連絡事項:\n${form.message || 'なし'}\n\n` +
-                `──────────────────\n` +
-                `橋本貴嗣社会保険労務士事務所\n` +
-                `sharoushi24.info@gmail.com\n` +
-                `※ 土日祝専門のため平日はご返信が遅れる場合があります`
-            );
-            window.location.href = `mailto:sharoushi24.info@gmail.com?subject=${subject}&body=${body}`;
-
             setSubmitResult('success');
             // 予約済みスロットを更新
             setBookedSlots(prev => {
@@ -154,7 +140,7 @@ export const Booking = () => {
                     transition={{ duration: 0.6 }}
                     className="mb-12"
                 >
-                    <p className="section-label mb-3">04 — Booking</p>
+                    <p className="section-label mb-3">05 — Booking</p>
                     <h2 className="font-display text-3xl sm:text-4xl font-bold text-stone-800">ネット相談予約</h2>
                     <div className="mt-4 h-px w-16 bg-gradient-to-r from-amber-500 to-transparent" />
                     <p className="mt-4 text-stone-500 max-w-xl">
@@ -288,8 +274,8 @@ export const Booking = () => {
                                 <CheckCircle className="w-10 h-10 text-emerald-500 mx-auto mb-3" />
                                 <p className="text-emerald-800 font-bold text-lg">予約を受け付けました</p>
                                 <p className="text-emerald-700/70 text-sm mt-2">
-                                    メーラーが開いた場合は送信してください。
-                                    <br />確認のご返信は週末に行います。
+                                    ご登録のメールアドレスに確認メールをお送りしました。
+                                    <br />個別のご返信は土日中に行います。
                                 </p>
                             </div>
                         ) : (
@@ -382,7 +368,7 @@ export const Booking = () => {
                                     }
                                 </button>
                                 <p className="text-stone-400 text-xs text-center">
-                                    送信後にメーラーが開きます。確認メールを送ることで予約が確定します。
+                                    送信すると予約が確定し、確認メールが自動送信されます。
                                 </p>
                             </form>
                         )}
