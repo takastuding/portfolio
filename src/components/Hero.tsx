@@ -78,7 +78,7 @@ export const Hero = () => {
                             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-50 border border-amber-200 text-amber-700 text-xs font-semibold tracking-widest uppercase mb-8"
                         >
                             <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
-                            橋本社会保険労務士事務所 / FP1級 / 年金アドバイザー
+                            橋本貴嗣社会保険労務士事務所 / FP1級
                         </motion.div>
 
                         {/* テキストアニメーション：variantsでバッチ処理 */}
@@ -135,6 +135,13 @@ export const Hero = () => {
                                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                             </a>
                             <a
+                                href="#booking"
+                                className="group inline-flex items-center justify-center px-7 py-3.5 text-sm font-bold rounded-xl text-amber-700 border-2 border-amber-400 hover:bg-amber-50 hover:border-amber-500 transition-all duration-200"
+                            >
+                                ネット相談予約
+                                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                            </a>
+                            <a
                                 href="#profile"
                                 className="inline-flex items-center justify-center px-7 py-3.5 text-sm font-medium rounded-xl text-stone-600 border border-stone-300 hover:border-amber-400 hover:bg-amber-50 hover:text-amber-700 transition-all duration-200"
                             >
@@ -149,7 +156,7 @@ export const Hero = () => {
                             className="grid grid-cols-3 gap-6 pt-8 border-t border-stone-200"
                         >
                             {[
-                                { icon: Award, label: '3つの資格', sub: '社労士・FP1級・年金2級' },
+                                { icon: Award, label: '2つの資格', sub: '社労士・FP技能士1級' },
                                 { icon: TrendingUp, label: '保険業界出身', sub: '大手損害保険会社勤務' },
                                 { icon: Users, label: '副業対応', sub: '執筆・監修・個別相談' },
                             ].map(({ icon: Icon, label, sub }) => (
@@ -187,10 +194,10 @@ export const Hero = () => {
                                             <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                         </svg>
                                     </div>
-                                    <p className="text-stone-800 font-bold text-sm mb-1">Triple License</p>
+                                    <p className="text-stone-800 font-bold text-sm mb-1">Dual License</p>
                                     <p className="text-stone-400 text-xs">Certified Professional</p>
                                     <div className="mt-4 flex justify-center gap-1.5">
-                                        {['社労士', 'FP1', '年金'].map((t) => (
+                                        {['社労士', 'FP1'].map((t) => (
                                             <span key={t} className="px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 text-[10px] font-medium border border-amber-200">{t}</span>
                                         ))}
                                     </div>
@@ -212,12 +219,14 @@ export const Hero = () => {
                                             position: 'absolute',
                                             transform: 'translate(-50%, -50%)',
                                             animation: `fadeInScale 0.4s ease ${delay}s both`,
+                                            willChange: 'transform',
                                         }}
                                     >
                                         <div
                                             className="px-3 py-1.5 rounded-lg bg-white border border-amber-200 text-amber-700 text-xs font-semibold whitespace-nowrap shadow-md"
                                             style={{
                                                 animation: `floatY ${3 + delay * 0.5}s ease-in-out ${delay * 0.3}s infinite`,
+                                                willChange: 'transform',
                                             }}
                                         >
                                             {label}
@@ -238,7 +247,7 @@ export const Hero = () => {
             >
                 <span className="text-stone-400 text-xs tracking-widest uppercase">Scroll</span>
                 <div className="w-px h-8 bg-gradient-to-b from-amber-500/50 to-transparent"
-                    style={{ animation: 'floatY 1.5s ease-in-out infinite' }} />
+                    style={{ animation: 'floatY 1.5s ease-in-out infinite', willChange: 'transform' }} />
             </motion.div>
         </section>
     );

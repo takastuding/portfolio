@@ -20,7 +20,7 @@ export const Contact = () => {
         },
         {
             q: 'オンラインで相談できますか？',
-            a: 'Zoom・Google Meet等のオンラインビデオ通話にて全国どこからでもご相談いただけます。',
+            a: 'はい、Zoom・Google Meet等のオンラインビデオ通話にて全国どこからでもご相談いただけます。オンライン相談は土日祝の休日限定となっております。ネット相談予約フォームからご予約ください。',
         },
     ];
 
@@ -51,7 +51,7 @@ export const Contact = () => {
                         className="space-y-6"
                     >
                         <p className="text-stone-600 text-lg leading-relaxed">
-                            橋本社会保険労務士事務所へのご依頼・ご相談は、CrowdWorksのメッセージ機能またはメールよりお気軽にご連絡ください。
+                            橋本貴嗣社会保険労務士事務所へのご依頼・ご相談は、CrowdWorksのメッセージ機能またはメールよりお気軽にご連絡ください。
                         </p>
 
                         <div className="flex items-center gap-3 text-stone-500 text-sm">
@@ -94,14 +94,14 @@ export const Contact = () => {
                         </a>
 
                         <a
-                            href="mailto:contact@example.com"
+                            href="mailto:sharoushi24.info@gmail.com"
                             className="group flex items-center justify-between w-full px-6 py-5 rounded-2xl bg-white border border-stone-200 hover:border-amber-300 hover:shadow-md transition-all duration-200 shadow-sm hover:-translate-y-0.5"
                         >
                             <div className="flex items-center gap-3">
                                 <Mail className="w-5 h-5 text-stone-400 group-hover:text-amber-600 transition-colors" />
                                 <div className="text-left">
                                     <p className="text-stone-800 font-semibold text-sm">メールで問い合わせる</p>
-                                    <p className="text-stone-400 text-xs">contact@example.com</p>
+                                    <p className="text-stone-400 text-xs">sharoushi24.info@gmail.com</p>
                                 </div>
                             </div>
                             <ArrowRight className="w-4 h-4 text-stone-300 group-hover:text-amber-600 group-hover:translate-x-1 transition-all" />

@@ -5,7 +5,6 @@ export const Profile = () => {
     const qualifications = [
         { label: '社会保険労務士', desc: '労務管理・社会保険手続きの専門家' },
         { label: 'FP技能士1級', desc: '最上位の国家資格ファイナンシャルプランナー' },
-        { label: '年金アドバイザー2級', desc: '年金制度の専門的アドバイザー' },
     ];
 
     const career = [
@@ -45,7 +44,7 @@ export const Profile = () => {
                             <div className="relative h-52 overflow-hidden">
                                 <img
                                     src="https://images.unsplash.com/photo-1556761175-4b46a572b786?w=600&auto=format&fit=crop&q=80"
-                                    alt="橋本社会保険労務士事務所"
+                                    alt="橋本貴嗣社会保険労務士事務所"
                                     className="w-full h-full object-cover object-center"
                                     loading="lazy"
                                 />
@@ -53,14 +52,14 @@ export const Profile = () => {
                                 <div className="absolute inset-0 bg-gradient-to-t from-amber-900/40 via-transparent to-transparent" />
                                 {/* 画像上のラベル */}
                                 <div className="absolute bottom-4 left-4 right-4">
-                                    <p className="text-white font-bold text-base drop-shadow-sm">橋本社会保険労務士事務所</p>
+                                    <p className="text-white font-bold text-base drop-shadow-sm">橋本貴嗣社会保険労務士事務所</p>
                                     <p className="text-amber-200 text-xs mt-0.5">Hashimoto SR Office</p>
                                 </div>
                             </div>
                             <div className="p-5">
                                 <p className="text-stone-500 text-xs mb-3 text-center">損害保険会社勤務 / 副業フリーランス</p>
                                 <div className="flex flex-wrap justify-center gap-2">
-                                    {['社労士', 'FP1級', '年金2級'].map(tag => (
+                                    {['社労士', 'FP1級'].map(tag => (
                                         <span key={tag} className="px-3 py-1 rounded-full bg-amber-50 text-amber-700 text-xs font-medium border border-amber-200">{tag}</span>
                                     ))}
                                 </div>

@@ -22,9 +22,9 @@ export const Services = () => {
         {
             num: '02',
             title: '個別相談・コンサルティング',
-            description: 'ライフプランニング、年金相談、資産運用に関するアドバイス。FP1級の知識を活かした包括的な提案が可能です。',
+            description: 'ライフプランニング、社会保険、資産運用に関するアドバイス。FP1級の知識を活かした包括的な提案が可能です。オンライン相談は休日限定で承ります。',
             icon: Users,
-            tags: ['年金相談', '資産形成', 'FP1級'],
+            tags: ['休日限定・オンライン', '資産形成', 'FP1級'],
             accent: 'from-amber-50 to-white',
             border: 'border-amber-200',
             hoverBorder: 'hover:border-amber-400',
@@ -69,7 +69,7 @@ export const Services = () => {
                     <h2 className="font-display text-3xl sm:text-4xl font-bold text-stone-800">提供サービス</h2>
                     <div className="mt-4 h-px w-16 bg-gradient-to-r from-amber-500 to-transparent" />
                     <p className="mt-4 text-stone-500 max-w-lg">
-                        橋本社会保険労務士事務所では、CrowdWorksなどを通じて以下の業務を中心にお引き受けしております。
+                        橋本貴嗣社会保険労務士事務所では、CrowdWorksなどを通じて以下の業務を中心にお引き受けしております。
                     </p>
                 </motion.div>
 
@@ -81,8 +81,7 @@ export const Services = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
-                            whileHover={{ y: -6 }}
-                            className={`relative rounded-2xl p-6 border ${service.border} ${service.hoverBorder} bg-gradient-to-br ${service.accent} group overflow-hidden shadow-sm ${service.glow} transition-all duration-300`}
+                            className={`relative rounded-2xl p-6 border ${service.border} ${service.hoverBorder} bg-gradient-to-br ${service.accent} group overflow-hidden shadow-sm ${service.glow} card-hover transition-all duration-300`}
                         >
                             {/* Section number watermark */}
                             <div className={`absolute top-4 right-5 font-display text-6xl font-black ${service.numColor} select-none pointer-events-none`}>
