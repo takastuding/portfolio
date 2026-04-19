@@ -54,17 +54,16 @@ export const Header = () => {
                         transition={{ duration: 0.5 }}
                         className="flex items-center gap-3 group"
                     >
-                        <div className="flex items-center gap-2">
-                            <div className="relative flex items-center">
-                                <div className="w-1 h-8 rounded-full bg-gradient-to-b from-amber-400 to-amber-600 shadow-[0_0_8px_rgba(217,119,6,0.4)]" />
-                                <div className="w-1 h-5 rounded-full bg-amber-300/40 ml-0.5" />
+                        <div className="flex items-center gap-3">
+                            <div className="w-9 h-9 rounded-xl bg-stone-900 flex items-center justify-center flex-shrink-0 shadow-sm group-hover:bg-stone-800 transition-colors">
+                                <span className="font-display text-amber-400 font-black text-base leading-none select-none">橋</span>
                             </div>
                             <div className="flex flex-col leading-none">
                                 <span className="text-stone-800 font-bold text-base tracking-tight group-hover:text-amber-700 transition-colors">
-                                    橋本社会保険労務士事務所
+                                    橋本貴嗣社会保険労務士事務所
                                 </span>
-                                <span className="text-amber-600/70 text-[10px] font-medium tracking-widest uppercase mt-0.5">
-                                    Hashimoto SR Office
+                                <span className="text-stone-400 text-[10px] font-medium tracking-widest uppercase mt-0.5">
+                                    Sharoushi / FP1 · Weekend Specialist
                                 </span>
                             </div>
                         </div>

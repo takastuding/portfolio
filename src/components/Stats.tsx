@@ -26,10 +26,10 @@ const CountUp = ({ target, suffix = '', duration = 1500 }: { target: number; suf
 
 const stats = [
     {
-        value: 3,
+        value: 2,
         suffix: '資格',
         label: '保有資格数',
-        desc: '社労士・FP1級・年金アドバイザー2級',
+        desc: '社会保険労務士・FP技能士1級',
         color: 'text-amber-600',
         bg: 'bg-amber-50',
         border: 'border-amber-200',
@@ -54,9 +54,9 @@ const stats = [
     },
     {
         value: 2,
-        suffix: '営業日',
-        label: '返信速度',
-        desc: '迅速・丁寧な対応を心がけています',
+        suffix: '日以内',
+        label: '週末に返信',
+        desc: '土日専門のため平日のご連絡は週末にまとめて対応',
         color: 'text-purple-600',
         bg: 'bg-purple-50',
         border: 'border-purple-200',

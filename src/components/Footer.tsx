@@ -43,14 +43,13 @@ export const Footer = () => {
                     transition={{ duration: 0.5 }}
                     className="flex flex-col md:flex-row justify-between items-center gap-6"
                 >
-                    <div className="flex items-center gap-2">
-                        <div className="relative flex items-center">
-                            <div className="w-1 h-7 rounded-full bg-gradient-to-b from-amber-400 to-amber-600 shadow-[0_0_6px_rgba(217,119,6,0.35)]" />
-                            <div className="w-1 h-4 rounded-full bg-amber-300/40 ml-0.5" />
+                    <div className="flex items-center gap-3">
+                        <div className="w-9 h-9 rounded-xl bg-stone-900 flex items-center justify-center flex-shrink-0 shadow-sm">
+                            <span className="font-display text-amber-400 font-black text-base leading-none select-none">橋</span>
                         </div>
-                        <div className="flex flex-col leading-none ml-1">
-                            <p className="text-stone-800 font-bold text-sm tracking-tight">橋本社会保険労務士事務所</p>
-                            <p className="text-amber-600/70 text-[10px] font-medium tracking-widest uppercase mt-0.5">社労士 / FP1級 / 年金アドバイザー2級</p>
+                        <div className="flex flex-col leading-none">
+                            <p className="text-stone-800 font-bold text-sm tracking-tight">橋本貴嗣社会保険労務士事務所</p>
+                            <p className="text-stone-400 text-[10px] font-medium tracking-widest uppercase mt-0.5">社労士 / FP技能士1級</p>
                         </div>
                     </div>
 

@@ -10,7 +10,7 @@ export const Profile = () => {
     const career = [
         { icon: Building2, year: '大学卒業後', title: '大手損害保険会社 入社', desc: '保険業務や顧客対応業務に従事' },
         { icon: Award, year: '在職中', title: '社会保険労務士 資格取得', desc: '中小企業の「人」と「お金」の課題解決を目指して' },
-        { icon: BookOpen, year: '現在', title: '副業として活動中', desc: '執筆・監修・個別相談など幅広く対応' },
+        { icon: BookOpen, year: '現在', title: '現役社員として最前線に在籍', desc: '週末を活用し、執筆・監修・個別相談に対応。実務経験を直接アドバイスに活かす' },
     ];
 
     return (
@@ -106,7 +106,8 @@ export const Profile = () => {
                                     より専門的なサポートを行うために社会保険労務士資格を取得しました。
                                 </p>
                                 <p>
-                                    現在は損害保険会社に勤務しながら、副業として執筆活動や監修、個別相談などを行っています。
+                                    現在も損害保険会社の最前線で働きながら、週末を活用して執筆・監修・個別相談を行っています。
+                                    「現役社員だからこそ知るリアル」を、そのままアドバイスに活かすことが強みです。
                                 </p>
                                 <div className="mt-4 p-4 rounded-xl bg-amber-50 border border-amber-200">
                                     <p className="text-amber-800 font-medium text-sm">

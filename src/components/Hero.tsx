@@ -1,31 +1,11 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Award, TrendingUp, Users } from 'lucide-react';
+import { ArrowRight, Calendar, Shield, FileText, MessageSquare } from 'lucide-react';
 import { useRef, useEffect } from 'react';
-
-const title1 = '「人」と「お金」の';
-const title2 = '課題を同時に解決';
-
-// variants方式：Framer Motionが内部でバッチ処理 → 個別transition指定より大幅に軽量
-const lineVariants = {
-    hidden: {},
-    visible: (delayChildren: number) => ({
-        transition: { staggerChildren: 0.04, delayChildren },
-    }),
-};
-const charVariants = {
-    hidden: { opacity: 0, y: 36 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.45, ease: [0.215, 0.61, 0.355, 1] as const },
-    },
-};
 
 export const Hero = () => {
     const sectionRef = useRef<HTMLElement>(null);
     const spotlightRef = useRef<HTMLDivElement>(null);
 
-    // useRefで直接DOM操作 → Reactの再レンダリングを完全回避
     useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
             if (sectionRef.current && spotlightRef.current) {
@@ -33,7 +13,7 @@ export const Hero = () => {
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
                 spotlightRef.current.style.background =
-                    `radial-gradient(600px circle at ${x}px ${y}px, rgba(251,191,36,0.10), transparent 40%)`;
+                    `radial-gradient(600px circle at ${x}px ${y}px, rgba(251,191,36,0.08), transparent 40%)`;
             }
         };
         const section = sectionRef.current;
@@ -41,104 +21,70 @@ export const Hero = () => {
         return () => section?.removeEventListener('mousemove', handleMouseMove);
     }, []);
 
-    const floatingItems = [
-        { label: '労務管理', angle: 0, delay: 0 },
-        { label: '社会保険', angle: 90, delay: 0.8 },
-        { label: '資産形成', angle: 180, delay: 1.6 },
-        { label: '年金相談', angle: 270, delay: 2.4 },
-    ];
-
     return (
         <section ref={sectionRef} id="home" className="relative min-h-screen flex items-center overflow-hidden">
-            {/* カーソルスポットライト（再レンダリングなし） */}
             <div ref={spotlightRef} className="pointer-events-none absolute inset-0 z-10" />
 
-            {/* Unsplash 背景画像 */}
             <div className="absolute inset-0 overflow-hidden">
                 <img
                     src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&auto=format&fit=crop&q=60"
                     alt=""
-                    className="w-full h-full object-cover object-center opacity-[0.05]"
+                    className="w-full h-full object-cover object-center opacity-[0.04]"
                     loading="eager"
                 />
             </div>
-
-            {/* グリッド背景 */}
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(217,119,6,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(217,119,6,0.04)_1px,transparent_1px)] bg-[size:60px_60px]" />
-            <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-amber-300/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(217,119,6,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(217,119,6,0.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
 
             <div className="relative max-w-6xl mx-auto px-6 lg:px-8 pt-28 pb-20 w-full">
                 <div className="grid lg:grid-cols-2 gap-16 items-center">
+
                     {/* 左：テキスト */}
                     <div>
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.9 }}
+                            initial={{ opacity: 0, scale: 0.95 }}
                             animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.5, delay: 0.1 }}
-                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-50 border border-amber-200 text-amber-700 text-xs font-semibold tracking-widest uppercase mb-8"
+                            transition={{ duration: 0.45, delay: 0.1 }}
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-stone-900 text-amber-400 text-xs font-bold tracking-widest uppercase mb-8"
                         >
-                            <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
-                            橋本貴嗣社会保険労務士事務所 / FP1級
+                            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+                            土日・祝日 専門相談
                         </motion.div>
 
-                        {/* テキストアニメーション：variantsでバッチ処理 */}
+                        {/* CSS line reveal — Framer Motion の個別文字アニメを廃止、GPU描画のみ */}
                         <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-stone-800 leading-[1.2] tracking-tight mb-6">
-                            <motion.span
-                                custom={0.3}
-                                variants={lineVariants}
-                                initial="hidden"
-                                animate="visible"
-                                className="block overflow-hidden"
-                            >
-                                {title1.split('').map((char, i) => (
-                                    <motion.span key={i} variants={charVariants} className="inline-block">
-                                        {char}
-                                    </motion.span>
-                                ))}
-                            </motion.span>
-                            <motion.span
-                                custom={0.7}
-                                variants={lineVariants}
-                                initial="hidden"
-                                animate="visible"
-                                className="block mt-1 overflow-hidden"
-                            >
-                                {title2.split('').map((char, i) => (
-                                    <motion.span key={i} variants={charVariants} className="inline-block text-gradient">
-                                        {char}
-                                    </motion.span>
-                                ))}
-                            </motion.span>
+                            <span className="block overflow-hidden">
+                                <span className="block line-reveal" style={{ animationDelay: '0.3s' }}>
+                                    「人」と「お金」の
+                                </span>
+                            </span>
+                            <span className="block mt-1 overflow-hidden">
+                                <span className="block line-reveal text-gradient" style={{ animationDelay: '0.55s' }}>
+                                    課題を同時に解決
+                                </span>
+                            </span>
                         </h1>
 
                         <motion.p
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            transition={{ delay: 1.2, duration: 0.6 }}
+                            transition={{ delay: 0.9, duration: 0.6 }}
                             className="text-lg text-stone-500 leading-relaxed mb-10 max-w-lg"
                         >
-                            大手損害保険会社出身の社会保険労務士として、企業経営者・個人事業主の
-                            労務管理・社会保険・資産形成を包括的にサポートします。
+                            現役損保社員・社会保険労務士として、<br className="hidden sm:block" />
+                            制度の"リアル"を現場の言葉でお伝えします。
                         </motion.p>
 
                         <motion.div
-                            initial={{ opacity: 0, y: 10 }}
+                            initial={{ opacity: 0, y: 8 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 1.3, duration: 0.5 }}
-                            className="flex flex-col sm:flex-row gap-4 mb-14"
+                            transition={{ delay: 1.0, duration: 0.5 }}
+                            className="flex flex-col sm:flex-row gap-3 mb-14"
                         >
                             <a
-                                href="#contact"
+                                href="#booking"
                                 className="group inline-flex items-center justify-center px-7 py-3.5 text-sm font-bold rounded-xl text-white bg-amber-600 hover:bg-amber-700 transition-all duration-200 shadow-[0_4px_20px_rgba(217,119,6,0.35)] hover:shadow-[0_6px_30px_rgba(217,119,6,0.5)] hover:-translate-y-0.5"
                             >
-                                無料相談はこちら
-                                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                            </a>
-                            <a
-                                href="#booking"
-                                className="group inline-flex items-center justify-center px-7 py-3.5 text-sm font-bold rounded-xl text-amber-700 border-2 border-amber-400 hover:bg-amber-50 hover:border-amber-500 transition-all duration-200"
-                            >
-                                ネット相談予約
+                                ネット相談予約（土日限定）
                                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                             </a>
                             <a
@@ -152,88 +98,72 @@ export const Hero = () => {
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            transition={{ delay: 1.5, duration: 0.5 }}
-                            className="grid grid-cols-3 gap-6 pt-8 border-t border-stone-200"
+                            transition={{ delay: 1.1, duration: 0.5 }}
+                            className="grid grid-cols-2 gap-4 pt-8 border-t border-stone-200"
                         >
                             {[
-                                { icon: Award, label: '2つの資格', sub: '社労士・FP技能士1級' },
-                                { icon: TrendingUp, label: '保険業界出身', sub: '大手損害保険会社勤務' },
-                                { icon: Users, label: '副業対応', sub: '執筆・監修・個別相談' },
+                                { icon: Shield, label: '2つの国家資格', sub: '社労士・FP技能士1級' },
+                                { icon: Calendar, label: '土日祝 専門対応', sub: '週末に集中して対応' },
+                                { icon: FileText, label: '保険業界 5年+', sub: '大手損保会社 在籍中' },
+                                { icon: MessageSquare, label: 'オンライン全国対応', sub: 'Zoom / Google Meet' },
                             ].map(({ icon: Icon, label, sub }) => (
-                                <div key={label} className="group">
-                                    <Icon className="w-5 h-5 text-amber-600 mb-2 group-hover:scale-110 transition-transform" />
-                                    <p className="text-stone-800 text-sm font-semibold">{label}</p>
-                                    <p className="text-stone-400 text-xs mt-0.5">{sub}</p>
+                                <div key={label} className="group flex items-start gap-3">
+                                    <div className="w-8 h-8 rounded-lg bg-amber-50 border border-amber-100 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-amber-100 transition-colors">
+                                        <Icon className="w-4 h-4 text-amber-600" />
+                                    </div>
+                                    <div>
+                                        <p className="text-stone-800 text-sm font-semibold">{label}</p>
+                                        <p className="text-stone-400 text-xs mt-0.5">{sub}</p>
+                                    </div>
                                 </div>
                             ))}
                         </motion.div>
                     </div>
 
-                    {/* 右：ビジュアル（CSS animationでGPUアクセラレーション） */}
+                    {/* 右：エディトリアルレイアウト（AI感のある軌道アニメを廃止） */}
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
-                        className="hidden lg:flex items-center justify-center"
+                        initial={{ opacity: 0, x: 24 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.7, delay: 0.4, ease: 'easeOut' }}
+                        className="hidden lg:flex flex-col gap-4"
                     >
-                        <div className="relative w-full max-w-md aspect-square">
-                            {/* 静的な同心円 */}
-                            <div className="absolute inset-0 rounded-full border border-amber-300/30" />
-                            <div className="absolute inset-4 rounded-full border border-amber-300/20" />
-                            <div className="absolute inset-8 rounded-full border border-amber-300/15" />
-
-                            {/* CSS animationで回転（JSを使わないのでメインスレッド負荷ゼロ） */}
-                            <div className="animate-spin-cw-slow absolute inset-0 rounded-full border border-dashed border-amber-400/25" />
-                            <div className="animate-spin-ccw-slow absolute inset-12 rounded-full border border-dashed border-amber-400/20" />
-
-                            {/* 中央カード */}
-                            <div className="absolute inset-0 flex items-center justify-center">
-                                <div className="rounded-2xl p-8 text-center w-52 shadow-[0_8px_40px_rgba(0,0,0,0.10),0_0_0_1px_rgba(217,119,6,0.12)] border border-amber-100 bg-white">
-                                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center mx-auto mb-4 shadow-[0_4px_16px_rgba(217,119,6,0.35)]">
-                                        <svg viewBox="0 0 24 24" fill="none" className="w-7 h-7" stroke="white" strokeWidth="2.5">
-                                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                        </svg>
-                                    </div>
-                                    <p className="text-stone-800 font-bold text-sm mb-1">Dual License</p>
-                                    <p className="text-stone-400 text-xs">Certified Professional</p>
-                                    <div className="mt-4 flex justify-center gap-1.5">
-                                        {['社労士', 'FP1'].map((t) => (
-                                            <span key={t} className="px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 text-[10px] font-medium border border-amber-200">{t}</span>
-                                        ))}
-                                    </div>
-                                </div>
+                        {/* Weekend specialist card */}
+                        <div className="rounded-2xl p-7 bg-stone-900 text-white">
+                            <p className="text-amber-400 text-[10px] font-bold tracking-[0.25em] uppercase mb-4">Weekend Specialist</p>
+                            <p className="font-display text-2xl font-bold leading-snug mb-3">
+                                平日は損保の最前線。<br />
+                                週末は、あなたの相談窓口。
+                            </p>
+                            <p className="text-stone-400 text-sm leading-relaxed">
+                                現役社員だからこそ知る制度の実態を、
+                                そのままアドバイスに活かします。
+                            </p>
+                            <div className="mt-5 flex items-center gap-2">
+                                <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                                <span className="text-amber-400/80 text-xs">土曜・日曜・祝日のみ受付</span>
                             </div>
+                        </div>
 
-                            {/* フローティングバッジ（CSS animationで軽量） */}
-                            {floatingItems.map(({ label, angle, delay }) => {
-                                const rad = (angle - 90) * (Math.PI / 180);
-                                const r = 46;
-                                const x = 50 + r * Math.cos(rad);
-                                const y = 50 + r * Math.sin(rad);
-                                return (
-                                    <div
-                                        key={label}
-                                        style={{
-                                            left: `${x}%`,
-                                            top: `${y}%`,
-                                            position: 'absolute',
-                                            transform: 'translate(-50%, -50%)',
-                                            animation: `fadeInScale 0.4s ease ${delay}s both`,
-                                            willChange: 'transform',
-                                        }}
-                                    >
-                                        <div
-                                            className="px-3 py-1.5 rounded-lg bg-white border border-amber-200 text-amber-700 text-xs font-semibold whitespace-nowrap shadow-md"
-                                            style={{
-                                                animation: `floatY ${3 + delay * 0.5}s ease-in-out ${delay * 0.3}s infinite`,
-                                                willChange: 'transform',
-                                            }}
-                                        >
-                                            {label}
-                                        </div>
-                                    </div>
-                                );
-                            })}
+                        {/* Stats row */}
+                        <div className="grid grid-cols-2 gap-4">
+                            <div className="rounded-2xl p-5 bg-amber-50 border border-amber-100">
+                                <p className="font-display text-4xl font-black text-amber-600 leading-none">5+</p>
+                                <p className="text-stone-700 text-sm font-bold mt-2">年の実務経験</p>
+                                <p className="text-stone-400 text-xs mt-0.5">損害保険業界</p>
+                            </div>
+                            <div className="rounded-2xl p-5 bg-white border border-stone-200 shadow-sm">
+                                <p className="font-display text-4xl font-black text-stone-700 leading-none">100+</p>
+                                <p className="text-stone-700 text-sm font-bold mt-2">相談実績</p>
+                                <p className="text-stone-400 text-xs mt-0.5">労務・年金・FP</p>
+                            </div>
+                        </div>
+
+                        {/* Quote */}
+                        <div className="rounded-2xl px-6 py-5 border-l-4 border-amber-500 bg-amber-50/60">
+                            <p className="text-amber-900 text-sm font-medium leading-relaxed">
+                                「分かりにくい制度を、現場の言葉で。」<br />
+                                <span className="text-amber-700/70 text-xs mt-1 block">— 橋本貴嗣</span>
+                            </p>
                         </div>
                     </motion.div>
                 </div>
@@ -242,12 +172,14 @@ export const Hero = () => {
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 1.8 }}
+                transition={{ delay: 1.6 }}
                 className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
             >
                 <span className="text-stone-400 text-xs tracking-widest uppercase">Scroll</span>
-                <div className="w-px h-8 bg-gradient-to-b from-amber-500/50 to-transparent"
-                    style={{ animation: 'floatY 1.5s ease-in-out infinite', willChange: 'transform' }} />
+                <div
+                    className="w-px h-8 bg-gradient-to-b from-amber-500/50 to-transparent"
+                    style={{ animation: 'floatY 1.5s ease-in-out infinite', willChange: 'transform' }}
+                />
             </motion.div>
         </section>
     );
