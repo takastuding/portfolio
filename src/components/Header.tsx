@@ -14,7 +14,7 @@ export const Header = () => {
     }, []);
 
     useEffect(() => {
-        const sections = ['home', 'profile', 'services', 'templates', 'how-it-works', 'booking', 'contact'];
+        const sections = ['top', 'services', 'why-us', 'how-it-works', 'booking', 'contact'];
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
@@ -31,12 +31,11 @@ export const Header = () => {
     }, []);
 
     const navItems = [
-        { name: 'ホーム', href: '#home', id: 'home' },
-        { name: 'プロフィール', href: '#profile', id: 'profile' },
-        { name: 'サービス', href: '#services', id: 'services' },
-        { name: 'ひな形サブスク', href: '#templates', id: 'templates' },
+        { name: 'ホーム', href: '#top', id: 'top' },
+        { name: 'サービス内容', href: '#services', id: 'services' },
+        { name: '選ばれる理由', href: '#why-us', id: 'why-us' },
         { name: '相談の流れ', href: '#how-it-works', id: 'how-it-works' },
-        { name: '予約', href: '#booking', id: 'booking' },
+        { name: 'ご予約', href: '#booking', id: 'booking' },
     ];
 
     return (
