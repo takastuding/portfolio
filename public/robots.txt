@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /legal/preview
+Disallow: /*?*
+
+Sitemap: https://sharoushi-t.com/sitemap.xml

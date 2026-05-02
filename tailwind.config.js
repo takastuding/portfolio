@@ -10,14 +10,12 @@ export default {
         navy: {
           900: '#0f172a',
           800: '#1e293b',
+          700: '#334155',
         },
-        gold: {
-          500: '#fbbf24',
-          600: '#d97706',
-        }
       },
       fontFamily: {
-        sans: ['"Noto Sans JP"', 'sans-serif'],
+        sans: ['"Noto Sans JP"', 'Inter', 'sans-serif'],
+        display: ['Inter', '"Noto Sans JP"', 'sans-serif'],
       }
     },
   },

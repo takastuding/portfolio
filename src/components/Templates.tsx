@@ -51,8 +51,8 @@ export const Templates = () => {
     const isPaymentLinkSet = STRIPE_PAYMENT_LINK !== '#';
 
     return (
-        <section id="templates" className="py-24 relative overflow-hidden bg-gradient-to-b from-white to-amber-50/30">
-            <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-amber-200/15 rounded-full blur-3xl" />
+        <section id="templates" className="py-24 relative overflow-hidden bg-gradient-to-b from-white to-blue-50/30">
+            <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-blue-200/15 rounded-full blur-3xl" />
             <div className="absolute bottom-0 right-0 w-96 h-96 bg-stone-100/50 rounded-full blur-3xl" />
 
             <div className="relative max-w-6xl mx-auto px-6 lg:px-8">
@@ -65,9 +65,9 @@ export const Templates = () => {
                 >
                     <p className="section-label mb-3">03 — Templates</p>
                     <h2 className="font-display text-3xl sm:text-4xl font-bold text-stone-800">
-                        就業規則ひな形 <span className="text-amber-700">サブスク</span>
+                        就業規則ひな形 <span className="text-blue-800">サブスク</span>
                     </h2>
-                    <div className="mt-4 h-px w-16 bg-gradient-to-r from-amber-500 to-transparent" />
+                    <div className="mt-4 h-px w-16 bg-gradient-to-r from-blue-600 to-transparent" />
                     <p className="mt-5 text-stone-600 text-base sm:text-lg max-w-2xl leading-relaxed">
                         現役社員だからわかる「使える」ひな形を、毎月アップデート。
                         買い切りでは追いつけない法改正にも、会員として継続的に伴走します。
@@ -83,13 +83,13 @@ export const Templates = () => {
                     className="mb-12 p-6 rounded-2xl bg-white border border-stone-200 shadow-sm"
                 >
                     <p className="text-stone-800 font-bold text-sm mb-4 flex items-center gap-2">
-                        <span className="w-1 h-5 rounded-full bg-amber-500 inline-block" />
+                        <span className="w-1 h-5 rounded-full bg-blue-600 inline-block" />
                         こんな方にご利用いただけます
                     </p>
                     <ul className="grid sm:grid-cols-2 gap-3">
                         {audiences.map(a => (
                             <li key={a} className="flex items-start gap-2 text-stone-600 text-sm">
-                                <Check className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" />
+                                <Check className="w-4 h-4 text-blue-700 flex-shrink-0 mt-0.5" />
                                 {a}
                             </li>
                         ))}
@@ -105,10 +105,10 @@ export const Templates = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: 0.15 + i * 0.08 }}
-                            className="relative p-6 rounded-2xl bg-white border border-stone-200 shadow-sm hover:border-amber-300 hover:shadow-[0_8px_30px_rgba(217,119,6,0.1)] transition-all duration-300 group"
+                            className="relative p-6 rounded-2xl bg-white border border-stone-200 shadow-sm hover:border-blue-300 hover:shadow-[0_8px_30px_rgba(37,99,235,0.1)] transition-all duration-300 group"
                         >
-                            <div className="w-12 h-12 rounded-xl bg-amber-50 border border-amber-200 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                                <f.icon className="w-5 h-5 text-amber-700" />
+                            <div className="w-12 h-12 rounded-xl bg-blue-50 border border-blue-200 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                <f.icon className="w-5 h-5 text-blue-800" />
                             </div>
                             <h3 className="text-stone-800 font-bold text-base mb-2">{f.title}</h3>
                             <p className="text-stone-500 text-xs leading-relaxed">{f.desc}</p>
@@ -124,10 +124,10 @@ export const Templates = () => {
                     transition={{ duration: 0.6, delay: 0.2 }}
                     className="relative rounded-3xl overflow-hidden bg-stone-900 text-white p-8 sm:p-12 shadow-[0_20px_60px_rgba(0,0,0,0.15)] mb-16"
                 >
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(217,119,6,0.2),transparent_50%)]" />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.2),transparent_50%)]" />
                     <div className="relative grid lg:grid-cols-2 gap-8 items-center">
                         <div>
-                            <p className="text-amber-400 font-display text-xs tracking-[0.25em] font-bold mb-3">STANDARD PLAN</p>
+                            <p className="text-blue-400 font-display text-xs tracking-[0.25em] font-bold mb-3">STANDARD PLAN</p>
                             <h3 className="font-display text-2xl sm:text-3xl font-bold mb-3">
                                 まずは1ヶ月、<br />現場のひな形を使ってみる。
                             </h3>
@@ -145,7 +145,7 @@ export const Templates = () => {
                             <ul className="space-y-2 mb-6">
                                 {['就業規則本体 (Word / PDF)', '付随規程セット', '法改正アップデート配信', '運用サポート（メール）', '解約はいつでも可'].map(item => (
                                     <li key={item} className="flex items-start gap-2 text-stone-200 text-xs">
-                                        <Check className="w-3.5 h-3.5 text-amber-400 flex-shrink-0 mt-0.5" />
+                                        <Check className="w-3.5 h-3.5 text-blue-400 flex-shrink-0 mt-0.5" />
                                         {item}
                                     </li>
                                 ))}
@@ -157,7 +157,7 @@ export const Templates = () => {
                                 aria-disabled={!isPaymentLinkSet}
                                 className={`group flex items-center justify-center gap-2 w-full py-3.5 rounded-xl font-bold text-sm transition-all duration-200 ${
                                     isPaymentLinkSet
-                                        ? 'bg-amber-500 hover:bg-amber-400 text-stone-900 shadow-[0_4px_20px_rgba(251,191,36,0.35)]'
+                                        ? 'bg-blue-600 hover:bg-blue-400 text-stone-900 shadow-[0_4px_20px_rgba(251,191,36,0.35)]'
                                         : 'bg-stone-700 text-stone-300 cursor-not-allowed'
                                 }`}
                             >
@@ -181,7 +181,7 @@ export const Templates = () => {
                         transition={{ duration: 0.5 }}
                         className="text-stone-800 font-bold text-lg mb-5 flex items-center gap-2"
                     >
-                        <span className="w-1 h-5 rounded-full bg-amber-500 inline-block" />
+                        <span className="w-1 h-5 rounded-full bg-blue-600 inline-block" />
                         よくあるご質問
                     </motion.h3>
                     <div className="grid md:grid-cols-2 gap-4">
@@ -195,7 +195,7 @@ export const Templates = () => {
                                 className="p-5 rounded-2xl bg-white border border-stone-200 shadow-sm"
                             >
                                 <p className="text-stone-800 font-bold text-sm mb-2 flex gap-2">
-                                    <span className="text-amber-600 font-display font-black">Q.</span>
+                                    <span className="text-blue-700 font-display font-black">Q.</span>
                                     {faq.q}
                                 </p>
                                 <p className="text-stone-500 text-xs leading-relaxed pl-5">{faq.a}</p>

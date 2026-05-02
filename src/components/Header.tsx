@@ -56,15 +56,18 @@ export const Header = () => {
                         className="flex items-center gap-3 group"
                     >
                         <div className="flex items-center gap-3">
-                            <div className="w-9 h-9 rounded-xl bg-stone-900 flex items-center justify-center flex-shrink-0 shadow-sm group-hover:bg-stone-800 transition-colors">
-                                <span className="font-display text-amber-400 font-black text-base leading-none select-none">橋</span>
-                            </div>
+                            <img
+                                src="/logo.png"
+                                alt=""
+                                aria-hidden="true"
+                                className="w-10 h-10 object-contain flex-shrink-0"
+                            />
                             <div className="flex flex-col leading-none">
-                                <span className="text-stone-800 font-bold text-base tracking-tight group-hover:text-amber-700 transition-colors">
+                                <span className="text-navy-900 font-bold text-base tracking-tight group-hover:text-blue-800 transition-colors">
                                     橋本貴嗣社会保険労務士事務所
                                 </span>
-                                <span className="text-stone-400 text-[10px] font-medium tracking-widest uppercase mt-0.5">
-                                    Sharoushi / FP1 · Weekend Specialist
+                                <span className="text-blue-700/70 text-[10px] font-medium tracking-widest uppercase mt-0.5">
+                                    Hashimoto SR &amp; FP1 Office
                                 </span>
                             </div>
                         </div>
@@ -85,7 +88,7 @@ export const Header = () => {
                                 transition={{ duration: 0.3, delay: 0.15 + index * 0.05 }}
                                 className={`relative px-4 py-2 text-sm font-medium transition-colors duration-200 rounded-lg group ${
                                     activeSection === item.id
-                                        ? 'text-amber-700 bg-amber-50'
+                                        ? 'text-blue-800 bg-blue-50'
                                         : 'text-stone-500 hover:text-stone-800 hover:bg-stone-100'
                                 }`}
                             >
@@ -93,7 +96,7 @@ export const Header = () => {
                                 {activeSection === item.id && (
                                     <motion.span
                                         layoutId="activeNav"
-                                        className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-amber-600"
+                                        className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-blue-700"
                                     />
                                 )}
                             </motion.a>
@@ -103,7 +106,7 @@ export const Header = () => {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ duration: 0.3, delay: 0.4 }}
-                            className="ml-4 px-5 py-2 text-sm font-semibold rounded-lg bg-amber-600 text-white hover:bg-amber-700 transition-all duration-200 shadow-[0_2px_12px_rgba(217,119,6,0.3)] hover:shadow-[0_4px_20px_rgba(217,119,6,0.4)]"
+                            className="ml-4 px-5 py-2 text-sm font-semibold rounded-lg bg-blue-700 text-white hover:bg-blue-800 transition-all duration-200 shadow-[0_2px_12px_rgba(37,99,235,0.3)] hover:shadow-[0_4px_20px_rgba(37,99,235,0.4)]"
                         >
                             相談予約
                         </motion.a>

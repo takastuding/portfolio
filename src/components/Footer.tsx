@@ -30,10 +30,16 @@ const socialLinks = [
     },
 ];
 
+const legalLinks = [
+    { name: '特定商取引法に基づく表記', href: '#/legal/tokushoho' },
+    { name: 'プライバシーポリシー', href: '#/legal/privacy' },
+    { name: '利用規約', href: '#/legal/terms' },
+];
+
 export const Footer = () => {
     return (
         <footer className="border-t border-stone-200 py-10 relative overflow-hidden bg-white">
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[100px] bg-amber-100/20 rounded-full blur-3xl" />
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[100px] bg-blue-100/20 rounded-full blur-3xl" />
 
             <div className="relative max-w-6xl mx-auto px-6 lg:px-8">
                 <motion.div
@@ -44,12 +50,10 @@ export const Footer = () => {
                     className="flex flex-col md:flex-row justify-between items-center gap-6"
                 >
                     <div className="flex items-center gap-3">
-                        <div className="w-9 h-9 rounded-xl bg-stone-900 flex items-center justify-center flex-shrink-0 shadow-sm">
-                            <span className="font-display text-amber-400 font-black text-base leading-none select-none">橋</span>
-                        </div>
+                        <img src="/logo.png" alt="" aria-hidden="true" className="w-9 h-9 object-contain flex-shrink-0" />
                         <div className="flex flex-col leading-none">
-                            <p className="text-stone-800 font-bold text-sm tracking-tight">橋本貴嗣社会保険労務士事務所</p>
-                            <p className="text-stone-400 text-[10px] font-medium tracking-widest uppercase mt-0.5">社労士 / FP技能士1級</p>
+                            <p className="text-navy-900 font-bold text-sm tracking-tight">橋本貴嗣社会保険労務士事務所</p>
+                            <p className="text-blue-700/70 text-[10px] font-medium tracking-widest uppercase mt-0.5">社労士 / FP技能士1級</p>
                         </div>
                     </div>
 
@@ -61,7 +65,7 @@ export const Footer = () => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 aria-label={link.name}
-                                className="w-9 h-9 rounded-xl bg-stone-100 border border-stone-200 flex items-center justify-center text-stone-400 hover:text-amber-600 hover:border-amber-300 hover:bg-amber-50 transition-all duration-200"
+                                className="w-9 h-9 rounded-xl bg-stone-100 border border-stone-200 flex items-center justify-center text-stone-400 hover:text-blue-700 hover:border-blue-300 hover:bg-blue-50 transition-all duration-200"
                             >
                                 {link.icon}
                             </a>
@@ -72,6 +76,18 @@ export const Footer = () => {
                         &copy; {new Date().getFullYear()} All rights reserved.
                     </p>
                 </motion.div>
+
+                <div className="mt-8 pt-6 border-t border-stone-100 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+                    {legalLinks.map(link => (
+                        <a
+                            key={link.name}
+                            href={link.href}
+                            className="text-stone-400 hover:text-blue-800 text-xs transition-colors"
+                        >
+                            {link.name}
+                        </a>
+                    ))}
+                </div>
             </div>
         </footer>
     );

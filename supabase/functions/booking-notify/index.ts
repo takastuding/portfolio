@@ -6,9 +6,9 @@
 import { serve } from "https://deno.land/std@0.208.0/http/server.ts";
 
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
-const OWNER_EMAIL = "sharoushi24.info@gmail.com";
-// 独自ドメイン（sharoushi-t.com）を Resend で検証後、下記を差し替えてください
-const FROM_ADDRESS = "橋本貴嗣社会保険労務士事務所 <onboarding@resend.dev>";
+const OWNER_EMAIL = Deno.env.get("OWNER_EMAIL") ?? "sharoushi24.info@gmail.com";
+const FROM_ADDRESS = Deno.env.get("FROM_ADDRESS") ?? "橋本貴嗣社会保険労務士事務所 <onboarding@resend.dev>";
+const SITE_URL = Deno.env.get("SITE_URL") ?? "https://sharoushi-t.com";
 
 type BookingRecord = {
     id: string;
@@ -20,6 +20,7 @@ type BookingRecord = {
     message: string;
     status: string;
     created_at: string;
+    manage_token?: string;
 };
 
 type WebhookPayload = {
@@ -47,40 +48,50 @@ function formatDate(iso: string): string {
 
 function ownerHtml(r: BookingRecord): string {
     return `
-<div style="font-family: -apple-system, 'Hiragino Sans', sans-serif; max-width: 560px; margin: 0 auto; color: #292524;">
-  <h2 style="color: #78350f; border-bottom: 2px solid #fbbf24; padding-bottom: 8px;">新規ネット相談予約</h2>
+<div style="font-family: -apple-system, 'Hiragino Sans', sans-serif; max-width: 560px; margin: 0 auto; color: #1c1917;">
+  <h2 style="color: #1e3a8a; border-bottom: 2px solid #2563eb; padding-bottom: 8px;">新規ネット相談予約</h2>
   <table cellpadding="8" style="width: 100%; border-collapse: collapse; font-size: 14px;">
-    <tr><td style="background: #fef3c7; font-weight: bold; width: 30%;">日時</td><td style="background: #fffbeb;">${escapeHtml(formatDate(r.date))} ${escapeHtml(r.time_start)}〜</td></tr>
-    <tr><td style="background: #fef3c7; font-weight: bold;">お名前</td><td style="background: #fffbeb;">${escapeHtml(r.name)} 様</td></tr>
-    <tr><td style="background: #fef3c7; font-weight: bold;">メール</td><td style="background: #fffbeb;"><a href="mailto:${escapeHtml(r.email)}" style="color: #b45309;">${escapeHtml(r.email)}</a></td></tr>
-    <tr><td style="background: #fef3c7; font-weight: bold;">相談内容</td><td style="background: #fffbeb;">${escapeHtml(r.consultation_type)}</td></tr>
-    <tr><td style="background: #fef3c7; font-weight: bold; vertical-align: top;">概要</td><td style="background: #fffbeb; white-space: pre-wrap;">${escapeHtml(r.message || "（入力なし）")}</td></tr>
-    <tr><td style="background: #fef3c7; font-weight: bold;">受信日時</td><td style="background: #fffbeb;">${escapeHtml(new Date(r.created_at).toLocaleString("ja-JP", { timeZone: "Asia/Tokyo" }))}</td></tr>
+    <tr><td style="background: #dbeafe; font-weight: bold; width: 30%;">日時</td><td style="background: #eff6ff;">${escapeHtml(formatDate(r.date))} ${escapeHtml(r.time_start)}〜</td></tr>
+    <tr><td style="background: #dbeafe; font-weight: bold;">お名前</td><td style="background: #eff6ff;">${escapeHtml(r.name)} 様</td></tr>
+    <tr><td style="background: #dbeafe; font-weight: bold;">メール</td><td style="background: #eff6ff;"><a href="mailto:${escapeHtml(r.email)}" style="color: #1d4ed8;">${escapeHtml(r.email)}</a></td></tr>
+    <tr><td style="background: #dbeafe; font-weight: bold;">相談内容</td><td style="background: #eff6ff;">${escapeHtml(r.consultation_type)}</td></tr>
+    <tr><td style="background: #dbeafe; font-weight: bold; vertical-align: top;">概要</td><td style="background: #eff6ff; white-space: pre-wrap;">${escapeHtml(r.message || "（入力なし）")}</td></tr>
+    <tr><td style="background: #dbeafe; font-weight: bold;">受信日時</td><td style="background: #eff6ff;">${escapeHtml(new Date(r.created_at).toLocaleString("ja-JP", { timeZone: "Asia/Tokyo" }))}</td></tr>
   </table>
-  <p style="color: #78716c; font-size: 12px; margin-top: 16px;">Supabase予約ID: ${escapeHtml(r.id)}</p>
+  <p style="color: #64748b; font-size: 12px; margin-top: 16px;">Supabase予約ID: ${escapeHtml(r.id)}</p>
 </div>`;
 }
 
 function userHtml(r: BookingRecord): string {
+    const manageUrl = r.manage_token
+        ? `${SITE_URL}/#/booking/manage?token=${encodeURIComponent(r.manage_token)}`
+        : null;
+    const manageBlock = manageUrl ? `
+  <div style="margin: 20px 0; padding: 16px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px;">
+    <p style="margin: 0 0 8px; font-weight: bold; color: #1e3a8a;">予約の変更・キャンセル</p>
+    <p style="margin: 0 0 12px; font-size: 13px; color: #475569;">日時の変更・キャンセルは下記URLから24時間前まで承ります。</p>
+    <a href="${manageUrl}" style="display: inline-block; padding: 10px 18px; background: #2563eb; color: #fff; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 13px;">予約管理ページへ</a>
+    <p style="margin: 12px 0 0; font-size: 11px; color: #94a3b8; word-break: break-all;">${escapeHtml(manageUrl)}</p>
+  </div>` : '';
     return `
-<div style="font-family: -apple-system, 'Hiragino Sans', sans-serif; max-width: 560px; margin: 0 auto; color: #292524; line-height: 1.8;">
-  <h2 style="color: #78350f; border-bottom: 2px solid #fbbf24; padding-bottom: 8px;">ご予約を承りました</h2>
+<div style="font-family: -apple-system, 'Hiragino Sans', sans-serif; max-width: 560px; margin: 0 auto; color: #1c1917; line-height: 1.8;">
+  <h2 style="color: #1e3a8a; border-bottom: 2px solid #2563eb; padding-bottom: 8px;">ご予約を承りました</h2>
   <p>${escapeHtml(r.name)} 様</p>
   <p>このたびはネット相談のご予約をいただきありがとうございます。<br>以下の内容で承りましたのでご確認ください。</p>
   <table cellpadding="8" style="width: 100%; border-collapse: collapse; font-size: 14px; margin: 16px 0;">
-    <tr><td style="background: #fef3c7; font-weight: bold; width: 30%;">日時</td><td style="background: #fffbeb;">${escapeHtml(formatDate(r.date))} ${escapeHtml(r.time_start)}〜（60分）</td></tr>
-    <tr><td style="background: #fef3c7; font-weight: bold;">相談内容</td><td style="background: #fffbeb;">${escapeHtml(r.consultation_type)}</td></tr>
-    <tr><td style="background: #fef3c7; font-weight: bold; vertical-align: top;">概要</td><td style="background: #fffbeb; white-space: pre-wrap;">${escapeHtml(r.message || "（入力なし）")}</td></tr>
+    <tr><td style="background: #dbeafe; font-weight: bold; width: 30%;">日時</td><td style="background: #eff6ff;">${escapeHtml(formatDate(r.date))} ${escapeHtml(r.time_start)}〜（60分）</td></tr>
+    <tr><td style="background: #dbeafe; font-weight: bold;">相談内容</td><td style="background: #eff6ff;">${escapeHtml(r.consultation_type)}</td></tr>
+    <tr><td style="background: #dbeafe; font-weight: bold; vertical-align: top;">概要</td><td style="background: #eff6ff; white-space: pre-wrap;">${escapeHtml(r.message || "（入力なし）")}</td></tr>
   </table>
   <p>
     個別のご返信およびZoom/Google MeetのURLは、<strong>平日は本業に従事しているため土日中にまとめてお送り</strong>しています。
     少しお待ちいただきますが、何卒よろしくお願いいたします。
-  </p>
+  </p>${manageBlock}
   <p>ご不明点があれば、このメールへのご返信でお気軽にお問い合わせください。</p>
-  <div style="border-top: 1px solid #e7e5e4; margin-top: 24px; padding-top: 16px; color: #78716c; font-size: 12px;">
+  <div style="border-top: 1px solid #e2e8f0; margin-top: 24px; padding-top: 16px; color: #64748b; font-size: 12px;">
     <strong>橋本貴嗣社会保険労務士事務所</strong><br>
     社会保険労務士 / FP技能士1級<br>
-    <a href="mailto:sharoushi24.info@gmail.com" style="color: #b45309;">sharoushi24.info@gmail.com</a>
+    <a href="mailto:sharoushi24.info@gmail.com" style="color: #1d4ed8;">sharoushi24.info@gmail.com</a>
   </div>
 </div>`;
 }
@@ -95,6 +106,7 @@ async function sendMail(to: string, subject: string, html: string): Promise<Resp
         body: JSON.stringify({
             from: FROM_ADDRESS,
             to: [to],
+            reply_to: OWNER_EMAIL,
             subject,
             html,
         }),
@@ -124,21 +136,51 @@ serve(async (req) => {
     const r = payload.record;
 
     try {
-        const [ownerRes, userRes] = await Promise.all([
-            sendMail(OWNER_EMAIL, `【新規予約】${formatDate(r.date)} ${r.time_start}〜 ${r.name}様`, ownerHtml(r)),
-            sendMail(r.email, `【予約受付】${formatDate(r.date)} ${r.time_start}〜 橋本貴嗣社会保険労務士事務所`, userHtml(r)),
+        const results = await Promise.allSettled([
+            sendMail(
+                OWNER_EMAIL,
+                `【新規予約】${formatDate(r.date)} ${r.time_start}〜 ${r.name}様`,
+                ownerHtml(r),
+            ),
+            sendMail(
+                r.email,
+                `【予約受付】${formatDate(r.date)} ${r.time_start}〜のご予約を承りました`,
+                userHtml(r),
+            ),
         ]);
 
-        if (!ownerRes.ok || !userRes.ok) {
-            const ownerBody = await ownerRes.text();
-            const userBody = await userRes.text();
-            console.error("Resend failed", { ownerStatus: ownerRes.status, userStatus: userRes.status, ownerBody, userBody });
-            return new Response(JSON.stringify({ error: "email_send_failed" }), { status: 502 });
+        const [ownerResult, userResult] = results;
+
+        const ownerOk = ownerResult.status === "fulfilled" && ownerResult.value.ok;
+        const userOk = userResult.status === "fulfilled" && userResult.value.ok;
+
+        const ownerDetail = ownerResult.status === "fulfilled"
+            ? { status: ownerResult.value.status, body: ownerOk ? null : await ownerResult.value.text() }
+            : { status: 0, body: String(ownerResult.reason) };
+        const userDetail = userResult.status === "fulfilled"
+            ? { status: userResult.value.status, body: userOk ? null : await userResult.value.text() }
+            : { status: 0, body: String(userResult.reason) };
+
+        console.log("[booking-notify] owner:", JSON.stringify(ownerDetail));
+        console.log("[booking-notify] user :", JSON.stringify(userDetail));
+
+        // 運営者宛失敗 → 502（Webhook 自動再試行に任せる）
+        if (!ownerOk) {
+            return new Response(JSON.stringify({
+                error: "owner_email_failed",
+                owner: ownerDetail,
+                user: userDetail,
+            }), { status: 502, headers: { "Content-Type": "application/json" } });
         }
 
-        return new Response(JSON.stringify({ ok: true }), { status: 200, headers: { "Content-Type": "application/json" } });
+        // 申込者宛は失敗しても DB INSERT は成立しているため 200 で返却（記録のみ）
+        return new Response(JSON.stringify({
+            ok: true,
+            user_email_sent: userOk,
+            ...(userOk ? {} : { user_email_warning: userDetail }),
+        }), { status: 200, headers: { "Content-Type": "application/json" } });
     } catch (err) {
-        console.error("Unexpected error", err);
-        return new Response(JSON.stringify({ error: "internal_error" }), { status: 500 });
+        console.error("[booking-notify] unexpected error", err);
+        return new Response(JSON.stringify({ error: "internal_error", detail: String(err) }), { status: 500 });
     }
 });

@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1e3a8a"/>
+      <stop offset="1" stop-color="#2563eb"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.85" cy="0.2" r="0.7">
+      <stop offset="0" stop-color="#60a5fa" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#60a5fa" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#ffffff" stroke-opacity="0.07" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- Logo mark (circular blue) -->
+  <g transform="translate(88, 88)">
+    <circle cx="48" cy="48" r="44" fill="#ffffff" opacity="0.95"/>
+    <circle cx="48" cy="48" r="32" fill="none" stroke="#1d4ed8" stroke-width="10"/>
+    <circle cx="60" cy="44" r="20" fill="none" stroke="#60a5fa" stroke-width="6" opacity="0.7"/>
+  </g>
+
+  <!-- Eyebrow -->
+  <g transform="translate(88, 232)">
+    <rect width="380" height="44" rx="22" fill="#ffffff" opacity="0.12"/>
+    <circle cx="28" cy="22" r="5" fill="#bfdbfe"/>
+    <text
+      x="46"
+      y="30"
+      font-family="-apple-system, 'Hiragino Sans', 'Yu Gothic', sans-serif"
+      font-size="14"
+      font-weight="700"
+      letter-spacing="2"
+      fill="#dbeafe"
+    >WEEKEND SPECIALIST ・ 土日専門相談</text>
+  </g>
+
+  <!-- Main title -->
+  <g transform="translate(88, 320)">
+    <text
+      font-family="-apple-system, 'Hiragino Sans', 'Yu Gothic', sans-serif"
+      font-size="76"
+      font-weight="900"
+      fill="#ffffff"
+    >
+      <tspan x="0" y="0">「人」と「お金」の</tspan>
+      <tspan x="0" y="94" fill="#bfdbfe">課題を同時に解決</tspan>
+    </text>
+  </g>
+
+  <!-- Subtitle -->
+  <text
+    x="88"
+    y="538"
+    font-family="-apple-system, 'Hiragino Sans', 'Yu Gothic', sans-serif"
+    font-size="24"
+    font-weight="500"
+    fill="#dbeafe"
+  >橋本貴嗣社会保険労務士事務所 ・ 社労士 / FP技能士1級</text>
+
+  <!-- Footer badges -->
+  <g transform="translate(88, 570)">
+    <g>
+      <rect width="160" height="36" rx="18" fill="#ffffff"/>
+      <text x="80" y="24" font-family="sans-serif" font-size="13" font-weight="700" fill="#1e3a8a" text-anchor="middle">社会保険労務士</text>
+    </g>
+    <g transform="translate(176, 0)">
+      <rect width="120" height="36" rx="18" fill="#ffffff"/>
+      <text x="60" y="24" font-family="sans-serif" font-size="13" font-weight="700" fill="#1e3a8a" text-anchor="middle">FP技能士1級</text>
+    </g>
+    <g transform="translate(312, 0)">
+      <rect width="160" height="36" rx="18" fill="#ffffff"/>
+      <text x="80" y="24" font-family="sans-serif" font-size="13" font-weight="700" fill="#1e3a8a" text-anchor="middle">土日祝オンライン</text>
+    </g>
+  </g>
+</svg>

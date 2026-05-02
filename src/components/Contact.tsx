@@ -25,8 +25,8 @@ export const Contact = () => {
     ];
 
     return (
-        <section id="contact" className="py-24 relative overflow-hidden bg-cream-100/60">
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-amber-100/25 rounded-full blur-3xl" />
+        <section id="contact" className="py-24 relative overflow-hidden bg-surface-100/60">
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-100/25 rounded-full blur-3xl" />
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-100/15 rounded-full blur-3xl" />
 
             <div className="relative max-w-6xl mx-auto px-6 lg:px-8">
@@ -37,9 +37,9 @@ export const Contact = () => {
                     transition={{ duration: 0.6 }}
                     className="mb-16"
                 >
-                    <p className="section-label mb-3">05 — Contact</p>
+                    <p className="section-label mb-3">07 — Contact</p>
                     <h2 className="font-display text-3xl sm:text-4xl font-bold text-stone-800">お問い合わせ</h2>
-                    <div className="mt-4 h-px w-16 bg-gradient-to-r from-amber-500 to-transparent" />
+                    <div className="mt-4 h-px w-16 bg-gradient-to-r from-blue-600 to-transparent" />
                 </motion.div>
 
                 <div className="grid lg:grid-cols-2 gap-12 items-start mb-20">
@@ -55,8 +55,8 @@ export const Contact = () => {
                         </p>
 
                         <div className="flex items-center gap-3 text-stone-500 text-sm">
-                            <div className="w-8 h-8 rounded-lg bg-amber-50 border border-amber-200 flex items-center justify-center flex-shrink-0">
-                                <Clock className="w-4 h-4 text-amber-600" />
+                            <div className="w-8 h-8 rounded-lg bg-blue-50 border border-blue-200 flex items-center justify-center flex-shrink-0">
+                                <Clock className="w-4 h-4 text-blue-700" />
                             </div>
                             <span>2営業日以内に返信いたします</span>
                         </div>
@@ -64,7 +64,7 @@ export const Contact = () => {
                         <div className="space-y-3 pt-4">
                             {items.map(item => (
                                 <div key={item} className="flex items-center gap-2 text-stone-500 text-sm">
-                                    <CheckCircle className="w-4 h-4 text-amber-500 flex-shrink-0" />
+                                    <CheckCircle className="w-4 h-4 text-blue-600 flex-shrink-0" />
                                     {item}
                                 </div>
                             ))}
@@ -80,14 +80,14 @@ export const Contact = () => {
                     >
                         {/* CSS transitionのみ使用（Framer MotionのwhileHover不使用 → 軽量） */}
                         <a
-                            href="#"
-                            className="group flex items-center justify-between w-full px-6 py-5 rounded-2xl bg-amber-600 hover:bg-amber-700 transition-all duration-200 shadow-[0_4px_20px_rgba(217,119,6,0.35)] hover:shadow-[0_8px_30px_rgba(217,119,6,0.45)] hover:-translate-y-0.5"
+                            href="#booking"
+                            className="group flex items-center justify-between w-full px-6 py-5 rounded-2xl bg-blue-700 hover:bg-blue-800 transition-all duration-200 shadow-[0_4px_20px_rgba(37,99,235,0.35)] hover:shadow-[0_8px_30px_rgba(37,99,235,0.45)] hover:-translate-y-0.5"
                         >
                             <div className="flex items-center gap-3">
                                 <MessageSquare className="w-5 h-5 text-white" />
                                 <div className="text-left">
-                                    <p className="text-white font-bold text-sm">CrowdWorksで相談する</p>
-                                    <p className="text-amber-200 text-xs">お仕事のご依頼はこちらから</p>
+                                    <p className="text-white font-bold text-sm">ネット相談を予約する</p>
+                                    <p className="text-blue-200 text-xs">土日祝のオンライン相談・初回30分無料</p>
                                 </div>
                             </div>
                             <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform duration-200" />
@@ -95,16 +95,16 @@ export const Contact = () => {
 
                         <a
                             href="mailto:sharoushi24.info@gmail.com"
-                            className="group flex items-center justify-between w-full px-6 py-5 rounded-2xl bg-white border border-stone-200 hover:border-amber-300 hover:shadow-md transition-all duration-200 shadow-sm hover:-translate-y-0.5"
+                            className="group flex items-center justify-between w-full px-6 py-5 rounded-2xl bg-white border border-stone-200 hover:border-blue-300 hover:shadow-md transition-all duration-200 shadow-sm hover:-translate-y-0.5"
                         >
                             <div className="flex items-center gap-3">
-                                <Mail className="w-5 h-5 text-stone-400 group-hover:text-amber-600 transition-colors" />
+                                <Mail className="w-5 h-5 text-stone-400 group-hover:text-blue-700 transition-colors" />
                                 <div className="text-left">
                                     <p className="text-stone-800 font-semibold text-sm">メールで問い合わせる</p>
                                     <p className="text-stone-400 text-xs">sharoushi24.info@gmail.com</p>
                                 </div>
                             </div>
-                            <ArrowRight className="w-4 h-4 text-stone-300 group-hover:text-amber-600 group-hover:translate-x-1 transition-all" />
+                            <ArrowRight className="w-4 h-4 text-stone-300 group-hover:text-blue-700 group-hover:translate-x-1 transition-all" />
                         </a>
 
                         <p className="text-stone-400 text-xs text-center pt-2">
@@ -129,10 +129,10 @@ export const Contact = () => {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.4, delay: index * 0.08 }}
-                                className="rounded-2xl border border-stone-200 bg-white p-6 hover:border-amber-200 hover:shadow-sm transition-all duration-200"
+                                className="rounded-2xl border border-stone-200 bg-white p-6 hover:border-blue-200 hover:shadow-sm transition-all duration-200"
                             >
                                 <p className="font-bold text-stone-800 text-sm mb-2 flex items-start gap-2">
-                                    <span className="text-amber-500 font-black text-base leading-none">Q.</span>
+                                    <span className="text-blue-600 font-black text-base leading-none">Q.</span>
                                     {item.q}
                                 </p>
                                 <p className="text-stone-500 text-sm leading-relaxed pl-5">{item.a}</p>
