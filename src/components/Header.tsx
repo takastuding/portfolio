@@ -48,7 +48,7 @@ export const Header = () => {
             <div className="relative max-w-6xl mx-auto px-6 lg:px-8">
                 <div className="flex justify-between items-center">
                     <motion.a
-                        href="#home"
+                        href="#top"
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.5 }}

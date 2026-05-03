@@ -53,7 +53,7 @@ export const Services = () => {
                     transition={{ duration: 0.6 }}
                     className="mb-16"
                 >
-                    <p className="section-label mb-3">02 — Services</p>
+                    <p className="section-label mb-3">03 — Services</p>
                     <h2 className="font-display text-3xl sm:text-4xl font-bold text-navy-900">業務内容</h2>
                     <div className="mt-4 h-px w-16 bg-gradient-to-r from-blue-600 to-transparent" />
                     <p className="mt-4 text-stone-500 max-w-xl">

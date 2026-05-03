@@ -42,7 +42,7 @@ export const HowItWorks = () => {
                     transition={{ duration: 0.6 }}
                     className="mb-14"
                 >
-                    <p className="section-label mb-3">04 — How it works</p>
+                    <p className="section-label mb-3">05 — How it works</p>
                     <h2 className="font-display text-3xl sm:text-4xl font-bold text-stone-800">ネット相談の流れ</h2>
                     <div className="mt-4 h-px w-16 bg-gradient-to-r from-blue-600 to-transparent" />
                     <p className="mt-4 text-stone-500 max-w-xl">

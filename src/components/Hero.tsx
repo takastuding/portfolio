@@ -3,7 +3,7 @@ import { ArrowRight, Calendar, Shield, FileText, MessageSquare } from 'lucide-re
 
 export const Hero = () => {
     return (
-        <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
+        <section id="top" className="relative min-h-screen flex items-center overflow-hidden">
             <div className="absolute inset-0 bg-[linear-gradient(rgba(37,99,235,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(37,99,235,0.025)_1px,transparent_1px)] bg-[size:60px_60px]" />
 
             <div className="relative max-w-6xl mx-auto px-6 lg:px-8 pt-28 pb-20 w-full">
@@ -90,35 +90,49 @@ export const Hero = () => {
                         </motion.div>
                     </div>
 
-                    {/* 右：握手の実写 + フローティングバッジ（コーポレート系） */}
+                    {/* 右：成長グラフを指し示すビジネスマン + フローティングバッジ（コーポレート系） */}
                     <motion.div
                         initial={{ opacity: 0, x: 24 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.7, delay: 0.4, ease: 'easeOut' }}
                         className="hidden lg:block relative"
                     >
-                        <div className="relative rounded-2xl overflow-hidden shadow-xl ring-1 ring-blue-100">
+                        <div className="relative rounded-2xl overflow-hidden shadow-2xl ring-1 ring-blue-100/60">
                             <img
-                                src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=900&auto=format&fit=crop&q=80"
-                                alt="ビジネスシーンの握手"
-                                className="w-full h-[480px] object-cover"
+                                src="/hero.jpg"
+                                alt="人と企業の成長をサポートする社労士"
+                                className="w-full h-[520px] object-cover object-center"
                                 loading="eager"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-tr from-navy-900/30 via-transparent to-transparent" />
+                            {/* 下部から navy をぼかしてフローティングカードの可読性を確保 */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-navy-900/55 via-navy-900/10 to-transparent" />
+                            {/* 左上を青で軽く沈めてヘッダーとの境界を整える */}
+                            <div className="absolute inset-0 bg-gradient-to-br from-navy-900/25 via-transparent to-transparent" />
                         </div>
 
-                        <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-lg px-6 py-4 border border-blue-100">
-                            <p className="text-blue-700 text-[10px] font-bold tracking-[0.25em] uppercase">Trusted Partner</p>
-                            <p className="text-navy-900 font-bold mt-1">社労士 × FP技能士1級</p>
-                            <div className="mt-2 flex items-center gap-2">
-                                <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-                                <span className="text-stone-500 text-xs">土日祝・全国オンライン対応</span>
+                        <div className="absolute -bottom-8 -left-6 bg-white rounded-2xl shadow-lg pl-3 pr-5 py-3 border border-blue-100 flex items-center gap-3">
+                            <div className="relative w-14 h-14 rounded-xl overflow-hidden ring-2 ring-blue-200 ring-offset-2 ring-offset-white flex-shrink-0">
+                                <img
+                                    src="/profile.png"
+                                    alt="橋本貴嗣 プロフィール"
+                                    className="w-full h-full object-cover"
+                                    loading="eager"
+                                />
+                            </div>
+                            <div className="leading-tight">
+                                <p className="text-blue-700 text-[10px] font-bold tracking-[0.25em] uppercase">Trusted Partner</p>
+                                <p className="text-navy-900 font-bold text-sm mt-0.5">橋本 貴嗣</p>
+                                <p className="text-stone-500 text-[11px] mt-0.5">社労士 × FP技能士1級</p>
                             </div>
                         </div>
 
                         <div className="absolute -top-4 right-4 bg-navy-900 text-white rounded-xl px-5 py-3 shadow-lg">
                             <p className="text-blue-300 text-[10px] font-bold tracking-widest uppercase">Weekend Office</p>
                             <p className="text-white font-bold text-sm mt-0.5">10:00 – 17:00</p>
+                            <div className="mt-1.5 flex items-center gap-1.5">
+                                <span className="w-1.5 h-1.5 rounded-full bg-blue-300 animate-pulse" />
+                                <span className="text-blue-200 text-[10px]">全国オンライン対応</span>
+                            </div>
                         </div>
                     </motion.div>
                 </div>

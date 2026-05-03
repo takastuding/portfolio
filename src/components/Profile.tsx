@@ -26,7 +26,7 @@ export const Profile = () => {
                     transition={{ duration: 0.6 }}
                     className="mb-16"
                 >
-                    <p className="section-label mb-3">01 — Profile</p>
+                    <p className="section-label mb-3">06 — Profile</p>
                     <h2 className="font-display text-3xl sm:text-4xl font-bold text-stone-800">プロフィール・保有資格</h2>
                     <div className="mt-4 h-px w-16 bg-gradient-to-r from-blue-600 to-transparent" />
                 </motion.div>
@@ -39,27 +39,30 @@ export const Profile = () => {
                         transition={{ duration: 0.6, delay: 0.1 }}
                         className="lg:col-span-2 space-y-6"
                     >
-                        {/* オフィス画像カード */}
-                        <div className="rounded-2xl overflow-hidden border border-blue-100 bg-white shadow-[0_4px_24px_rgba(0,0,0,0.07)]">
-                            <div className="relative h-52 overflow-hidden">
+                        {/* プロフィールカード */}
+                        <div className="relative rounded-2xl overflow-hidden border border-blue-100 bg-white shadow-[0_4px_24px_rgba(0,0,0,0.07)]">
+                            <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-blue-50/40" aria-hidden="true" />
+                            <div className="relative aspect-square overflow-hidden">
                                 <img
-                                    src="https://images.unsplash.com/photo-1556761175-4b46a572b786?w=600&auto=format&fit=crop&q=80"
-                                    alt="橋本貴嗣社会保険労務士事務所"
+                                    src="/profile.png"
+                                    alt="橋本貴嗣 — 社会保険労務士・FP技能士1級"
                                     className="w-full h-full object-cover object-center"
                                     loading="lazy"
                                 />
-                                {/* オーバーレイグラデーション */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-navy-900/40 via-transparent to-transparent" />
-                                {/* 画像上のラベル */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-navy-900/30 via-transparent to-transparent" />
+                                <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 backdrop-blur border border-blue-100">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+                                    <span className="text-navy-900 text-[10px] font-bold tracking-widest uppercase">Profile</span>
+                                </div>
                                 <div className="absolute bottom-4 left-4 right-4">
-                                    <p className="text-white font-bold text-base drop-shadow-sm">橋本貴嗣社会保険労務士事務所</p>
-                                    <p className="text-blue-200 text-xs mt-0.5">Hashimoto SR Office</p>
+                                    <p className="text-white font-bold text-base drop-shadow">橋本 貴嗣</p>
+                                    <p className="text-blue-100 text-xs mt-0.5 drop-shadow">Hashimoto SR &amp; FP1 Office</p>
                                 </div>
                             </div>
-                            <div className="p-5">
+                            <div className="relative p-5">
                                 <p className="text-stone-500 text-xs mb-3 text-center">損害保険会社勤務 / 副業フリーランス</p>
                                 <div className="flex flex-wrap justify-center gap-2">
-                                    {['社労士', 'FP1級'].map(tag => (
+                                    {['社労士', 'FP1級', '土日祝対応'].map(tag => (
                                         <span key={tag} className="px-3 py-1 rounded-full bg-blue-50 text-blue-800 text-xs font-medium border border-blue-200">{tag}</span>
                                     ))}
                                 </div>
