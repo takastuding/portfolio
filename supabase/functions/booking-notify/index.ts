@@ -6,7 +6,7 @@
 import { serve } from "https://deno.land/std@0.208.0/http/server.ts";
 
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
-const OWNER_EMAIL = Deno.env.get("OWNER_EMAIL") ?? "sharoushi24.info@gmail.com";
+const OWNER_EMAIL = Deno.env.get("OWNER_EMAIL") ?? "hashimoto@sharoushi-t.com";
 const FROM_ADDRESS = Deno.env.get("FROM_ADDRESS") ?? "橋本貴嗣社会保険労務士事務所 <onboarding@resend.dev>";
 const SITE_URL = Deno.env.get("SITE_URL") ?? "https://sharoushi-t.com";
 
