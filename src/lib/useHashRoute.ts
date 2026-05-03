@@ -2,31 +2,50 @@ import { useEffect, useState } from 'react';
 
 export type LegalRoute = 'tokushoho' | 'privacy' | 'terms' | null;
 
-function parseLegal(hash: string): LegalRoute {
+const TOKEN_RE = /^[a-f0-9]{32,128}$/i;
+
+function parseLegalFromHash(hash: string): LegalRoute {
     const m = hash.match(/^#\/legal\/(tokushoho|privacy|terms)\/?$/);
     return (m?.[1] as LegalRoute) ?? null;
 }
 
-function parseManageToken(hash: string): string | null {
-    const m = hash.match(/^#\/booking\/manage(?:\/?\?(.*))?$/);
-    if (!m) return null;
-    const query = m[1] ?? '';
-    const params = new URLSearchParams(query);
-    const token = params.get('token');
-    if (!token) return null;
-    if (!/^[a-f0-9]{32,128}$/i.test(token)) return null;
-    return token;
+function parseLegalFromPath(pathname: string): LegalRoute {
+    const m = pathname.match(/^\/legal\/(tokushoho|privacy|terms)\/?$/);
+    return (m?.[1] as LegalRoute) ?? null;
+}
+
+function parseLegal(): LegalRoute {
+    if (typeof window === 'undefined') return null;
+    return parseLegalFromPath(window.location.pathname) ?? parseLegalFromHash(window.location.hash);
+}
+
+function parseManageToken(): string | null {
+    if (typeof window === 'undefined') return null;
+    // 1) パス形式： /booking/manage?token=...
+    if (/^\/booking\/manage\/?$/.test(window.location.pathname)) {
+        const token = new URLSearchParams(window.location.search).get('token');
+        if (token && TOKEN_RE.test(token)) return token;
+    }
+    // 2) フォールバック：ハッシュ形式 #/booking/manage?token=...
+    const m = window.location.hash.match(/^#\/booking\/manage(?:\/?\?(.*))?$/);
+    if (m) {
+        const token = new URLSearchParams(m[1] ?? '').get('token');
+        if (token && TOKEN_RE.test(token)) return token;
+    }
+    return null;
 }
 
 export const useLegalRoute = (): LegalRoute => {
-    const [route, setRoute] = useState<LegalRoute>(() =>
-        typeof window !== 'undefined' ? parseLegal(window.location.hash) : null,
-    );
+    const [route, setRoute] = useState<LegalRoute>(() => parseLegal());
 
     useEffect(() => {
-        const onHash = () => setRoute(parseLegal(window.location.hash));
-        window.addEventListener('hashchange', onHash);
-        return () => window.removeEventListener('hashchange', onHash);
+        const update = () => setRoute(parseLegal());
+        window.addEventListener('hashchange', update);
+        window.addEventListener('popstate', update);
+        return () => {
+            window.removeEventListener('hashchange', update);
+            window.removeEventListener('popstate', update);
+        };
     }, []);
 
     useEffect(() => {
@@ -37,14 +56,16 @@ export const useLegalRoute = (): LegalRoute => {
 };
 
 export const useBookingManageToken = (): string | null => {
-    const [token, setToken] = useState<string | null>(() =>
-        typeof window !== 'undefined' ? parseManageToken(window.location.hash) : null,
-    );
+    const [token, setToken] = useState<string | null>(() => parseManageToken());
 
     useEffect(() => {
-        const onHash = () => setToken(parseManageToken(window.location.hash));
-        window.addEventListener('hashchange', onHash);
-        return () => window.removeEventListener('hashchange', onHash);
+        const update = () => setToken(parseManageToken());
+        window.addEventListener('hashchange', update);
+        window.addEventListener('popstate', update);
+        return () => {
+            window.removeEventListener('hashchange', update);
+            window.removeEventListener('popstate', update);
+        };
     }, []);
 
     useEffect(() => {

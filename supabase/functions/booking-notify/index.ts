@@ -63,8 +63,10 @@ function ownerHtml(r: BookingRecord): string {
 }
 
 function userHtml(r: BookingRecord): string {
+    // パス形式（フラグメント `#` を含めない）でメール内 URL を生成。
+    // クリックトラッキング系のリダイレクトでフラグメントが落ちる事故を回避するため。
     const manageUrl = r.manage_token
-        ? `${SITE_URL}/#/booking/manage?token=${encodeURIComponent(r.manage_token)}`
+        ? `${SITE_URL}/booking/manage?token=${encodeURIComponent(r.manage_token)}`
         : null;
     const manageBlock = manageUrl ? `
   <div style="margin: 20px 0; padding: 16px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px;">
