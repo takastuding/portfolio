@@ -93,8 +93,9 @@ export const Booking = () => {
                     <p className="section-label mb-3">06 — Booking</p>
                     <h2 className="font-display text-3xl sm:text-4xl font-bold text-navy-900">ネット相談予約</h2>
                     <div className="mt-4 h-px w-16 bg-gradient-to-r from-blue-600 to-transparent" />
-                    <p className="mt-4 text-stone-500 max-w-xl leading-relaxed">
+                    <p className="mt-4 text-stone-500 max-w-xl leading-relaxed [text-wrap:pretty]">
                         <span className="font-semibold text-blue-800">土日祝限定</span>のオンライン相談です（1枠60分・初回30分無料）。
+                        <br className="hidden sm:block" />
                         平日は本業のため、ご予約・ご返信は週末にまとめて対応します。
                     </p>
                 </motion.div>
@@ -168,9 +169,10 @@ export const Booking = () => {
                             <div className="p-8 rounded-3xl bg-emerald-50 border border-emerald-200 text-center">
                                 <CheckCircle className="w-10 h-10 text-emerald-500 mx-auto mb-3" />
                                 <p className="text-emerald-800 font-bold text-lg">予約を受け付けました</p>
-                                <p className="text-emerald-700/70 text-sm mt-2">
-                                    ありがとうございます。Zoom URLを含む詳細のご返信は
-                                    <br />土日中にメールでお送りいたします。
+                                <p className="text-emerald-700/70 text-sm mt-2 [text-wrap:pretty]">
+                                    ありがとうございます。
+                                    <br />
+                                    Zoom URLを含む詳細のご返信は土日中にメールでお送りいたします。
                                 </p>
                                 <p className="text-emerald-700/60 text-xs mt-3">
                                     予約の変更・キャンセル用URLも、確認メールに記載しております。

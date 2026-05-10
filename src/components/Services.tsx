@@ -75,8 +75,9 @@ export const Services = () => {
                     <p className="section-label mb-3">03 — Services</p>
                     <h2 className="font-display text-3xl sm:text-4xl font-bold text-navy-900">業務内容</h2>
                     <div className="mt-4 h-px w-16 bg-gradient-to-r from-blue-600 to-transparent" />
-                    <p className="mt-4 text-stone-500 max-w-xl">
+                    <p className="mt-4 text-stone-500 max-w-xl leading-relaxed [text-wrap:pretty]">
                         人事・労務の現場をシンプルにし、企業の未来をサポートする。
+                        <br className="hidden sm:block" />
                         執筆・相談・手続きまで、社労士＋FP1級の両軸でワンストップ対応します。
                     </p>
                 </motion.div>
@@ -100,7 +101,7 @@ export const Services = () => {
                             <h3 className="text-navy-900 font-bold text-base mb-2.5">
                                 {service.title}
                             </h3>
-                            <p className="text-stone-500 text-sm leading-relaxed">
+                            <p className="text-stone-500 text-sm leading-relaxed [text-wrap:pretty]">
                                 {service.description}
                             </p>
                             {service.download && (

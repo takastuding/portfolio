@@ -44,9 +44,10 @@ export const WhyUs = () => {
                         当事務所が選ばれる<span className="text-gradient">3つの理由</span>
                     </h2>
                     <div className="mt-4 h-px w-16 bg-gradient-to-r from-blue-600 to-transparent" />
-                    <p className="mt-5 text-stone-500 leading-relaxed">
-                        制度を熟知しているだけでは足りない。経営の現場・家計の現場と
-                        日々向き合うからこそ伝えられる「使える助言」をお届けします。
+                    <p className="mt-5 text-stone-500 leading-relaxed [text-wrap:pretty]">
+                        制度を熟知しているだけでは足りない。
+                        <br className="hidden sm:block" />
+                        経営の現場・家計の現場と日々向き合うからこそ伝えられる「使える助言」をお届けします。
                     </p>
                 </motion.div>
 
@@ -74,7 +75,7 @@ export const WhyUs = () => {
                             <h3 className="text-navy-900 font-bold text-lg mb-3 leading-snug">
                                 {title}
                             </h3>
-                            <p className="text-stone-500 text-sm leading-relaxed mb-5">
+                            <p className="text-stone-500 text-sm leading-relaxed mb-5 [text-wrap:pretty]">
                                 {body}
                             </p>
 

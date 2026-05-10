@@ -45,8 +45,10 @@ export const HowItWorks = () => {
                     <p className="section-label mb-3">05 — How it works</p>
                     <h2 className="font-display text-3xl sm:text-4xl font-bold text-stone-800">ネット相談の流れ</h2>
                     <div className="mt-4 h-px w-16 bg-gradient-to-r from-blue-600 to-transparent" />
-                    <p className="mt-4 text-stone-500 max-w-xl">
-                        初めての方でもスムーズにご相談いただけるよう、予約から面談までの4ステップをご用意しています。
+                    <p className="mt-4 text-stone-500 max-w-xl leading-relaxed [text-wrap:pretty]">
+                        初めての方でもスムーズにご相談いただけるよう、
+                        <br className="hidden sm:block" />
+                        予約から面談までの4ステップをご用意しています。
                     </p>
                 </motion.div>
 
@@ -69,7 +71,7 @@ export const HowItWorks = () => {
                                     </div>
                                     <p className="font-display text-xs tracking-[0.2em] text-blue-800 font-bold mb-2">STEP {step.num}</p>
                                     <h3 className="text-stone-800 font-bold text-base mb-2">{step.title}</h3>
-                                    <p className="text-stone-500 text-xs leading-relaxed">{step.desc}</p>
+                                    <p className="text-stone-500 text-xs leading-relaxed [text-wrap:pretty]">{step.desc}</p>
                                 </div>
                             </motion.div>
                         ))}
@@ -89,8 +91,9 @@ export const HowItWorks = () => {
                         </div>
                         <div>
                             <p className="text-navy-900 font-bold text-sm mb-1">料金について</p>
-                            <p className="text-blue-800/80 text-xs leading-relaxed">
+                            <p className="text-blue-800/80 text-xs leading-relaxed [text-wrap:pretty]">
                                 初回30分は<span className="font-bold">無料</span>。継続相談は1時間 ¥5,500（税込）を予定。
+                                <br />
                                 ※お見積りはご相談後に改めてご案内します。
                             </p>
                         </div>
@@ -101,8 +104,9 @@ export const HowItWorks = () => {
                         </div>
                         <div>
                             <p className="text-stone-800 font-bold text-sm mb-1">キャンセルポリシー</p>
-                            <p className="text-stone-500 text-xs leading-relaxed">
+                            <p className="text-stone-500 text-xs leading-relaxed [text-wrap:pretty]">
                                 前日までのご連絡で<span className="font-bold">無料</span>でキャンセル可能です。
+                                <br />
                                 やむを得ず当日キャンセルが発生した場合も柔軟に対応いたします。
                             </p>
                         </div>

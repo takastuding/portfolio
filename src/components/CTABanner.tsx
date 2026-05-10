@@ -47,10 +47,11 @@ export const CTABanner = () => {
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.2 }}
-                    className="mt-6 text-blue-100/80 text-base sm:text-lg leading-relaxed max-w-xl mx-auto"
+                    className="mt-6 text-blue-100/80 text-base sm:text-lg leading-relaxed max-w-xl mx-auto [text-wrap:pretty]"
                 >
-                    初回30分は無料。土日祝のオンライン相談で、<br className="hidden sm:block" />
-                    全国どこからでもご利用いただけます。
+                    初回30分は無料。
+                    <br className="hidden sm:block" />
+                    土日祝のオンライン相談で、全国どこからでもご利用いただけます。
                 </motion.p>
 
                 <motion.div

@@ -102,20 +102,16 @@ export const Profile = () => {
                                 <span className="w-1 h-5 rounded-full bg-blue-600 inline-block" />
                                 自己紹介
                             </h3>
-                            <div className="space-y-4 text-stone-600 leading-relaxed">
+                            <div className="space-y-4 text-stone-600 leading-relaxed [text-wrap:pretty]">
                                 <p>
-                                    大学卒業後、大手損害保険会社に就職。保険業務や顧客対応に従事する中で、
-                                    中小企業の経営者が抱える「人」と「お金」の課題に直面し、
-                                    より専門的なサポートを行うために社会保険労務士資格を取得しました。
+                                    大学卒業後、大手損害保険会社に就職。保険業務や顧客対応に従事する中で、中小企業の経営者が抱える「人」と「お金」の課題に直面し、より専門的なサポートを行うために社会保険労務士資格を取得しました。
                                 </p>
                                 <p>
-                                    現在も損害保険会社の最前線で働きながら、週末を活用して執筆・監修・個別相談を行っています。
-                                    「現役社員だからこそ知るリアル」を、そのままアドバイスに活かすことが強みです。
+                                    現在も損害保険会社の最前線で働きながら、週末を活用して執筆・監修・個別相談を行っています。「現役社員だからこそ知るリアル」を、そのままアドバイスに活かすことが強みです。
                                 </p>
                                 <div className="mt-4 p-4 rounded-xl bg-blue-50 border border-blue-200">
-                                    <p className="text-navy-800 font-medium text-sm">
-                                        「分かりにくい制度を分かりやすく」をモットーに、
-                                        専門用語を使わない丁寧な説明を心がけています。
+                                    <p className="text-navy-800 font-medium text-sm [text-wrap:pretty]">
+                                        「分かりにくい制度を分かりやすく」をモットーに、専門用語を使わない丁寧な説明を心がけています。
                                     </p>
                                 </div>
                             </div>

@@ -42,8 +42,9 @@ export const PainPoints = () => {
                             <span className="text-gradient">ありませんか？</span>
                         </h2>
                         <div className="mt-5 h-px w-16 bg-gradient-to-r from-blue-600 to-transparent" />
-                        <p className="mt-6 text-stone-500 leading-relaxed max-w-md">
+                        <p className="mt-6 text-stone-500 leading-relaxed max-w-md [text-wrap:pretty]">
                             「人」と「お金」の制度はどんどん複雑になり、専門家でないと判断が難しい場面が増えています。
+                            <br />
                             放置するほどリスクは大きく — 一度、現役社員 × 社労士 × FP1級の視点で整理しませんか。
                         </p>
                     </motion.div>
