@@ -93,9 +93,9 @@ export const Booking = () => {
                     <p className="section-label mb-3">06 — Booking</p>
                     <h2 className="font-display text-3xl sm:text-4xl font-bold text-navy-900">ネット相談予約</h2>
                     <div className="mt-4 h-px w-16 bg-gradient-to-r from-blue-600 to-transparent" />
-                    <p className="mt-4 text-stone-500 max-w-xl">
-                        オンライン相談は<span className="font-semibold text-blue-800">土日祝の休日限定</span>です。
-                        平日は本業に従事しているため、ご予約・ご返信は週末にまとめて対応します。
+                    <p className="mt-4 text-stone-500 max-w-xl leading-relaxed">
+                        <span className="font-semibold text-blue-800">土日祝限定</span>のオンライン相談です（1枠60分・初回30分無料）。
+                        平日は本業のため、ご予約・ご返信は週末にまとめて対応します。
                     </p>
                 </motion.div>
 

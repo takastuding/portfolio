@@ -7,36 +7,33 @@ export const Hero = () => {
             <div className="absolute inset-0 bg-[linear-gradient(rgba(37,99,235,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(37,99,235,0.025)_1px,transparent_1px)] bg-[size:60px_60px]" />
 
             <div className="relative max-w-6xl mx-auto px-6 lg:px-8 pt-28 pb-20 w-full">
-                {/* 見出し（PCではフル幅で1行表示） */}
-                <div className="mb-10 lg:mb-14">
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.45, delay: 0.1 }}
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-navy-900 text-blue-300 text-xs font-bold tracking-widest uppercase mb-6"
-                    >
-                        <span className="w-1.5 h-1.5 rounded-full bg-blue-300 animate-pulse" />
-                        土日・祝日 専門相談
-                    </motion.div>
-
-                    <h1 className="font-display text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-6xl font-bold text-navy-900 leading-[1.15] tracking-tight lg:whitespace-nowrap">
-                        <span className="block lg:inline-block overflow-hidden align-bottom">
-                            <span className="block lg:inline-block line-reveal" style={{ animationDelay: '0.3s' }}>
-                                「人」と「お金」の
-                            </span>
-                        </span>
-                        <span className="block mt-1 lg:mt-0 lg:inline-block overflow-hidden align-bottom">
-                            <span className="block lg:inline-block line-reveal text-gradient" style={{ animationDelay: '0.55s' }}>
-                                課題を同時に解決
-                            </span>
-                        </span>
-                    </h1>
-                </div>
-
-                <div className="grid lg:grid-cols-[7fr_5fr] gap-12 lg:gap-10 items-center">
+                <div className="grid lg:grid-cols-2 gap-16 items-center">
 
                     {/* 左：テキスト */}
                     <div>
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.45, delay: 0.1 }}
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-navy-900 text-blue-300 text-xs font-bold tracking-widest uppercase mb-8"
+                        >
+                            <span className="w-1.5 h-1.5 rounded-full bg-blue-300 animate-pulse" />
+                            土日・祝日 専門相談
+                        </motion.div>
+
+                        <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-navy-900 leading-[1.2] tracking-tight mb-6">
+                            <span className="block overflow-hidden">
+                                <span className="block line-reveal" style={{ animationDelay: '0.3s' }}>
+                                    「人」と「お金」、
+                                </span>
+                            </span>
+                            <span className="block mt-1 overflow-hidden">
+                                <span className="block line-reveal text-gradient" style={{ animationDelay: '0.55s' }}>
+                                    同時に解決。
+                                </span>
+                            </span>
+                        </h1>
+
                         <motion.p
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
