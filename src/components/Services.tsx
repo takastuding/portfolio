@@ -1,8 +1,16 @@
-import { PenTool, Users, FileText, Briefcase, Shield, TrendingUp } from 'lucide-react';
+import { PenTool, Users, Wallet, FileText, Briefcase, Shield, TrendingUp, Download } from 'lucide-react';
 import { motion } from 'framer-motion';
 
+type Service = {
+    num: string;
+    title: string;
+    description: string;
+    icon: typeof PenTool;
+    download?: { label: string; href: string; filename?: string };
+};
+
 export const Services = () => {
-    const services = [
+    const services: Service[] = [
         {
             num: '01',
             title: '執筆・監修',
@@ -11,32 +19,43 @@ export const Services = () => {
         },
         {
             num: '02',
-            title: '個別相談',
-            description: 'FP技能士1級の知見を活かした、ライフプラン・労務・資産形成の個別コンサルティング（土日祝・オンライン）。',
+            title: '個別相談（法人・個人）',
+            description: '法人・個人どちらにも対応する個別コンサルティング。実際には副業されている個人事業主やフリーランスの方からのご依頼が中心で、労務とお金、両面の課題を一度に整理します。',
             icon: Users,
         },
         {
             num: '03',
+            title: '個人向けFP相談',
+            description: '会社員・副業者・小規模事業者の方を対象に、社会保険・年金・働き方・お金の悩みを丁寧にサポート。1級ファイナンシャル・プランニング技能士の視点で、ライフプラン全体を整理します。',
+            icon: Wallet,
+        },
+        {
+            num: '04',
             title: '行政手続代行',
             description: '助成金申請や各種社会保険手続きの代行など、煩雑な業務をサポートします（将来展開予定）。',
             icon: FileText,
         },
         {
-            num: '04',
+            num: '05',
             title: '就業規則作成',
-            description: '中小企業向けの就業規則・諸規程の作成支援。実務目線での雛形提供と運用ガイドをセットでご提供します。',
+            description: '開業したて・個人事業主・副業の方・初めて従業員を雇う方向けに、最小構成からスタートできる就業規則の作成を支援。実務目線の雛形と運用ガイドをセットでご提供します。',
             icon: Briefcase,
+            download: {
+                label: 'サンプル雛形をダウンロード（Word）',
+                href: '/samples/syuugyou-kisoku-sample.docx',
+                filename: 'syuugyou-kisoku-sample.docx',
+            },
         },
         {
-            num: '05',
+            num: '06',
             title: '労務監査',
             description: '労務リスクの可視化と改善提案。労働法令に沿った運用が出来ているかをチェックし、対応プランを策定します。',
             icon: Shield,
         },
         {
-            num: '06',
+            num: '07',
             title: '資産形成相談',
-            description: 'FP技能士1級としての包括的な資産アドバイス。NISA・iDeCo・保険・年金まで横断的に整理します。',
+            description: '1級ファイナンシャル・プランニング技能士としての包括的な資産アドバイス。NISA・iDeCo・保険・年金まで横断的に整理します。',
             icon: TrendingUp,
         },
     ];
@@ -84,6 +103,16 @@ export const Services = () => {
                             <p className="text-stone-500 text-sm leading-relaxed">
                                 {service.description}
                             </p>
+                            {service.download && (
+                                <a
+                                    href={service.download.href}
+                                    download={service.download.filename}
+                                    className="mt-4 inline-flex items-center gap-2 px-3.5 py-2 text-xs font-semibold rounded-lg bg-blue-50 border border-blue-200 text-blue-800 hover:bg-blue-100 hover:border-blue-300 transition-colors"
+                                >
+                                    <Download className="w-3.5 h-3.5" aria-hidden="true" />
+                                    {service.download.label}
+                                </a>
+                            )}
                         </motion.div>
                     ))}
                 </div>

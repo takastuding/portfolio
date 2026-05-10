@@ -4,12 +4,12 @@ import { CheckCircle2, Building2, BookOpen, Award } from 'lucide-react';
 export const Profile = () => {
     const qualifications = [
         { label: '社会保険労務士', desc: '労務管理・社会保険手続きの専門家' },
-        { label: 'FP技能士1級', desc: '最上位の国家資格ファイナンシャルプランナー' },
+        { label: '1級ファイナンシャル・プランニング技能士', desc: 'ファイナンシャル・プランニング技能士の最上位区分（国家資格）' },
     ];
 
     const career = [
         { icon: Building2, year: '大学卒業後', title: '大手損害保険会社 入社', desc: '保険業務や顧客対応業務に従事' },
-        { icon: Award, year: '在職中', title: '社会保険労務士 資格取得', desc: '中小企業の「人」と「お金」の課題解決を目指して' },
+        { icon: Award, year: '在職中', title: '社会保険労務士・1級ファイナンシャル・プランニング技能士 資格取得', desc: '中小企業の「人」と「お金」の課題を同時に解決するため、労務とお金の両分野で国家資格を取得' },
         { icon: BookOpen, year: '現在', title: '現役社員として最前線に在籍', desc: '週末を活用し、執筆・監修・個別相談に対応。実務経験を直接アドバイスに活かす' },
     ];
 
@@ -45,7 +45,7 @@ export const Profile = () => {
                             <div className="relative aspect-square overflow-hidden">
                                 <img
                                     src="/profile.png"
-                                    alt="橋本貴嗣 — 社会保険労務士・FP技能士1級"
+                                    alt="橋本貴嗣 — 社会保険労務士・1級ファイナンシャル・プランニング技能士"
                                     className="w-full h-full object-cover object-center"
                                     loading="lazy"
                                 />

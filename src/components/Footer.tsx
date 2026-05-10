@@ -53,7 +53,7 @@ export const Footer = () => {
                         <img src="/logo.png" alt="" aria-hidden="true" className="w-9 h-9 object-contain flex-shrink-0" />
                         <div className="flex flex-col leading-none">
                             <p className="text-navy-900 font-bold text-sm tracking-tight">橋本貴嗣社会保険労務士事務所</p>
-                            <p className="text-blue-700/70 text-[10px] font-medium tracking-widest uppercase mt-0.5">社労士 / FP技能士1級</p>
+                            <p className="text-blue-700/70 text-[10px] font-medium tracking-widest uppercase mt-0.5">社労士 / 1級FP技能士</p>
                         </div>
                     </div>
 
