@@ -1,13 +1,13 @@
 // Supabase Edge Function: booking-notify
 // Triggered by a Database Webhook on INSERT into public.bookings
 // Sends two emails via Resend:
-//   1) Owner notification to sharoushi24.info@gmail.com
+//   1) Owner notification to hashimoto@sharoushi-t.com
 //   2) Confirmation reply to the applicant
 import { serve } from "https://deno.land/std@0.208.0/http/server.ts";
 
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
 const OWNER_EMAIL = Deno.env.get("OWNER_EMAIL") ?? "hashimoto@sharoushi-t.com";
-const FROM_ADDRESS = Deno.env.get("FROM_ADDRESS") ?? "橋本貴嗣社会保険労務士事務所 <onboarding@resend.dev>";
+const FROM_ADDRESS = Deno.env.get("FROM_ADDRESS") ?? "橋本社会保険労務士事務所 <onboarding@resend.dev>";
 const SITE_URL = Deno.env.get("SITE_URL") ?? "https://sharoushi-t.com";
 
 type BookingRecord = {
@@ -91,9 +91,9 @@ function userHtml(r: BookingRecord): string {
   </p>${manageBlock}
   <p>ご不明点があれば、このメールへのご返信でお気軽にお問い合わせください。</p>
   <div style="border-top: 1px solid #e2e8f0; margin-top: 24px; padding-top: 16px; color: #64748b; font-size: 12px;">
-    <strong>橋本貴嗣社会保険労務士事務所</strong><br>
+    <strong>橋本社会保険労務士事務所</strong><br>
     社会保険労務士 / FP技能士1級<br>
-    <a href="mailto:sharoushi24.info@gmail.com" style="color: #1d4ed8;">sharoushi24.info@gmail.com</a>
+    <a href="mailto:hashimoto@sharoushi-t.com" style="color: #1d4ed8;">hashimoto@sharoushi-t.com</a>
   </div>
 </div>`;
 }

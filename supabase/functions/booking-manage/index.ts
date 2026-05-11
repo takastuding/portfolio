@@ -9,8 +9,8 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.4";
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL");
 const SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
-const OWNER_EMAIL = Deno.env.get("OWNER_EMAIL") ?? "sharoushi24.info@gmail.com";
-const FROM_ADDRESS = Deno.env.get("FROM_ADDRESS") ?? "橋本貴嗣社会保険労務士事務所 <onboarding@resend.dev>";
+const OWNER_EMAIL = Deno.env.get("OWNER_EMAIL") ?? "hashimoto@sharoushi-t.com";
+const FROM_ADDRESS = Deno.env.get("FROM_ADDRESS") ?? "橋本社会保険労務士事務所 <onboarding@resend.dev>";
 const SITE_URL = Deno.env.get("SITE_URL") ?? "https://sharoushi-t.com";
 
 const RESCHEDULE_LIMIT = 2;
@@ -90,7 +90,7 @@ function rescheduleUserHtml(prev: Booking, next: Booking): string {
     <a href="${manageUrl}" style="display: inline-block; padding: 10px 18px; background: #2563eb; color: #fff; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 13px;">予約管理ページへ</a>
   </div>
   <div style="border-top: 1px solid #e2e8f0; margin-top: 24px; padding-top: 16px; color: #64748b; font-size: 12px;">
-    <strong>橋本貴嗣社会保険労務士事務所</strong>
+    <strong>橋本社会保険労務士事務所</strong>
   </div>
 </div>`;
 }
@@ -122,7 +122,7 @@ function cancelUserHtml(b: Booking): string {
   </table>
   <p>新たにご予約をご希望の際は、<a href="${SITE_URL}/#booking" style="color: #1d4ed8;">予約フォーム</a> よりお申し込みください。</p>
   <div style="border-top: 1px solid #e2e8f0; margin-top: 24px; padding-top: 16px; color: #64748b; font-size: 12px;">
-    <strong>橋本貴嗣社会保険労務士事務所</strong>
+    <strong>橋本社会保険労務士事務所</strong>
   </div>
 </div>`;
 }

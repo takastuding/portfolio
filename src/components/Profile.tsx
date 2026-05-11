@@ -45,7 +45,7 @@ export const Profile = () => {
                             <div className="relative aspect-square overflow-hidden">
                                 <img
                                     src="/profile.png"
-                                    alt="橋本貴嗣 — 社会保険労務士・1級ファイナンシャル・プランニング技能士"
+                                    alt="社会保険労務士・1級ファイナンシャル・プランニング技能士"
                                     className="w-full h-full object-cover object-center"
                                     loading="lazy"
                                 />
@@ -55,7 +55,7 @@ export const Profile = () => {
                                     <span className="text-navy-900 text-[10px] font-bold tracking-widest uppercase">Profile</span>
                                 </div>
                                 <div className="absolute bottom-4 left-4 right-4">
-                                    <p className="text-white font-bold text-base drop-shadow">橋本 貴嗣</p>
+                                    <p className="text-white font-bold text-base drop-shadow">橋本社会保険労務士事務所</p>
                                     <p className="text-blue-100 text-xs mt-0.5 drop-shadow">Hashimoto SR &amp; FP1 Office</p>
                                 </div>
                             </div>

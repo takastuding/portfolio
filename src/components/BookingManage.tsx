@@ -172,7 +172,7 @@ export const BookingManage = ({ token }: { token: string }) => {
                     </a>
                     <div className="flex items-center gap-2">
                         <img src="/logo.png" alt="" aria-hidden="true" className="w-7 h-7 object-contain" />
-                        <span className="text-navy-900 font-bold text-xs">橋本貴嗣社会保険労務士事務所</span>
+                        <span className="text-navy-900 font-bold text-xs">橋本社会保険労務士事務所</span>
                     </div>
                 </div>
             </header>
@@ -266,7 +266,7 @@ export const BookingManage = ({ token }: { token: string }) => {
                                         <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
                                         <div>
                                             <p className="font-bold">変更・キャンセル受付期限を過ぎました</p>
-                                            <p className="text-xs mt-1 text-blue-700/80">予約24時間前以降の変更・キャンセルは、お手数ですが <a href="mailto:sharoushi24.info@gmail.com" className="underline">sharoushi24.info@gmail.com</a> までメールでご連絡ください。</p>
+                                            <p className="text-xs mt-1 text-blue-700/80">予約24時間前以降の変更・キャンセルは、お手数ですが <a href="mailto:hashimoto@sharoushi-t.com" className="underline">hashimoto@sharoushi-t.com</a> までメールでご連絡ください。</p>
                                         </div>
                                     </div>
                                 )}
@@ -381,7 +381,7 @@ export const BookingManage = ({ token }: { token: string }) => {
                         )}
 
                         <p className="text-stone-400 text-xs text-center pt-4">
-                            予約に関するお問い合わせは <a href="mailto:sharoushi24.info@gmail.com" className="text-blue-700 hover:underline">sharoushi24.info@gmail.com</a> まで
+                            予約に関するお問い合わせは <a href="mailto:hashimoto@sharoushi-t.com" className="text-blue-700 hover:underline">hashimoto@sharoushi-t.com</a> まで
                         </p>
                     </div>
                 )}

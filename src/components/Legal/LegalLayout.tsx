@@ -27,7 +27,7 @@ export const LegalLayout = ({ title, subtitle, lastUpdated, children }: Props) =
                     </a>
                     <div className="flex items-center gap-2">
                         <img src="/logo.png" alt="" aria-hidden="true" className="w-7 h-7 object-contain" />
-                        <span className="text-navy-900 font-bold text-xs">橋本貴嗣社会保険労務士事務所</span>
+                        <span className="text-navy-900 font-bold text-xs">橋本社会保険労務士事務所</span>
                     </div>
                 </div>
             </header>
@@ -49,7 +49,7 @@ export const LegalLayout = ({ title, subtitle, lastUpdated, children }: Props) =
 
             <footer className="border-t border-stone-200 py-8 bg-white">
                 <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center text-stone-400 text-xs">
-                    &copy; {new Date().getFullYear()} 橋本貴嗣社会保険労務士事務所
+                    &copy; {new Date().getFullYear()} 橋本社会保険労務士事務所
                 </div>
             </footer>
         </div>

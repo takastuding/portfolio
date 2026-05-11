@@ -114,14 +114,15 @@ export const Hero = () => {
                             <div className="relative w-14 h-14 rounded-xl overflow-hidden ring-2 ring-blue-200 ring-offset-2 ring-offset-white flex-shrink-0">
                                 <img
                                     src="/profile.png"
-                                    alt="橋本貴嗣 プロフィール"
+                                    alt=""
+                                    aria-hidden="true"
                                     className="w-full h-full object-cover"
                                     loading="eager"
                                 />
                             </div>
                             <div className="leading-tight">
                                 <p className="text-blue-700 text-[10px] font-bold tracking-[0.25em] uppercase">Trusted Partner</p>
-                                <p className="text-navy-900 font-bold text-sm mt-0.5">橋本 貴嗣</p>
+                                <p className="text-navy-900 font-bold text-sm mt-0.5">橋本社会保険労務士事務所</p>
                                 <p className="text-stone-500 text-[11px] mt-0.5">社労士 × 1級FP技能士</p>
                             </div>
                         </div>

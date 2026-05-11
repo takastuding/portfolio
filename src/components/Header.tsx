@@ -63,7 +63,7 @@ export const Header = () => {
                             />
                             <div className="flex flex-col leading-none">
                                 <span className="text-navy-900 font-bold text-base tracking-tight group-hover:text-blue-800 transition-colors">
-                                    橋本貴嗣社会保険労務士事務所
+                                    橋本社会保険労務士事務所
                                 </span>
                                 <span className="text-blue-700/70 text-[10px] font-medium tracking-widest uppercase mt-0.5">
                                     Hashimoto SR &amp; FP1 Office

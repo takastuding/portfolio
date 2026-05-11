@@ -12,14 +12,17 @@ import { Footer } from './components/Footer';
 import { Tokushoho } from './components/Legal/Tokushoho';
 import { Privacy } from './components/Legal/Privacy';
 import { Terms } from './components/Legal/Terms';
-import { useLegalRoute, useBookingManageToken } from './lib/useHashRoute';
+import { useLegalRoute, useBookingManageToken, useLifeplanRoute } from './lib/useHashRoute';
 import { BookingManage } from './components/BookingManage';
+import { LifeplanSimulation } from './components/LifeplanSimulation';
 
 function App() {
     const legalRoute = useLegalRoute();
     const manageToken = useBookingManageToken();
+    const lifeplan = useLifeplanRoute();
 
     if (manageToken) return <BookingManage token={manageToken} />;
+    if (lifeplan) return <LifeplanSimulation />;
     if (legalRoute === 'tokushoho') return <Tokushoho />;
     if (legalRoute === 'privacy') return <Privacy />;
     if (legalRoute === 'terms') return <Terms />;
