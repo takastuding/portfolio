@@ -92,7 +92,7 @@ export const HowItWorks = () => {
                         <div>
                             <p className="text-navy-900 font-bold text-sm mb-1">料金について</p>
                             <p className="text-blue-800/80 text-xs leading-relaxed [text-wrap:pretty]">
-                                初回30分は<span className="font-bold">無料</span>。継続相談は1時間 ¥5,500（税込）を予定。
+                                初回60分は<span className="font-bold">無料</span>。継続相談は1時間 ¥5,500（税込）を予定。
                                 <br />
                                 ※お見積りはご相談後に改めてご案内します。
                             </p>

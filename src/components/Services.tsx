@@ -1,4 +1,4 @@
-import { PenTool, Users, Wallet, FileText, Briefcase, Shield, TrendingUp, Download } from 'lucide-react';
+import { PenTool, Users, Wallet, FileText, Briefcase, Shield, Download, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 type Service = {
@@ -7,6 +7,7 @@ type Service = {
     description: string;
     icon: typeof PenTool;
     download?: { label: string; href: string; filename?: string };
+    link?: { label: string; href: string };
 };
 
 export const Services = () => {
@@ -25,9 +26,13 @@ export const Services = () => {
         },
         {
             num: '03',
-            title: '個人向けFP相談',
-            description: '会社員・副業者・小規模事業者の方を対象に、社会保険・年金・働き方・お金の悩みを丁寧にサポート。1級ファイナンシャル・プランニング技能士の視点で、ライフプラン全体を整理します。',
+            title: '個人向けFP・資産形成相談',
+            description: '会社員・副業者・小規模事業者の方を対象に、社会保険・年金・働き方からNISA・iDeCo・保険まで、ライフプラン全体を1級ファイナンシャル・プランニング技能士の視点で横断的に整理します。',
             icon: Wallet,
+            link: {
+                label: 'ライフプランシミュレーション',
+                href: '#/lifeplan',
+            },
         },
         {
             num: '04',
@@ -49,14 +54,8 @@ export const Services = () => {
         {
             num: '06',
             title: '労務監査',
-            description: '労務リスクの可視化と改善提案。労働法令に沿った運用が出来ているかをチェックし、対応プランを策定します。',
+            description: '労務リスクの可視化と改善提案。労働法令に沿った運用が出来ているかをチェックし、対応プランを策定します（将来展開予定）。',
             icon: Shield,
-        },
-        {
-            num: '07',
-            title: '資産形成相談',
-            description: '1級ファイナンシャル・プランニング技能士としての包括的な資産アドバイス。NISA・iDeCo・保険・年金まで横断的に整理します。',
-            icon: TrendingUp,
         },
     ];
 
@@ -112,6 +111,15 @@ export const Services = () => {
                                 >
                                     <Download className="w-3.5 h-3.5" aria-hidden="true" />
                                     {service.download.label}
+                                </a>
+                            )}
+                            {service.link && (
+                                <a
+                                    href={service.link.href}
+                                    className="mt-4 inline-flex items-center gap-2 px-3.5 py-2 text-xs font-semibold rounded-lg bg-blue-50 border border-blue-200 text-blue-800 hover:bg-blue-100 hover:border-blue-300 transition-colors"
+                                >
+                                    {service.link.label}
+                                    <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
                                 </a>
                             )}
                         </motion.div>

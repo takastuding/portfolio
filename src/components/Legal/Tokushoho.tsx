@@ -3,7 +3,7 @@ import { LegalLayout } from './LegalLayout';
 type Row = { label: string; value: React.ReactNode };
 
 const rows: Row[] = [
-    { label: '販売事業者', value: '橋本貴嗣社会保険労務士事務所' },
+    { label: '販売事業者', value: '橋本社会保険労務士事務所' },
     { label: '運営責任者', value: '橋本 貴嗣' },
     {
         label: '所在地',
@@ -32,8 +32,8 @@ const rows: Row[] = [
     {
         label: 'メールアドレス',
         value: (
-            <a href="mailto:sharoushi24.info@gmail.com" className="text-blue-800 hover:underline">
-                sharoushi24.info@gmail.com
+            <a href="mailto:hashimoto@sharoushi-t.com" className="text-blue-800 hover:underline">
+                hashimoto@sharoushi-t.com
             </a>
         ),
     },
@@ -44,7 +44,7 @@ const rows: Row[] = [
                 就業規則ひな形サブスク：<strong>月額 2,980円（税込）</strong>
                 <br />
                 <span className="text-stone-400 text-xs">
-                    ※ オンライン個別相談は初回30分無料、継続相談は1時間 5,500円（税込）を予定。正式な料金はご相談後にお見積りとして提示いたします。
+                    ※ オンライン個別相談は初回60分無料、継続相談は1時間 5,500円（税込）を予定。正式な料金はご相談後にお見積りとして提示いたします。
                 </span>
             </>
         ),

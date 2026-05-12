@@ -20,7 +20,7 @@ export const Contact = () => {
     const faq = [
         {
             q: '初回の相談は無料ですか？',
-            a: '初回のご相談は30分を目安に無料で承っております。お気軽にお問い合わせください。',
+            a: '初回のご相談は60分（1枠）まで無料で承っております。お気軽にお問い合わせください。',
         },
         {
             q: '副業・フリーランスの方でも相談できますか？',
@@ -59,7 +59,7 @@ export const Contact = () => {
                         className="space-y-6"
                     >
                         <p className="text-stone-600 text-lg leading-relaxed [text-wrap:pretty]">
-                            橋本貴嗣社会保険労務士事務所へのご依頼・ご相談は、
+                            橋本社会保険労務士事務所へのご依頼・ご相談は、
                             <br className="hidden sm:block" />
                             公式LINE・メール・ネット相談予約フォームからお気軽にどうぞ。
                         </p>
@@ -97,7 +97,7 @@ export const Contact = () => {
                                 <MessageSquare className="w-5 h-5 text-white" />
                                 <div className="text-left">
                                     <p className="text-white font-bold text-sm">ネット相談を予約する</p>
-                                    <p className="text-blue-200 text-xs">土日祝のオンライン相談・初回30分無料</p>
+                                    <p className="text-blue-200 text-xs">土日祝のオンライン相談・初回60分無料</p>
                                 </div>
                             </div>
                             <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform duration-200" />
@@ -122,14 +122,14 @@ export const Contact = () => {
                         </a>
 
                         <a
-                            href="mailto:sharoushi24.info@gmail.com"
+                            href="mailto:hashimoto@sharoushi-t.com"
                             className="group flex items-center justify-between w-full px-6 py-5 rounded-2xl bg-white border border-stone-200 hover:border-blue-300 hover:shadow-md transition-all duration-200 shadow-sm hover:-translate-y-0.5"
                         >
                             <div className="flex items-center gap-3">
                                 <Mail className="w-5 h-5 text-stone-400 group-hover:text-blue-700 transition-colors" />
                                 <div className="text-left">
                                     <p className="text-stone-800 font-semibold text-sm">メールで問い合わせる</p>
-                                    <p className="text-stone-400 text-xs">sharoushi24.info@gmail.com</p>
+                                    <p className="text-stone-400 text-xs">hashimoto@sharoushi-t.com</p>
                                 </div>
                             </div>
                             <ArrowRight className="w-4 h-4 text-stone-300 group-hover:text-blue-700 group-hover:translate-x-1 transition-all" />

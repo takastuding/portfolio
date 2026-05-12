@@ -7,7 +7,7 @@ const sections: Section[] = [
         heading: '1. 基本方針',
         body: (
             <p>
-                橋本貴嗣社会保険労務士事務所（以下「当事務所」といいます）は、お客様の個人情報の重要性を認識し、個人情報の保護に関する法律、関連法令およびガイドラインを遵守し、適切な取扱いに努めます。
+                橋本社会保険労務士事務所（以下「当事務所」といいます）は、お客様の個人情報の重要性を認識し、個人情報の保護に関する法律、関連法令およびガイドラインを遵守し、適切な取扱いに努めます。
             </p>
         ),
     },
@@ -95,11 +95,11 @@ const sections: Section[] = [
             <p>
                 本ポリシーに関するお問い合わせは、下記までご連絡ください。
                 <br />
-                橋本貴嗣社会保険労務士事務所
+                橋本社会保険労務士事務所
                 <br />
                 メール：
-                <a href="mailto:sharoushi24.info@gmail.com" className="text-blue-800 hover:underline">
-                    sharoushi24.info@gmail.com
+                <a href="mailto:hashimoto@sharoushi-t.com" className="text-blue-800 hover:underline">
+                    hashimoto@sharoushi-t.com
                 </a>
             </p>
         ),

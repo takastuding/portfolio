@@ -19,6 +19,12 @@ function parseLegal(): LegalRoute {
     return parseLegalFromPath(window.location.pathname) ?? parseLegalFromHash(window.location.hash);
 }
 
+function parseLifeplan(): boolean {
+    if (typeof window === 'undefined') return false;
+    if (/^\/lifeplan\/?$/.test(window.location.pathname)) return true;
+    return /^#\/lifeplan\/?$/.test(window.location.hash);
+}
+
 function parseManageToken(): string | null {
     if (typeof window === 'undefined') return null;
     // 1) パス形式： /booking/manage?token=...
@@ -53,6 +59,26 @@ export const useLegalRoute = (): LegalRoute => {
     }, [route]);
 
     return route;
+};
+
+export const useLifeplanRoute = (): boolean => {
+    const [active, setActive] = useState<boolean>(() => parseLifeplan());
+
+    useEffect(() => {
+        const update = () => setActive(parseLifeplan());
+        window.addEventListener('hashchange', update);
+        window.addEventListener('popstate', update);
+        return () => {
+            window.removeEventListener('hashchange', update);
+            window.removeEventListener('popstate', update);
+        };
+    }, []);
+
+    useEffect(() => {
+        if (active) window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
+    }, [active]);
+
+    return active;
 };
 
 export const useBookingManageToken = (): string | null => {

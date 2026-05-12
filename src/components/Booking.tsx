@@ -94,7 +94,7 @@ export const Booking = () => {
                     <h2 className="font-display text-3xl sm:text-4xl font-bold text-navy-900">ネット相談予約</h2>
                     <div className="mt-4 h-px w-16 bg-gradient-to-r from-blue-600 to-transparent" />
                     <p className="mt-4 text-stone-500 max-w-xl leading-relaxed [text-wrap:pretty]">
-                        <span className="font-semibold text-blue-800">土日祝限定</span>のオンライン相談です（1枠60分・初回30分無料）。
+                        <span className="font-semibold text-blue-800">土日祝限定</span>のオンライン相談です（1枠60分・初回60分無料）。
                         <br className="hidden sm:block" />
                         平日は本業のため、ご予約・ご返信は週末にまとめて対応します。
                     </p>
@@ -110,7 +110,7 @@ export const Booking = () => {
                     {[
                         { icon: Video, title: 'Zoom / Google Meet', desc: '全国どこからでも対応' },
                         { icon: Clock, title: '受付 10:00〜17:00', desc: '土日祝のみ（1枠60分）' },
-                        { icon: Calendar, title: '初回30分 無料', desc: 'まずはお気軽にどうぞ' },
+                        { icon: Calendar, title: '初回60分 無料', desc: 'まずはお気軽にどうぞ' },
                     ].map(({ icon: Icon, title, desc }) => (
                         <div key={title} className="flex items-center gap-3 p-4 rounded-2xl bg-blue-50 border border-blue-100">
                             <div className="w-9 h-9 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0">
