@@ -15,11 +15,17 @@ function formatDate(pubDate: string): string {
     return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}`;
 }
 
-export const NoteArticles = () => {
-    const [articles, setArticles] = useState<Article[] | null>(null);
+type NoteArticlesProps = {
+    mockItems?: Article[];
+};
+
+export const NoteArticles = ({ mockItems }: NoteArticlesProps = {}) => {
+    const [articles, setArticles] = useState<Article[] | null>(mockItems ?? null);
     const [failed, setFailed] = useState(false);
 
     useEffect(() => {
+        if (mockItems) return;
+
         let aborted = false;
         fetch('/api/note-feed')
             .then((r) => r.json())
@@ -34,7 +40,7 @@ export const NoteArticles = () => {
         return () => {
             aborted = true;
         };
-    }, []);
+    }, [mockItems]);
 
     // フェッチ失敗 or 空配列の場合はセクションごと非表示
     if (failed || (articles && articles.length === 0)) return null;

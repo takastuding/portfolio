@@ -1,7 +1,11 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Calendar, Shield, FileText, MessageSquare } from 'lucide-react';
 
-export const Hero = () => {
+type HeroProps = {
+    visualSrc?: string;
+};
+
+export const Hero = ({ visualSrc = '/hero.jpg' }: HeroProps) => {
     return (
         <section id="top" className="relative min-h-screen flex items-center overflow-hidden">
             <div className="absolute inset-0 bg-[linear-gradient(rgba(37,99,235,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(37,99,235,0.025)_1px,transparent_1px)] bg-[size:60px_60px]" />
@@ -99,7 +103,7 @@ export const Hero = () => {
                     >
                         <div className="relative rounded-2xl overflow-hidden shadow-2xl ring-1 ring-blue-100/60">
                             <img
-                                src="/hero.jpg"
+                                src={visualSrc}
                                 alt="人と企業の成長をサポートする社労士"
                                 className="w-full h-[520px] object-cover object-center"
                                 loading="eager"

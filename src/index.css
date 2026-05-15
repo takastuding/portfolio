@@ -158,3 +158,468 @@ body {
     animation: none !important;
   }
 }
+
+@layer components {
+  .design-mock {
+    color: #24211d;
+    background:
+      linear-gradient(90deg, rgba(26, 42, 62, 0.035) 1px, transparent 1px),
+      linear-gradient(180deg, rgba(26, 42, 62, 0.028) 1px, transparent 1px),
+      linear-gradient(180deg, #f8f5ef 0%, #ffffff 46%, #f3f6f8 100%);
+    background-size: 84px 84px, 84px 84px, auto;
+    overflow-x: hidden;
+  }
+
+  .design-mock .text-gradient {
+    background: linear-gradient(135deg, #17375e 0%, #245b8f 48%, #876d42 100%) !important;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+  }
+
+  .design-mock .section-label {
+    color: #876d42;
+    letter-spacing: 0.18em;
+  }
+
+  .design-mock header > .absolute {
+    background: rgba(248, 245, 239, 0.88) !important;
+    border-color: rgba(46, 42, 36, 0.1) !important;
+    box-shadow: 0 10px 40px rgba(34, 31, 27, 0.06) !important;
+  }
+
+  .design-mock header a,
+  .design-mock header span {
+    letter-spacing: 0;
+  }
+
+  .design-mock #top {
+    min-height: 92vh;
+    background:
+      linear-gradient(90deg, rgba(248, 245, 239, 0.92) 0%, rgba(248, 245, 239, 0.82) 48%, rgba(248, 245, 239, 0.35) 100%),
+      url('/mock/quiet-office.png') center / cover no-repeat;
+  }
+
+  .design-mock #top > .absolute.inset-0,
+  .design-mock #why-us > .absolute.inset-0,
+  .design-mock #how-it-works > .absolute.inset-0,
+  .design-mock #profile > .absolute.inset-0 {
+    background-image: none !important;
+  }
+
+  .design-mock #top h1 {
+    color: #1e2b3a;
+    letter-spacing: 0;
+  }
+
+  .design-mock #top p,
+  .design-mock section p {
+    color: #5d5850;
+  }
+
+  .design-mock #top img[src="/mock/consultation-desk.png"] {
+    height: 500px;
+    filter: saturate(0.92) contrast(1.02);
+  }
+
+  .design-mock #top .rounded-2xl,
+  .design-mock #top .rounded-xl,
+  .design-mock #top .rounded-lg {
+    border-radius: 10px;
+  }
+
+  .design-mock #top a {
+    max-width: 100%;
+    white-space: normal;
+  }
+
+  .design-mock #top .grid.grid-cols-2 {
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)) !important;
+  }
+
+  .design-mock #top .grid.grid-cols-2 > div,
+  .design-mock #top .grid.grid-cols-2 p {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .design-mock section {
+    background-color: transparent;
+  }
+
+  .design-mock section.bg-surface-100\/40,
+  .design-mock section.bg-surface-100\/50,
+  .design-mock section.bg-surface-100\/60 {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(245, 241, 234, 0.76));
+  }
+
+  .design-mock section > .absolute:not(.inset-0) {
+    opacity: 0.18;
+    filter: blur(52px) saturate(0.7);
+  }
+
+  .design-mock #services {
+    background:
+      linear-gradient(90deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.78)),
+      url('/mock/documents-detail.png') right center / min(42vw, 560px) auto no-repeat;
+  }
+
+  .design-mock #why-us {
+    background:
+      linear-gradient(180deg, rgba(247, 244, 238, 0.96), rgba(255, 255, 255, 0.86)),
+      url('/mock/quiet-office.png') left bottom / min(44vw, 620px) auto no-repeat;
+  }
+
+  .design-mock #profile {
+    background:
+      linear-gradient(90deg, rgba(255, 255, 255, 0.92), rgba(247, 244, 238, 0.75)),
+      url('/mock/quiet-office.png') right top / min(40vw, 560px) auto no-repeat;
+  }
+
+  .design-mock .bg-white,
+  .design-mock .bg-blue-50,
+  .design-mock .bg-stone-50 {
+    background-color: rgba(255, 253, 248, 0.9) !important;
+  }
+
+  .design-mock .border-blue-100,
+  .design-mock .border-blue-200,
+  .design-mock .border-stone-200,
+  .design-mock .border-stone-100 {
+    border-color: rgba(38, 48, 61, 0.14) !important;
+  }
+
+  .design-mock .rounded-3xl,
+  .design-mock .rounded-2xl,
+  .design-mock .rounded-xl {
+    border-radius: 10px !important;
+  }
+
+  .design-mock .shadow-lg,
+  .design-mock .shadow-2xl,
+  .design-mock .shadow-md,
+  .design-mock .shadow-sm,
+  .design-mock [class*="shadow-"] {
+    box-shadow: 0 18px 48px rgba(31, 28, 24, 0.09) !important;
+  }
+
+  .design-mock .text-blue-700,
+  .design-mock .text-blue-800,
+  .design-mock .text-navy-900,
+  .design-mock .text-stone-800 {
+    color: #1f3248 !important;
+  }
+
+  .design-mock .text-blue-300,
+  .design-mock .text-blue-200 {
+    color: #d9c8aa !important;
+  }
+
+  .design-mock .bg-blue-700,
+  .design-mock .bg-blue-800,
+  .design-mock .bg-navy-900 {
+    background-color: #1f3248 !important;
+  }
+
+  .design-mock a.bg-blue-700,
+  .design-mock button.bg-blue-700 {
+    background: linear-gradient(135deg, #1f3248, #245b8f) !important;
+  }
+
+  .design-mock a.border,
+  .design-mock button,
+  .design-mock input,
+  .design-mock select,
+  .design-mock textarea {
+    border-radius: 10px !important;
+  }
+
+  .design-mock #services .grid > div,
+  .design-mock #articles .grid > a,
+  .design-mock #articles .grid > div,
+  .design-mock #why-us article,
+  .design-mock #how-it-works .grid > div,
+  .design-mock #contact .space-y-4 > a.bg-white,
+  .design-mock #profile .rounded-2xl,
+  .design-mock #profile .rounded-xl {
+    background:
+      linear-gradient(180deg, rgba(255, 253, 248, 0.96), rgba(255, 255, 255, 0.9)) !important;
+    border: 1px solid rgba(38, 48, 61, 0.13) !important;
+    box-shadow: 0 14px 34px rgba(31, 28, 24, 0.07) !important;
+  }
+
+  .design-mock #services .grid > div:hover,
+  .design-mock #articles .grid > a:hover,
+  .design-mock #why-us article:hover,
+  .design-mock #how-it-works .grid > div:hover {
+    border-color: rgba(135, 109, 66, 0.32) !important;
+    box-shadow: 0 22px 56px rgba(31, 28, 24, 0.11) !important;
+  }
+
+  .design-mock #services .w-11,
+  .design-mock #why-us .w-14,
+  .design-mock #how-it-works .w-16,
+  .design-mock #booking .w-9,
+  .design-mock #contact .w-8,
+  .design-mock #contact .w-9,
+  .design-mock #profile .w-10,
+  .design-mock #profile .w-5 {
+    background-color: #f0eadf !important;
+    border-color: rgba(135, 109, 66, 0.22) !important;
+  }
+
+  .design-mock svg {
+    color: #245b8f;
+  }
+
+  .design-mock #services .grid > div:nth-child(2)::before,
+  .design-mock #why-us article:nth-child(2)::before {
+    content: "";
+    display: block;
+    height: 130px;
+    margin: -1.5rem -1.5rem 1.25rem;
+    background: url('/mock/documents-detail.png') center / cover no-repeat;
+    border-bottom: 1px solid rgba(38, 48, 61, 0.12);
+  }
+
+  .design-mock #why-us article:nth-child(1)::before {
+    content: "";
+    display: block;
+    height: 130px;
+    margin: -1.75rem -1.75rem 1.5rem;
+    background: url('/mock/quiet-office.png') center / cover no-repeat;
+    border-bottom: 1px solid rgba(38, 48, 61, 0.12);
+  }
+
+  .design-mock #how-it-works {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(247, 244, 238, 0.72));
+  }
+
+  .design-mock section.bg-navy-900 {
+    background:
+      linear-gradient(90deg, rgba(31, 50, 72, 0.94), rgba(31, 50, 72, 0.84)),
+      url('/mock/consultation-desk.png') center / cover no-repeat !important;
+  }
+
+  .design-mock section.bg-navy-900 > .absolute.inset-0 {
+    opacity: 0.08 !important;
+  }
+
+  .design-mock footer {
+    background-color: #f8f5ef !important;
+  }
+
+  .design-mock #booking > .relative > .grid.sm\:grid-cols-3 > div,
+  .design-mock #booking > .relative > .grid.lg\:grid-cols-2 > div > div,
+  .design-mock #booking form {
+    background:
+      linear-gradient(180deg, rgba(255, 253, 248, 0.98), rgba(255, 255, 255, 0.92)) !important;
+    border-color: rgba(38, 48, 61, 0.13) !important;
+    box-shadow: 0 14px 34px rgba(31, 28, 24, 0.07) !important;
+  }
+
+  .design-mock #booking form .grid > div,
+  .design-mock #booking form .grid > label {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .design-mock #booking input,
+  .design-mock #booking textarea {
+    background-color: #fffdf8 !important;
+    border-color: rgba(38, 48, 61, 0.18) !important;
+    box-shadow: none !important;
+  }
+
+  .design-mock #booking form label:has(input[type="radio"]) {
+    border: 1px solid rgba(38, 48, 61, 0.14) !important;
+    background-color: rgba(255, 253, 248, 0.82) !important;
+  }
+
+  .design-mock #services .grid > div {
+    overflow: hidden;
+  }
+
+  .design-mock #articles .grid > a,
+  .design-mock #articles .grid > div {
+    overflow: hidden;
+  }
+
+  .design-mock #services .grid > div::before {
+    content: "";
+    display: block;
+    height: 122px;
+    margin: -1.5rem -1.5rem 1.25rem;
+    background: url('/mock/documents-detail.png') center / cover no-repeat;
+    border-bottom: 1px solid rgba(38, 48, 61, 0.12);
+    filter: saturate(0.9) contrast(1.03);
+  }
+
+  .design-mock #services .grid > div:nth-child(1)::before,
+  .design-mock #services .grid > div:nth-child(4)::before,
+  .design-mock #services .grid > div:nth-child(6)::before {
+    background-image: url('/mock/documents-detail.png');
+  }
+
+  .design-mock #services .grid > div:nth-child(2)::before,
+  .design-mock #services .grid > div:nth-child(5)::before {
+    background-image: url('/mock/consultation-desk.png');
+  }
+
+  .design-mock #services .grid > div:nth-child(3)::before,
+  .design-mock #services .grid > div:nth-child(7)::before {
+    background-image: url('/mock/quiet-office.png');
+  }
+
+  .design-mock #articles {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(247, 244, 238, 0.72)),
+      url('/mock/documents-detail.png') left bottom / min(38vw, 520px) auto no-repeat;
+  }
+
+  .design-mock #articles .grid > a::before,
+  .design-mock #articles .grid > div::before {
+    content: "";
+    display: block;
+    height: 118px;
+    margin: -1.5rem -1.5rem 1.25rem;
+    background: url('/mock/documents-detail.png') center / cover no-repeat;
+    border-bottom: 1px solid rgba(38, 48, 61, 0.12);
+    filter: saturate(0.86) contrast(1.02);
+  }
+
+  .design-mock #articles .grid > a:nth-child(2)::before,
+  .design-mock #articles .grid > div:nth-child(2)::before {
+    background-image: url('/mock/consultation-desk.png');
+  }
+
+  .design-mock #articles .grid > a:nth-child(3)::before,
+  .design-mock #articles .grid > div:nth-child(3)::before {
+    background-image: url('/mock/quiet-office.png');
+  }
+
+  .design-mock #services .w-11,
+  .design-mock #top .w-8,
+  .design-mock section:not(#services):not(#why-us):not(#how-it-works):not(#booking):not(#profile):not(#contact) .w-11,
+  .design-mock #why-us .w-14,
+  .design-mock #how-it-works .w-16,
+  .design-mock #booking .w-9 {
+    background-color: transparent !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    border: 0 !important;
+  }
+
+  .design-mock #services .w-11 svg,
+  .design-mock #top .w-8 svg,
+  .design-mock section:not(#services):not(#why-us):not(#how-it-works):not(#booking):not(#profile):not(#contact) .w-11 svg,
+  .design-mock #why-us .w-14 svg,
+  .design-mock #how-it-works .w-16 svg,
+  .design-mock #booking .w-9 svg {
+    opacity: 0;
+  }
+
+  .design-mock #top .grid > div:nth-child(1) .w-8 { background-image: url('/mock/icons/audit.svg') !important; }
+  .design-mock #top .grid > div:nth-child(2) .w-8 { background-image: url('/mock/icons/calendar.svg') !important; }
+  .design-mock #top .grid > div:nth-child(3) .w-8 { background-image: url('/mock/icons/paperwork.svg') !important; }
+  .design-mock #top .grid > div:nth-child(4) .w-8 { background-image: url('/mock/icons/video.svg') !important; }
+
+  .design-mock section:not(#services):not(#why-us):not(#how-it-works):not(#booking):not(#profile):not(#contact) .grid > div:nth-child(1) .w-11,
+  .design-mock section:not(#services):not(#why-us):not(#how-it-works):not(#booking):not(#profile):not(#contact) .grid > div:nth-child(1) .w-10 {
+    background-image: url('/mock/icons/paperwork.svg') !important;
+  }
+
+  .design-mock section:not(#services):not(#why-us):not(#how-it-works):not(#booking):not(#profile):not(#contact) .grid > div:nth-child(2) .w-11,
+  .design-mock section:not(#services):not(#why-us):not(#how-it-works):not(#booking):not(#profile):not(#contact) .grid > div:nth-child(2) .w-10 {
+    background-image: url('/mock/icons/clock.svg') !important;
+  }
+
+  .design-mock section:not(#services):not(#why-us):not(#how-it-works):not(#booking):not(#profile):not(#contact) .grid > div:nth-child(3) .w-11,
+  .design-mock section:not(#services):not(#why-us):not(#how-it-works):not(#booking):not(#profile):not(#contact) .grid > div:nth-child(3) .w-10 {
+    background-image: url('/mock/icons/finance.svg') !important;
+  }
+
+  .design-mock section:not(#services):not(#why-us):not(#how-it-works):not(#booking):not(#profile):not(#contact) .grid > div:nth-child(4) .w-11,
+  .design-mock section:not(#services):not(#why-us):not(#how-it-works):not(#booking):not(#profile):not(#contact) .grid > div:nth-child(4) .w-10 {
+    background-image: url('/mock/icons/writing.svg') !important;
+  }
+
+  .design-mock #services .grid > div:nth-child(1) .w-11 { background-image: url('/mock/icons/writing.svg') !important; }
+  .design-mock #services .grid > div:nth-child(2) .w-11 { background-image: url('/mock/icons/consulting.svg') !important; }
+  .design-mock #services .grid > div:nth-child(3) .w-11 { background-image: url('/mock/icons/finance.svg') !important; }
+  .design-mock #services .grid > div:nth-child(4) .w-11 { background-image: url('/mock/icons/paperwork.svg') !important; }
+  .design-mock #services .grid > div:nth-child(5) .w-11 { background-image: url('/mock/icons/work-rules.svg') !important; }
+  .design-mock #services .grid > div:nth-child(6) .w-11 { background-image: url('/mock/icons/audit.svg') !important; }
+  .design-mock #services .grid > div:nth-child(7) .w-11 { background-image: url('/mock/icons/assets.svg') !important; }
+
+  .design-mock #why-us article:nth-child(1) .w-14 { background-image: url('/mock/icons/consulting.svg') !important; }
+  .design-mock #why-us article:nth-child(2) .w-14 { background-image: url('/mock/icons/assets.svg') !important; }
+  .design-mock #why-us article:nth-child(3) .w-14 { background-image: url('/mock/icons/audit.svg') !important; }
+
+  .design-mock #how-it-works .grid > div:nth-child(1) .w-16,
+  .design-mock #booking .grid.sm\:grid-cols-3 > div:nth-child(3) .w-9 {
+    background-image: url('/mock/icons/calendar.svg') !important;
+  }
+
+  .design-mock #how-it-works .grid > div:nth-child(2) .w-16 {
+    background-image: url('/mock/icons/writing.svg') !important;
+  }
+
+  .design-mock #how-it-works .grid > div:nth-child(3) .w-16 {
+    background-image: url('/mock/icons/paperwork.svg') !important;
+  }
+
+  .design-mock #how-it-works .grid > div:nth-child(4) .w-16,
+  .design-mock #booking .grid.sm\:grid-cols-3 > div:nth-child(1) .w-9 {
+    background-image: url('/mock/icons/video.svg') !important;
+  }
+
+  .design-mock #booking .grid.sm\:grid-cols-3 > div:nth-child(2) .w-9 {
+    background-image: url('/mock/icons/clock.svg') !important;
+  }
+
+  @media (max-width: 900px) {
+    .design-mock header .max-w-6xl,
+    .design-mock section .max-w-6xl {
+      max-width: 100%;
+    }
+
+    .design-mock #top {
+      min-height: auto;
+      background:
+        linear-gradient(180deg, rgba(248, 245, 239, 0.98), rgba(248, 245, 239, 0.88)),
+        url('/mock/quiet-office.png') center / cover no-repeat;
+    }
+
+    .design-mock #top h1 {
+      font-size: 2.45rem !important;
+      line-height: 1.2 !important;
+    }
+
+    .design-mock #top a {
+      width: 100% !important;
+    }
+
+    .design-mock #top .grid.grid-cols-2 {
+      grid-template-columns: 1fr !important;
+    }
+
+    .design-mock #top .grid.grid-cols-2 > div {
+      min-width: 0;
+    }
+
+    .design-mock #top p,
+    .design-mock #top span {
+      overflow-wrap: anywhere;
+    }
+
+    .design-mock #services,
+    .design-mock #why-us,
+    .design-mock #profile,
+    .design-mock #articles {
+      background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(247, 244, 238, 0.8));
+    }
+  }
+}

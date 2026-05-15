@@ -11,6 +11,7 @@ import { Booking } from './components/Booking';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { NoteArticles } from './components/NoteArticles';
+import { MockDesign } from './components/MockDesign';
 import { useLegalRoute, useBookingManageToken, useLifeplanRoute } from './lib/useHashRoute';
 
 // ルートレベルのページは遅延読み込み（初回 JS サイズ削減）
@@ -40,6 +41,9 @@ function App() {
     const legalRoute = useLegalRoute();
     const manageToken = useBookingManageToken();
     const lifeplan = useLifeplanRoute();
+    const isMockDesign = window.location.pathname === '/mock';
+
+    if (isMockDesign) return <MockDesign />;
 
     if (manageToken) {
         return (
@@ -78,10 +82,10 @@ function App() {
     }
 
     return (
-        <div className="min-h-screen font-sans text-stone-800 bg-white">
+        <div className="design-mock min-h-screen font-sans text-stone-800">
             <Header />
             <main>
-                <Hero />
+                <Hero visualSrc="/mock/consultation-desk.png" />
                 <PainPoints />
                 <Services />
                 <WhyUs />
