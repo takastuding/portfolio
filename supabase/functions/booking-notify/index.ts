@@ -10,6 +10,20 @@ const OWNER_EMAIL = Deno.env.get("OWNER_EMAIL") ?? "sharoushi24.info@gmail.com";
 const FROM_ADDRESS = Deno.env.get("FROM_ADDRESS") ?? "橋本社会保険労務士事務所 <onboarding@resend.dev>";
 const SITE_URL = Deno.env.get("SITE_URL") ?? "https://sharoushi-t.com";
 
+// クライアント（Vercel ドメイン）から supabase.functions.invoke で呼べるよう CORS を許可。
+const CORS_HEADERS: HeadersInit = {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+};
+
+function jsonResponse(body: unknown, status = 200): Response {
+    return new Response(JSON.stringify(body), {
+        status,
+        headers: { ...CORS_HEADERS, "Content-Type": "application/json" },
+    });
+}
+
 type BookingRecord = {
     id: string;
     date: string;
@@ -116,23 +130,26 @@ async function sendMail(to: string, subject: string, html: string): Promise<Resp
 }
 
 serve(async (req) => {
+    if (req.method === "OPTIONS") {
+        return new Response("ok", { headers: CORS_HEADERS });
+    }
     if (req.method !== "POST") {
-        return new Response("Method Not Allowed", { status: 405 });
+        return new Response("Method Not Allowed", { status: 405, headers: CORS_HEADERS });
     }
     if (!RESEND_API_KEY) {
         console.error("RESEND_API_KEY is not set");
-        return new Response(JSON.stringify({ error: "server_not_configured" }), { status: 500 });
+        return jsonResponse({ error: "server_not_configured" }, 500);
     }
 
     let payload: WebhookPayload;
     try {
         payload = await req.json();
     } catch {
-        return new Response(JSON.stringify({ error: "invalid_json" }), { status: 400 });
+        return jsonResponse({ error: "invalid_json" }, 400);
     }
 
     if (payload.type !== "INSERT" || !payload.record) {
-        return new Response(JSON.stringify({ skipped: true }), { status: 200 });
+        return jsonResponse({ skipped: true }, 200);
     }
 
     const r = payload.record;
@@ -168,21 +185,21 @@ serve(async (req) => {
 
         // 運営者宛失敗 → 502（Webhook 自動再試行に任せる）
         if (!ownerOk) {
-            return new Response(JSON.stringify({
+            return jsonResponse({
                 error: "owner_email_failed",
                 owner: ownerDetail,
                 user: userDetail,
-            }), { status: 502, headers: { "Content-Type": "application/json" } });
+            }, 502);
         }
 
         // 申込者宛は失敗しても DB INSERT は成立しているため 200 で返却（記録のみ）
-        return new Response(JSON.stringify({
+        return jsonResponse({
             ok: true,
             user_email_sent: userOk,
             ...(userOk ? {} : { user_email_warning: userDetail }),
-        }), { status: 200, headers: { "Content-Type": "application/json" } });
+        }, 200);
     } catch (err) {
         console.error("[booking-notify] unexpected error", err);
-        return new Response(JSON.stringify({ error: "internal_error", detail: String(err) }), { status: 500 });
+        return jsonResponse({ error: "internal_error", detail: String(err) }, 500);
     }
 });
