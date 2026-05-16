@@ -24,7 +24,7 @@ export const initAnalytics = () => {
 
     window.gtag('js', new Date());
     window.gtag('config', GA_MEASUREMENT_ID, {
-        page_path: currentPagePath(),
+        send_page_view: false,
     });
 
     const trackPageView = () => {
@@ -34,6 +34,8 @@ export const initAnalytics = () => {
             page_title: document.title,
         });
     };
+
+    trackPageView();
 
     window.addEventListener('hashchange', trackPageView);
     window.addEventListener('popstate', trackPageView);
