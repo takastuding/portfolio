@@ -580,6 +580,40 @@ body {
     background-image: url('/mock/icons/clock.svg') !important;
   }
 
+  /* === ライフプランページ専用調整 === */
+
+  .design-mock #lifeplan svg text {
+    fill: #5d5850;
+  }
+
+  .design-mock #lifeplan input[type="number"],
+  .design-mock #lifeplan input[type="text"],
+  .design-mock #lifeplan select,
+  .design-mock #lifeplan textarea {
+    background-color: #fffdf8 !important;
+    border-color: rgba(38, 48, 61, 0.18) !important;
+  }
+
+  .design-mock #lifeplan input[type="number"]:focus,
+  .design-mock #lifeplan input[type="text"]:focus,
+  .design-mock #lifeplan select:focus,
+  .design-mock #lifeplan textarea:focus {
+    border-color: rgba(135, 109, 66, 0.55) !important;
+    box-shadow: 0 0 0 3px rgba(135, 109, 66, 0.12) !important;
+  }
+
+  .design-mock #lifeplan input[type="range"] {
+    accent-color: #245b8f;
+  }
+
+  .design-mock #lifeplan .grid.grid-cols-2.lg\:grid-cols-4 > div {
+    border-color: rgba(38, 48, 61, 0.18) !important;
+  }
+
+  .design-mock #lifeplan h3 {
+    color: #1e2b3a !important;
+  }
+
   @media (max-width: 900px) {
     .design-mock header .max-w-6xl,
     .design-mock section .max-w-6xl {

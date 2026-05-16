@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion';
-import { Calendar, Clock, Video, Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
-import { useState } from 'react';
+import { Calendar, Clock, Video, Send, CheckCircle, AlertCircle, Loader2, Sparkles } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
 import { SlotPicker } from './booking/SlotPicker';
 import type { WeekendDay } from './booking/slots';
+import { clearHandoff, loadHandoff, type LifeplanHandoff } from './lifeplan/handoff';
 
 const CONSULTATION_TYPES = [
     '労務管理・社会保険手続き',
@@ -24,6 +25,27 @@ export const Booking = () => {
     const [submitResult, setSubmitResult] = useState<SubmitResult>(null);
     const [formRenderedAt] = useState(() => Date.now());
     const [pickerKey, setPickerKey] = useState(0);
+    const [handoff, setHandoff] = useState<LifeplanHandoff | null>(null);
+
+    useEffect(() => {
+        const h = loadHandoff();
+        if (!h) return;
+        setHandoff(h);
+        setForm(p => {
+            if (p.message.includes(h.summary)) return { ...p, type: h.consultationType };
+            return {
+                ...p,
+                type: h.consultationType,
+                message: p.message ? `${p.message}\n\n${h.summary}` : h.summary,
+            };
+        });
+    }, []);
+
+    const detachHandoff = () => {
+        clearHandoff();
+        setHandoff(null);
+        setForm(p => ({ ...p, message: '' }));
+    };
 
     const handleSlotSelect = (day: WeekendDay, time: string) => {
         setSelectedDate(day);
@@ -70,6 +92,8 @@ export const Booking = () => {
             setForm({ name: '', email: '', type: '', message: '', website: '' });
             setAgreed(false);
             setPickerKey(k => k + 1);
+            clearHandoff();
+            setHandoff(null);
         } catch {
             setSubmitResult('error');
         } finally {
@@ -162,6 +186,27 @@ export const Booking = () => {
                         ) : (
                             <div className="mb-5 p-4 rounded-2xl bg-stone-50 border border-stone-200 text-stone-400 text-sm text-center">
                                 左のカレンダーから希望の日時を選択してください
+                            </div>
+                        )}
+
+                        {handoff && submitResult !== 'success' && (
+                            <div className="mb-5 p-4 rounded-2xl bg-amber-50 border border-amber-200 flex items-start gap-3">
+                                <Sparkles className="w-4 h-4 text-amber-700 flex-shrink-0 mt-0.5" />
+                                <div className="flex-1 min-w-0">
+                                    <p className="text-amber-900 font-bold text-sm">
+                                        シミュレーション結果を添付しています
+                                    </p>
+                                    <p className="text-amber-800/80 text-xs mt-0.5 leading-relaxed">
+                                        「ご相談の概要」欄に試算サマリをプレフィルしました。送信前に編集できます。
+                                    </p>
+                                </div>
+                                <button
+                                    type="button"
+                                    onClick={detachHandoff}
+                                    className="text-amber-700 hover:text-amber-900 text-xs underline whitespace-nowrap"
+                                >
+                                    添付を解除
+                                </button>
                             </div>
                         )}
 

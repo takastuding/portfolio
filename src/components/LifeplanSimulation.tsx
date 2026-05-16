@@ -33,6 +33,7 @@ import {
     newId,
     simulate,
 } from './lifeplan/engine';
+import { saveHandoff } from './lifeplan/handoff';
 
 /* ===================== ページ本体 ===================== */
 
@@ -143,7 +144,7 @@ export const LifeplanSimulation = () => {
     };
 
     return (
-        <div className="min-h-screen bg-surface-50">
+        <div id="lifeplan" className="design-mock min-h-screen font-sans text-stone-800">
             <header className="border-b border-stone-200 bg-white/95 backdrop-blur sticky top-0 z-40">
                 <div className="max-w-6xl mx-auto px-6 lg:px-8 py-4 flex items-center justify-between">
                     <a
@@ -734,20 +735,20 @@ export const LifeplanSimulation = () => {
 
                 {/* CTA */}
                 <div className="mt-8 flex flex-col sm:flex-row gap-3">
-                    <a
-                        href="#booking"
-                        onClick={(e) => {
-                            e.preventDefault();
+                    <button
+                        type="button"
+                        onClick={() => {
+                            saveHandoff(inputs, kpis, data);
                             window.location.hash = '';
                             setTimeout(() => {
                                 document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' });
-                            }, 50);
+                            }, 80);
                         }}
                         className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-white font-bold text-sm bg-blue-700 hover:bg-blue-800 transition-all shadow-[0_4px_20px_rgba(37,99,235,0.3)]"
                     >
-                        個別相談でライフプランを精緻化する
+                        この試算結果で個別相談を予約する
                         <ArrowRight className="w-4 h-4" />
-                    </a>
+                    </button>
                     <a
                         href="#home"
                         onClick={(e) => {
