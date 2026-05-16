@@ -15,6 +15,7 @@ const CONSULTATION_TYPES = [
 ];
 
 type SubmitResult = 'success' | 'error' | 'conflict' | null;
+type EmailStatus = 'unknown' | 'sent' | 'partial' | 'failed';
 
 export const Booking = () => {
     const [selectedDate, setSelectedDate] = useState<WeekendDay | null>(null);
@@ -23,6 +24,7 @@ export const Booking = () => {
     const [agreed, setAgreed] = useState(false);
     const [submitting, setSubmitting] = useState(false);
     const [submitResult, setSubmitResult] = useState<SubmitResult>(null);
+    const [emailStatus, setEmailStatus] = useState<EmailStatus>('unknown');
     const [formRenderedAt] = useState(() => Date.now());
     const [pickerKey, setPickerKey] = useState(0);
     const [handoff, setHandoff] = useState<LifeplanHandoff | null>(null);
@@ -68,14 +70,18 @@ export const Booking = () => {
 
         setSubmitting(true);
         try {
-            const { error } = await supabase.from('bookings').insert({
-                date: selectedDate.value,
-                time_start: selectedTime,
-                name: form.name,
-                email: form.email,
-                consultation_type: form.type,
-                message: form.message,
-            });
+            const { data: inserted, error } = await supabase
+                .from('bookings')
+                .insert({
+                    date: selectedDate.value,
+                    time_start: selectedTime,
+                    name: form.name,
+                    email: form.email,
+                    consultation_type: form.type,
+                    message: form.message,
+                })
+                .select()
+                .single();
 
             if (error) {
                 if ((error as { code?: string }).code === '23505') {
@@ -94,6 +100,37 @@ export const Booking = () => {
             setPickerKey(k => k + 1);
             clearHandoff();
             setHandoff(null);
+
+            // 確認メール送信を明示的にトリガ。
+            // DB Webhook 経由のメール送信が止まっていてもこちらで取りにいけるため、フェイルセーフとして実行する。
+            // 双方届くようになり次第、Supabase ダッシュボードの Database Webhook を Disable してください。
+            try {
+                const { data: notifyData, error: notifyError } = await supabase.functions.invoke(
+                    'booking-notify',
+                    {
+                        body: {
+                            type: 'INSERT',
+                            table: 'bookings',
+                            schema: 'public',
+                            record: inserted,
+                        },
+                    },
+                );
+                if (notifyError) {
+                    console.warn('[booking-notify] invoke error', notifyError);
+                    setEmailStatus('failed');
+                } else if (notifyData && notifyData.ok === true && notifyData.user_email_sent === true) {
+                    setEmailStatus('sent');
+                } else if (notifyData && notifyData.ok === true) {
+                    setEmailStatus('partial');
+                } else {
+                    console.warn('[booking-notify] non-ok response', notifyData);
+                    setEmailStatus('failed');
+                }
+            } catch (notifyErr) {
+                console.warn('[booking-notify] invocation threw', notifyErr);
+                setEmailStatus('failed');
+            }
         } catch {
             setSubmitResult('error');
         } finally {
@@ -222,6 +259,19 @@ export const Booking = () => {
                                 <p className="text-emerald-700/60 text-xs mt-3">
                                     予約の変更・キャンセル用URLも、確認メールに記載しております。
                                 </p>
+                                {(emailStatus === 'partial' || emailStatus === 'failed') && (
+                                    <div className="mt-5 p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs leading-relaxed text-left">
+                                        <p className="font-bold flex items-center gap-1.5">
+                                            <AlertCircle className="w-3.5 h-3.5 flex-shrink-0" />
+                                            確認メールの送信状況
+                                        </p>
+                                        <p className="mt-1 text-amber-800/90">
+                                            {emailStatus === 'partial'
+                                                ? '予約は登録されましたが、確認メールの一部送信に失敗しました。橋本より個別にご連絡いたします。'
+                                                : '予約は登録されましたが、確認メールの送信に失敗しました。お手数ですが hashimoto@sharoushi-t.com まで直接ご連絡いただくか、土日中の橋本からのご連絡をお待ちください。'}
+                                        </p>
+                                    </div>
+                                )}
                             </div>
                         ) : (
                             <form onSubmit={handleSubmit} className="relative bg-white rounded-3xl border border-blue-100 shadow-sm p-6 space-y-5">
