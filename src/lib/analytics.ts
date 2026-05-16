@@ -9,12 +9,18 @@ const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID as string | und
 
 const currentPagePath = () => `${window.location.pathname}${window.location.search}${window.location.hash}`;
 
+const currentPageParams = () => ({
+    page_path: currentPagePath(),
+    page_location: window.location.href,
+    page_title: document.title,
+});
+
 export const initAnalytics = () => {
     if (!GA_MEASUREMENT_ID || typeof window === 'undefined') return;
 
     window.dataLayer = window.dataLayer ?? [];
-    window.gtag = function gtag(...args: unknown[]) {
-        window.dataLayer?.push(args);
+    window.gtag = function gtag() {
+        window.dataLayer?.push(arguments);
     };
 
     const script = document.createElement('script');
@@ -23,19 +29,11 @@ export const initAnalytics = () => {
     document.head.appendChild(script);
 
     window.gtag('js', new Date());
-    window.gtag('config', GA_MEASUREMENT_ID, {
-        send_page_view: false,
-    });
+    window.gtag('config', GA_MEASUREMENT_ID, currentPageParams());
 
     const trackPageView = () => {
-        window.gtag?.('event', 'page_view', {
-            page_path: currentPagePath(),
-            page_location: window.location.href,
-            page_title: document.title,
-        });
+        window.gtag?.('config', GA_MEASUREMENT_ID, currentPageParams());
     };
-
-    trackPageView();
 
     window.addEventListener('hashchange', trackPageView);
     window.addEventListener('popstate', trackPageView);
