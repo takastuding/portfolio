@@ -102,21 +102,17 @@ export const Tokushoho = () => {
             subtitle="特定商取引法第11条に基づき、本サービスの事業者情報を掲載いたします。"
             lastUpdated="2026年4月23日"
         >
-            <div className="overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm">
-                <dl>
-                    {rows.map((r, i) => (
-                        <div
-                            key={r.label}
-                            className={`grid sm:grid-cols-[180px_1fr] gap-2 sm:gap-6 px-5 py-4 ${
-                                i !== rows.length - 1 ? 'border-b border-stone-100' : ''
-                            }`}
-                        >
-                            <dt className="text-stone-500 text-xs font-bold sm:pt-0.5">{r.label}</dt>
-                            <dd className="text-stone-700 text-sm">{r.value}</dd>
-                        </div>
-                    ))}
-                </dl>
-            </div>
+            <dl className="legal-table">
+                {rows.map((r) => (
+                    <div
+                        key={r.label}
+                        className="legal-table-row sm:grid-cols-[160px_1fr]"
+                    >
+                        <dt>{r.label}</dt>
+                        <dd>{r.value}</dd>
+                    </div>
+                ))}
+            </dl>
 
             <p className="mt-6 text-stone-400 text-xs leading-relaxed">
                 本表記に関するお問い合わせは、上記メールアドレスまでご連絡ください。ご不明点があれば、合理的な期間内に回答いたします。

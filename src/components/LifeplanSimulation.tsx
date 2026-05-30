@@ -1,5 +1,7 @@
 import { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
+import { Header } from './Header';
+import { Footer } from './Footer';
 import {
     ArrowLeft,
     ArrowRight,
@@ -144,40 +146,39 @@ export const LifeplanSimulation = () => {
     };
 
     return (
-        <div id="lifeplan" className="design-mock min-h-screen font-sans text-stone-800">
-            <header className="border-b border-stone-200 bg-white/95 backdrop-blur sticky top-0 z-40">
-                <div className="max-w-6xl mx-auto px-6 lg:px-8 py-4 flex items-center justify-between">
+        <div id="lifeplan" className="handoff-page min-h-screen">
+            <Header />
+
+            <main className="max-w-6xl mx-auto px-6 lg:px-8 py-12 sm:py-16">
+                <div className="lp-page-crumb">
                     <a
-                        href="#home"
+                        href="#top"
                         onClick={(e) => {
                             e.preventDefault();
                             window.location.hash = '';
                             window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
                         }}
-                        className="inline-flex items-center gap-2 text-sm text-stone-500 hover:text-blue-800 transition-colors"
                     >
-                        <ArrowLeft className="w-4 h-4" />
-                        トップへ戻る
+                        トップ
                     </a>
-                    <div className="flex items-center gap-2">
-                        <img src="/logo.png" alt="" aria-hidden="true" className="w-7 h-7 object-contain" />
-                        <span className="text-navy-900 font-bold text-xs">橋本社会保険労務士事務所</span>
-                    </div>
+                    <span className="lp-page-crumb-sep">/</span>
+                    <span>ライフプランシミュレーション</span>
                 </div>
-            </header>
 
-            <main className="max-w-6xl mx-auto px-6 lg:px-8 py-12 sm:py-16">
                 <motion.div
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <p className="section-label mb-3">Lifeplan Simulation</p>
-                    <h1 className="font-display text-3xl sm:text-4xl font-bold text-navy-900">
+                    <span className="num">LIFEPLAN SIMULATION</span>
+                    <h1
+                        className="serif"
+                        style={{ fontSize: 'clamp(26px, 3.5vw, 40px)', fontWeight: 600, lineHeight: 1.4, margin: '16px 0 0', color: 'var(--ink)' }}
+                    >
                         ライフプランシミュレーション
                     </h1>
-                    <div className="mt-4 h-px w-16 bg-gradient-to-r from-blue-600 to-transparent" />
-                    <p className="mt-5 text-stone-500 text-sm sm:text-base leading-relaxed max-w-2xl [text-wrap:pretty]">
+                    <div style={{ marginTop: 16, height: 1, width: 36, background: 'var(--accent)' }} />
+                    <p style={{ marginTop: 18, fontSize: 14, color: 'var(--ink-soft)', lineHeight: 1.95, maxWidth: 640 }}>
                         年齢・家族構成・収入・支出・住宅・教育費・ライフイベントを入力すると、
                         各年の収支と将来の資産推移をリアルタイムにシミュレーションします。
                         税・社会保険料の精緻な計算は行わない簡易ツールです。
@@ -224,7 +225,7 @@ export const LifeplanSimulation = () => {
                 </motion.div>
 
                 {kpis.depletionAge !== null && (
-                    <div className="mt-5 p-4 rounded-2xl bg-red-50 border border-red-200 text-red-800 text-sm flex items-start gap-3">
+                    <div className="mt-5 p-4 bg-red-50 border border-red-200 text-red-800 text-sm flex items-start gap-3">
                         <AlertTriangle className="w-4 h-4 flex-shrink-0 mt-0.5" />
                         <p className="leading-relaxed">
                             このプランでは <span className="font-bold">{kpis.depletionAge}歳</span> で資産が底をつく試算です。
@@ -239,7 +240,7 @@ export const LifeplanSimulation = () => {
                         initial={{ opacity: 0, x: -12 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.5, delay: 0.15 }}
-                        className="lg:col-span-2 space-y-5"
+                        className="lg:col-span-2 space-y-5 lp-input-panel lg:sticky lg:top-[88px] lg:max-h-[calc(100vh-106px)] lg:overflow-y-auto"
                     >
                         <Section title="基本情報" icon={<Calendar className="w-4 h-4 text-blue-700" />}>
                             <SliderControl
@@ -389,7 +390,7 @@ export const LifeplanSimulation = () => {
                                         type="button"
                                         onClick={addChild}
                                         disabled={inputs.children.length >= 6}
-                                        className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-blue-50 border border-blue-200 text-blue-800 text-[10px] font-bold disabled:opacity-40 hover:bg-blue-100 transition-colors"
+                                        className="inline-flex items-center gap-1 px-2.5 py-1 border border-[var(--line)] bg-[var(--paper)] text-[var(--ink)] text-[10px] font-bold disabled:opacity-40 hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"
                                     >
                                         <Plus className="w-3 h-3" />
                                         追加
@@ -658,7 +659,7 @@ export const LifeplanSimulation = () => {
                         <button
                             type="button"
                             onClick={reset}
-                            className="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-xl text-stone-600 text-xs font-semibold bg-white border border-stone-200 hover:border-blue-300 hover:text-blue-800 hover:bg-blue-50 transition-all"
+                            className="w-full inline-flex items-center justify-center gap-2 py-2.5 text-stone-600 text-xs font-semibold bg-[var(--paper)] border border-[var(--line)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all"
                         >
                             <RotateCcw className="w-3.5 h-3.5" />
                             初期値に戻す
@@ -672,7 +673,7 @@ export const LifeplanSimulation = () => {
                         transition={{ duration: 0.5, delay: 0.2 }}
                         className="lg:col-span-3 space-y-5"
                     >
-                        <div className="bg-white rounded-2xl border border-blue-100 shadow-sm p-5">
+                        <div className="bg-[var(--paper)] border border-[var(--line-soft)] p-5">
                             <div className="flex items-center justify-between mb-2">
                                 <h3 className="text-navy-900 font-bold text-sm flex items-center gap-2">
                                     <Calculator className="w-4 h-4 text-blue-700" />
@@ -692,7 +693,7 @@ export const LifeplanSimulation = () => {
                             />
                         </div>
 
-                        <div className="bg-white rounded-2xl border border-blue-100 shadow-sm p-5">
+                        <div className="bg-[var(--paper)] border border-[var(--line-soft)] p-5">
                             <h3 className="text-navy-900 font-bold text-sm flex items-center gap-2 mb-2">
                                 <Wallet className="w-4 h-4 text-blue-700" />
                                 年間収支
@@ -705,7 +706,7 @@ export const LifeplanSimulation = () => {
                             <div className="flex items-center gap-3 mt-3 text-[10px] text-stone-500">
                                 <LegendDot color="#10b981" label="収入" />
                                 <LegendDot color="#ef4444" label="支出" />
-                                <LegendDot color="#1d4ed8" label="ネット収支" />
+                                <LegendDot color="#a85a3a" label="ネット収支" />
                             </div>
                         </div>
 
@@ -721,7 +722,7 @@ export const LifeplanSimulation = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
-                    className="mt-12 p-5 rounded-2xl bg-stone-50 border border-stone-200"
+                    className="mt-12 p-5 bg-[var(--accent-soft)] border border-[var(--line-soft)]"
                 >
                     <p className="text-stone-500 text-xs leading-relaxed [text-wrap:pretty]">
                         ※ 本シミュレーターは概観の把握を目的とした簡易計算ツールであり、
@@ -744,7 +745,7 @@ export const LifeplanSimulation = () => {
                                 document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' });
                             }, 80);
                         }}
-                        className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-white font-bold text-sm bg-blue-700 hover:bg-blue-800 transition-all shadow-[0_4px_20px_rgba(37,99,235,0.3)]"
+                        className="cta flex-1 inline-flex items-center justify-center gap-2"
                     >
                         この試算結果で個別相談を予約する
                         <ArrowRight className="w-4 h-4" />
@@ -756,18 +757,14 @@ export const LifeplanSimulation = () => {
                             window.location.hash = '';
                             window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
                         }}
-                        className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-stone-700 font-bold text-sm bg-white border border-stone-300 hover:border-blue-400 hover:bg-blue-50 hover:text-blue-800 transition-all"
+                        className="btn-ghost inline-flex items-center justify-center gap-2 px-4"
                     >
                         トップへ戻る
                     </a>
                 </div>
             </main>
 
-            <footer className="border-t border-stone-200 py-8 bg-white">
-                <div className="max-w-6xl mx-auto px-6 lg:px-8 text-center text-stone-400 text-xs">
-                    &copy; {new Date().getFullYear()} 橋本社会保険労務士事務所
-                </div>
-            </footer>
+            <Footer />
         </div>
     );
 };
@@ -789,7 +786,7 @@ const SliderControl = ({ label, unit, value, min, max, step = 1, onChange, hint 
     <div>
         <div className="flex items-baseline justify-between mb-1.5">
             <label className="text-stone-700 text-xs font-bold">{label}</label>
-            <span className="text-blue-800 text-sm font-bold tabular-nums">
+            <span className="text-stone-800 text-sm font-bold tabular-nums" style={{ color: 'var(--accent)' }}>
                 {value.toLocaleString()}
                 <span className="text-stone-400 text-[10px] font-medium ml-1">{unit}</span>
             </span>
@@ -802,7 +799,8 @@ const SliderControl = ({ label, unit, value, min, max, step = 1, onChange, hint 
                 step={step}
                 value={value}
                 onChange={(e) => onChange(Number(e.target.value))}
-                className="flex-1 accent-blue-700 h-1.5"
+                className="flex-1 h-0.5"
+                style={{ accentColor: 'var(--accent)' }}
             />
             <input
                 type="number"
@@ -814,7 +812,7 @@ const SliderControl = ({ label, unit, value, min, max, step = 1, onChange, hint 
                     const v = Number(e.target.value);
                     if (Number.isFinite(v)) onChange(v);
                 }}
-                className="w-20 px-2 py-1 text-right rounded-md border border-stone-200 text-stone-800 text-xs tabular-nums focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-100"
+                className="w-20 px-2 py-1 text-right border border-[var(--line)] bg-[var(--paper)] text-stone-800 text-xs tabular-nums focus:border-[var(--accent)] focus:outline-none"
             />
         </div>
         {hint && <p className="text-stone-400 text-[10px] mt-1">{hint}</p>}
@@ -836,10 +834,10 @@ const Segmented = <T extends string>({ options, value, onChange }: SegmentedProp
                 key={opt.value}
                 type="button"
                 onClick={() => onChange(opt.value)}
-                className={`px-3 py-1.5 rounded-lg text-[11px] font-bold border transition-all ${
+                className={`px-3 py-1.5 text-[11px] font-bold border transition-all ${
                     value === opt.value
-                        ? 'bg-blue-700 border-blue-700 text-white'
-                        : 'bg-white border-stone-200 text-stone-600 hover:border-blue-300 hover:text-blue-800'
+                        ? 'bg-[var(--ink)] border-[var(--ink)] text-[var(--bg)]'
+                        : 'bg-[var(--paper)] border-[var(--line)] text-stone-600 hover:border-[var(--accent)] hover:text-[var(--accent)]'
                 }`}
             >
                 {opt.label}
@@ -862,7 +860,7 @@ const ChildRow = ({
     onRemove: () => void;
 }) => {
     return (
-        <div className="p-3 rounded-xl bg-blue-50/40 border border-blue-100 space-y-2">
+        <div className="p-3 bg-[var(--accent-soft)] border border-[var(--line-soft)] space-y-2">
             <div className="flex items-center justify-between">
                 <p className="text-blue-800 text-[11px] font-bold">第{index}子</p>
                 <button
@@ -883,7 +881,7 @@ const ChildRow = ({
                         max={25}
                         value={child.currentAge}
                         onChange={(e) => onChange({ currentAge: Number(e.target.value) })}
-                        className="w-full px-2 py-1.5 rounded-md border border-stone-200 text-stone-800 text-xs tabular-nums focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-100"
+                        className="w-full px-2 py-1.5 border border-[var(--line)] bg-[var(--paper)] text-stone-800 text-xs tabular-nums focus:border-[var(--accent)] focus:outline-none"
                     />
                     <p className="text-stone-400 text-[9px] mt-0.5">
                         {child.currentAge < 0
@@ -896,7 +894,7 @@ const ChildRow = ({
                     <select
                         value={child.educationPath}
                         onChange={(e) => onChange({ educationPath: e.target.value as EducationPath })}
-                        className="w-full px-2 py-1.5 rounded-md border border-stone-200 text-stone-800 text-[11px] bg-white focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-100"
+                        className="w-full px-2 py-1.5 border border-[var(--line)] bg-[var(--paper)] text-stone-800 text-[11px] focus:border-[var(--accent)] focus:outline-none"
                     >
                         {EDUCATION_PATH_OPTIONS.map((o) => (
                             <option key={o.value} value={o.value}>
@@ -926,7 +924,7 @@ const EventRow = ({
     onRemove: () => void;
 }) => {
     return (
-        <div className="p-3 rounded-xl bg-amber-50/40 border border-amber-100">
+        <div className="p-3 bg-[var(--accent-soft)] border border-[var(--line-soft)]">
             <div className="grid grid-cols-[1fr_80px_80px_auto] gap-2 items-end">
                 <div>
                     <label className="block text-stone-500 text-[10px] font-bold mb-1">内容</label>
@@ -934,7 +932,7 @@ const EventRow = ({
                         type="text"
                         value={event.label}
                         onChange={(e) => onChange({ label: e.target.value })}
-                        className="w-full px-2 py-1.5 rounded-md border border-stone-200 text-stone-800 text-xs focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-100"
+                        className="w-full px-2 py-1.5 border border-[var(--line)] bg-[var(--paper)] text-stone-800 text-xs focus:border-[var(--accent)] focus:outline-none"
                     />
                 </div>
                 <div>
@@ -945,7 +943,7 @@ const EventRow = ({
                         max={maxAge}
                         value={event.age}
                         onChange={(e) => onChange({ age: Number(e.target.value) })}
-                        className="w-full px-2 py-1.5 rounded-md border border-stone-200 text-stone-800 text-xs tabular-nums focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-100"
+                        className="w-full px-2 py-1.5 border border-[var(--line)] bg-[var(--paper)] text-stone-800 text-xs tabular-nums focus:border-[var(--accent)] focus:outline-none"
                     />
                 </div>
                 <div>
@@ -956,7 +954,7 @@ const EventRow = ({
                         step={10}
                         value={event.amount}
                         onChange={(e) => onChange({ amount: Number(e.target.value) })}
-                        className="w-full px-2 py-1.5 rounded-md border border-stone-200 text-stone-800 text-xs tabular-nums focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-100"
+                        className="w-full px-2 py-1.5 border border-[var(--line)] bg-[var(--paper)] text-stone-800 text-xs tabular-nums focus:border-[var(--accent)] focus:outline-none"
                     />
                 </div>
                 <button
@@ -1021,14 +1019,14 @@ const AssetChart = ({ data, retirementAge, pensionStartAge, depletionAge, select
         <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto select-none" role="img" aria-label="資産推移グラフ">
             <defs>
                 <linearGradient id="lifeplanArea" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#2563eb" stopOpacity="0.25" />
-                    <stop offset="100%" stopColor="#2563eb" stopOpacity="0" />
+                    <stop offset="0%" stopColor="#a85a3a" stopOpacity="0.22" />
+                    <stop offset="100%" stopColor="#a85a3a" stopOpacity="0" />
                 </linearGradient>
             </defs>
             {gridValues.map((val, i) => (
                 <g key={i}>
-                    <line x1={P.l} y1={y(val)} x2={W - P.r} y2={y(val)} stroke="#e2e8f0" strokeDasharray="2,4" />
-                    <text x={P.l - 10} y={y(val)} dy="0.32em" textAnchor="end" fontSize="10" fill="#94a3b8">
+                    <line x1={P.l} y1={y(val)} x2={W - P.r} y2={y(val)} stroke="#ece6d5" strokeDasharray="2,4" />
+                    <text x={P.l - 10} y={y(val)} dy="0.32em" textAnchor="end" fontSize="10" fill="#75736a">
                         {formatMan(val)}
                     </text>
                 </g>
@@ -1037,7 +1035,7 @@ const AssetChart = ({ data, retirementAge, pensionStartAge, depletionAge, select
                 <line x1={P.l} y1={y(0)} x2={W - P.r} y2={y(0)} stroke="#ef4444" strokeOpacity="0.55" />
             )}
             <path d={areaPath} fill="url(#lifeplanArea)" />
-            <path d={linePath} fill="none" stroke="#1d4ed8" strokeWidth="2" strokeLinejoin="round" />
+            <path d={linePath} fill="none" stroke="#a85a3a" strokeWidth="2" strokeLinejoin="round" />
 
             {retirementAge >= minAge && retirementAge <= maxAge && (
                 <g>
@@ -1046,7 +1044,7 @@ const AssetChart = ({ data, retirementAge, pensionStartAge, depletionAge, select
                         y1={P.t}
                         x2={x(retirementAge)}
                         y2={H - P.b}
-                        stroke="#f59e0b"
+                        stroke="#75736a"
                         strokeDasharray="3,3"
                     />
                     <text
@@ -1054,7 +1052,7 @@ const AssetChart = ({ data, retirementAge, pensionStartAge, depletionAge, select
                         y={P.t + 10}
                         fontSize="9"
                         fontWeight="700"
-                        fill="#b45309"
+                        fill="#75736a"
                         textAnchor="middle"
                     >
                         リタイア {retirementAge}歳
@@ -1107,11 +1105,11 @@ const AssetChart = ({ data, retirementAge, pensionStartAge, depletionAge, select
                 </g>
             )}
             {xLabels.map((age) => (
-                <text key={age} x={x(age)} y={H - P.b + 18} fontSize="10" fill="#64748b" textAnchor="middle">
+                <text key={age} x={x(age)} y={H - P.b + 18} fontSize="10" fill="#75736a" textAnchor="middle">
                     {age}
                 </text>
             ))}
-            <text x={W - P.r} y={H - 4} fontSize="9" fill="#94a3b8" textAnchor="end">
+            <text x={W - P.r} y={H - 4} fontSize="9" fill="#75736a" textAnchor="end">
                 （歳）
             </text>
             {selected && (
@@ -1121,15 +1119,15 @@ const AssetChart = ({ data, retirementAge, pensionStartAge, depletionAge, select
                         y1={P.t}
                         x2={x(selected.age)}
                         y2={H - P.b}
-                        stroke="#1d4ed8"
+                        stroke="#a85a3a"
                         strokeOpacity="0.3"
                     />
                     <circle
                         cx={x(selected.age)}
                         cy={y(selected.assets)}
                         r="5"
-                        fill="#fff"
-                        stroke="#1d4ed8"
+                        fill="#faf7f1"
+                        stroke="#a85a3a"
                         strokeWidth="2.5"
                     />
                 </g>
@@ -1195,13 +1193,13 @@ const CashflowChart = ({
         <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-auto select-none" role="img" aria-label="年間収支グラフ">
             {gridValues.map((val, i) => (
                 <g key={i}>
-                    <line x1={P.l} y1={y(val)} x2={W - P.r} y2={y(val)} stroke="#e2e8f0" strokeDasharray="2,4" />
-                    <text x={P.l - 10} y={y(val)} dy="0.32em" textAnchor="end" fontSize="10" fill="#94a3b8">
+                    <line x1={P.l} y1={y(val)} x2={W - P.r} y2={y(val)} stroke="#ece6d5" strokeDasharray="2,4" />
+                    <text x={P.l - 10} y={y(val)} dy="0.32em" textAnchor="end" fontSize="10" fill="#75736a">
                         {formatMan(val)}
                     </text>
                 </g>
             ))}
-            <line x1={P.l} y1={y(0)} x2={W - P.r} y2={y(0)} stroke="#94a3b8" strokeWidth="1" />
+            <line x1={P.l} y1={y(0)} x2={W - P.r} y2={y(0)} stroke="#75736a" strokeWidth="1" />
 
             {data.map((d) => (
                 <g key={d.age} opacity={d.age === selectedAge ? 1 : 0.85}>
@@ -1225,10 +1223,10 @@ const CashflowChart = ({
             ))}
 
             {/* ネット収支ライン */}
-            <path d={netPath} fill="none" stroke="#1d4ed8" strokeWidth="1.5" strokeLinejoin="round" />
+            <path d={netPath} fill="none" stroke="#a85a3a" strokeWidth="1.5" strokeLinejoin="round" />
 
             {xLabels.map((age) => (
-                <text key={age} x={x(age)} y={H - P.b + 16} fontSize="10" fill="#64748b" textAnchor="middle">
+                <text key={age} x={x(age)} y={H - P.b + 16} fontSize="10" fill="#75736a" textAnchor="middle">
                     {age}
                 </text>
             ))}
@@ -1238,7 +1236,7 @@ const CashflowChart = ({
                 y1={P.t}
                 x2={x(selectedAge)}
                 y2={H - P.b}
-                stroke="#1d4ed8"
+                stroke="#a85a3a"
                 strokeOpacity="0.25"
             />
 
@@ -1327,7 +1325,7 @@ const YearDetail = ({ year }: { year: YearData }) => {
             </div>
             <div className="mt-4 pt-4 border-t border-stone-100 grid grid-cols-2 gap-3">
                 <div
-                    className={`rounded-xl px-4 py-3 border ${
+                    className={`px-4 py-3 border ${
                         year.netCashflow >= 0
                             ? 'bg-emerald-50 border-emerald-100 text-emerald-800'
                             : 'bg-red-50 border-red-100 text-red-800'
@@ -1341,7 +1339,7 @@ const YearDetail = ({ year }: { year: YearData }) => {
                     </p>
                 </div>
                 <div
-                    className={`rounded-xl px-4 py-3 border ${
+                    className={`px-4 py-3 border ${
                         year.assets >= 0
                             ? 'bg-blue-50 border-blue-100 text-blue-800'
                             : 'bg-red-50 border-red-100 text-red-800'
@@ -1475,7 +1473,7 @@ const Section = ({
     icon: React.ReactNode;
     children: React.ReactNode;
 }) => (
-    <div className="bg-white rounded-2xl border border-blue-100 shadow-sm p-5">
+    <div className="bg-[var(--paper)] border border-[var(--line-soft)] p-5">
         <h3 className="text-navy-900 font-bold text-sm flex items-center gap-2 mb-4">
             {icon}
             {title}
@@ -1505,7 +1503,7 @@ const KpiCard = ({
 }) => {
     const t = toneClasses[tone];
     return (
-        <div className={`rounded-2xl border ${t.border} ${t.bg} p-4`}>
+        <div className={`border ${t.border} ${t.bg} p-4`}>
             <div className="flex items-center gap-1.5 mb-2">
                 {icon}
                 <p className="text-stone-500 text-[10px] font-semibold leading-tight">{label}</p>

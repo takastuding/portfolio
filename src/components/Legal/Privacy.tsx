@@ -116,11 +116,11 @@ export const Privacy = () => {
             <div className="space-y-8">
                 {sections.map((s) => (
                     <section key={s.heading}>
-                        <h2 className="text-stone-800 font-bold text-base mb-2 flex items-center gap-2">
-                            <span className="w-1 h-4 rounded-full bg-blue-600 inline-block" />
+                        <h2>
+                            <span className="legal-h2-mark" />
                             {s.heading}
                         </h2>
-                        <div className="text-stone-600 text-sm leading-relaxed">{s.body}</div>
+                        <div>{s.body}</div>
                     </section>
                 ))}
             </div>

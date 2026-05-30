@@ -2,12 +2,36 @@
 @import "tailwindcss";
 
 @theme {
-  --color-surface-50: #f8fafc;
-  --color-surface-100: #f1f5f9;
-  --color-surface-200: #e2e8f0;
-  --color-navy-700: #334155;
-  --color-navy-800: #1e293b;
-  --color-navy-900: #0f172a;
+  /* stone → site ink palette */
+  --color-stone-900: #1c2535;
+  --color-stone-800: #1c2535;
+  --color-stone-700: #3d4a5e;
+  --color-stone-600: #3d4a5e;
+  --color-stone-500: #75736a;
+  --color-stone-400: #75736a;
+  --color-stone-300: #d9d2bf;
+  --color-stone-200: #d9d2bf;
+  --color-stone-100: #ece6d5;
+  --color-stone-50:  #faf7f1;
+  /* blue → terracotta accent */
+  --color-blue-900: #6b3320;
+  --color-blue-800: #a85a3a;
+  --color-blue-700: #a85a3a;
+  --color-blue-600: #a85a3a;
+  --color-blue-500: #bf7059;
+  --color-blue-400: #bf7059;
+  --color-blue-300: #d9d2bf;
+  --color-blue-200: #d9d2bf;
+  --color-blue-100: #e9d8c8;
+  --color-blue-50:  #e9d8c8;
+  /* navy → ink */
+  --color-navy-900: #1c2535;
+  --color-navy-800: #1c2535;
+  --color-navy-700: #3d4a5e;
+  /* surface → warm bg */
+  --color-surface-50:  #faf7f1;
+  --color-surface-100: #ece6d5;
+  --color-surface-200: #d9d2bf;
   --font-sans: "Noto Sans JP", sans-serif;
   --font-display: "Noto Serif JP", serif;
 }
@@ -1370,6 +1394,101 @@ section {
   font-family: "IBM Plex Mono", monospace;
   font-size: 11px;
 }
+
+/* ===== Legal pages ===== */
+.legal-container {
+  margin-top: 40px;
+}
+.legal-container section {
+  padding: 0;
+  border-top: none;
+}
+.legal-container section + section {
+  margin-top: 36px;
+  border-top: 1px solid var(--line-soft);
+  padding-top: 36px;
+}
+.legal-container h2 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 14px;
+  font-family: "Noto Serif JP", serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.45;
+}
+.legal-h2-mark {
+  display: inline-block;
+  width: 20px;
+  height: 1px;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+.legal-container p {
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.95;
+}
+.legal-container ul {
+  margin: 12px 0 0 20px;
+  list-style: disc;
+}
+.legal-container li {
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.85;
+  padding: 3px 0;
+}
+.legal-container a { color: var(--accent); }
+.legal-container a:hover { text-decoration: underline; }
+.legal-table {
+  border: 1px solid var(--line-soft);
+  background: var(--paper);
+}
+.legal-table-row {
+  display: grid;
+  gap: 8px 24px;
+  padding: 16px 20px;
+  font-size: 14px;
+}
+.legal-table-row + .legal-table-row {
+  border-top: 1px solid var(--line-soft);
+}
+.legal-table dt {
+  color: var(--sub);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: .04em;
+  font-weight: 500;
+}
+.legal-table dd {
+  color: var(--ink-soft);
+  line-height: 1.75;
+}
+
+/* ===== Lifeplan page layout ===== */
+.lp-page-header {
+  padding: 36px 0 40px;
+  border-bottom: 1px solid var(--line);
+}
+.lp-page-crumb {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 24px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  color: var(--sub);
+}
+.lp-page-crumb a { color: var(--accent); }
+.lp-page-crumb a:hover { text-decoration: underline; }
+.lp-page-crumb-sep { opacity: .5; }
+.lp-input-panel {
+  scrollbar-width: none;
+}
+.lp-input-panel::-webkit-scrollbar { display: none; }
 
 ::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
