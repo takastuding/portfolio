@@ -1,6 +1,5 @@
-import { motion } from 'framer-motion';
-import { Calendar, Clock, Video, Send, CheckCircle, AlertCircle, Loader2, Sparkles } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { AlertCircle, CheckCircle, Loader2, Send, Sparkles } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { SlotPicker } from './booking/SlotPicker';
 import type { WeekendDay } from './booking/slots';
@@ -8,9 +7,9 @@ import { clearHandoff, loadHandoff, type LifeplanHandoff } from './lifeplan/hand
 
 const CONSULTATION_TYPES = [
     '労務管理・社会保険手続き',
-    'ライフプランニング・資産形成',
-    '社会保険の仕組みについて',
-    '副業・個人事業の社会保険',
+    '就業規則の作成・見直し',
+    'ライフプラン・資産形成',
+    '副業・独立・退職の相談',
     'その他',
 ];
 
@@ -33,26 +32,17 @@ export const Booking = () => {
         const h = loadHandoff();
         if (!h) return;
         setHandoff(h);
-        setForm(p => {
-            if (p.message.includes(h.summary)) return { ...p, type: h.consultationType };
-            return {
-                ...p,
-                type: h.consultationType,
-                message: p.message ? `${p.message}\n\n${h.summary}` : h.summary,
-            };
-        });
+        setForm(prev => ({
+            ...prev,
+            type: h.consultationType,
+            message: prev.message ? `${prev.message}\n\n${h.summary}` : h.summary,
+        }));
     }, []);
 
     const detachHandoff = () => {
         clearHandoff();
         setHandoff(null);
-        setForm(p => ({ ...p, message: '' }));
-    };
-
-    const handleSlotSelect = (day: WeekendDay, time: string) => {
-        setSelectedDate(day);
-        setSelectedTime(time);
-        setSubmitResult(null);
+        setForm(prev => ({ ...prev, message: '' }));
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -69,6 +59,9 @@ export const Booking = () => {
         }
 
         setSubmitting(true);
+        setSubmitResult(null);
+        setEmailStatus('unknown');
+
         try {
             const { data: inserted, error } = await supabase
                 .from('bookings')
@@ -101,34 +94,15 @@ export const Booking = () => {
             clearHandoff();
             setHandoff(null);
 
-            // 確認メール送信を明示的にトリガ。
-            // DB Webhook 経由のメール送信が止まっていてもこちらで取りにいけるため、フェイルセーフとして実行する。
-            // 双方届くようになり次第、Supabase ダッシュボードの Database Webhook を Disable してください。
             try {
-                const { data: notifyData, error: notifyError } = await supabase.functions.invoke(
-                    'booking-notify',
-                    {
-                        body: {
-                            type: 'INSERT',
-                            table: 'bookings',
-                            schema: 'public',
-                            record: inserted,
-                        },
-                    },
-                );
-                if (notifyError) {
-                    console.warn('[booking-notify] invoke error', notifyError);
-                    setEmailStatus('failed');
-                } else if (notifyData && notifyData.ok === true && notifyData.user_email_sent === true) {
-                    setEmailStatus('sent');
-                } else if (notifyData && notifyData.ok === true) {
-                    setEmailStatus('partial');
-                } else {
-                    console.warn('[booking-notify] non-ok response', notifyData);
-                    setEmailStatus('failed');
-                }
-            } catch (notifyErr) {
-                console.warn('[booking-notify] invocation threw', notifyErr);
+                const { data: notifyData, error: notifyError } = await supabase.functions.invoke('booking-notify', {
+                    body: { type: 'INSERT', table: 'bookings', schema: 'public', record: inserted },
+                });
+                if (notifyError) setEmailStatus('failed');
+                else if (notifyData?.ok === true && notifyData?.user_email_sent === true) setEmailStatus('sent');
+                else if (notifyData?.ok === true) setEmailStatus('partial');
+                else setEmailStatus('failed');
+            } catch {
                 setEmailStatus('failed');
             }
         } catch {
@@ -139,272 +113,175 @@ export const Booking = () => {
     };
 
     return (
-        <section id="booking" className="py-24 relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-blue-100/20 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 right-0 w-80 h-80 bg-surface-100/40 rounded-full blur-3xl" />
+        <section id="booking" className="contact">
+            <div className="wrap">
+                <div className="sec-head">
+                    <div className="label"><span className="num">08 / BOOKING</span></div>
+                    <div>
+                        <h2>初回相談のご予約。カレンダーから日時をお選びください。</h2>
+                        <p className="lede">
+                            初回60分は無料です。ご希望の日時と相談内容を送信いただいた後、確認メールをお送りします。
+                        </p>
+                    </div>
+                </div>
 
-            <div className="relative max-w-6xl mx-auto px-6 lg:px-8">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="mb-12"
-                >
-                    <p className="section-label mb-3">06 — Booking</p>
-                    <h2 className="font-display text-3xl sm:text-4xl font-bold text-navy-900">ネット相談予約</h2>
-                    <div className="mt-4 h-px w-16 bg-gradient-to-r from-blue-600 to-transparent" />
-                    <p className="mt-4 text-stone-500 max-w-xl leading-relaxed [text-wrap:pretty]">
-                        <span className="font-semibold text-blue-800">土日祝限定</span>のオンライン相談です（1枠60分・初回60分無料）。
-                        <br className="hidden sm:block" />
-                        平日は本業のため、ご予約・ご返信は週末にまとめて対応します。
-                    </p>
-                </motion.div>
+                <div className="booking-grid">
+                    <SlotPicker
+                        key={pickerKey}
+                        selectedDate={selectedDate}
+                        selectedTime={selectedTime}
+                        onSelect={(day, time) => {
+                            setSelectedDate(day);
+                            setSelectedTime(time);
+                            setSubmitResult(null);
+                        }}
+                    />
 
-                <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.1 }}
-                    className="grid sm:grid-cols-3 gap-4 mb-10"
-                >
-                    {[
-                        { icon: Video, title: 'Zoom / Google Meet', desc: '全国どこからでも対応' },
-                        { icon: Clock, title: '受付 10:00〜17:00', desc: '土日祝のみ（1枠60分）' },
-                        { icon: Calendar, title: '初回60分 無料', desc: 'まずはお気軽にどうぞ' },
-                    ].map(({ icon: Icon, title, desc }) => (
-                        <div key={title} className="flex items-center gap-3 p-4 rounded-2xl bg-blue-50 border border-blue-100">
-                            <div className="w-9 h-9 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0">
-                                <Icon className="w-4 h-4 text-blue-700" />
-                            </div>
-                            <div>
-                                <p className="text-navy-900 font-bold text-sm">{title}</p>
-                                <p className="text-blue-700/70 text-xs mt-0.5">{desc}</p>
-                            </div>
-                        </div>
-                    ))}
-                </motion.div>
-
-                <div className="grid lg:grid-cols-2 gap-8 items-start">
-                    <motion.div
-                        initial={{ opacity: 0, x: -16 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 0.1 }}
-                    >
-                        <SlotPicker
-                            key={pickerKey}
-                            selectedDate={selectedDate}
-                            selectedTime={selectedTime}
-                            onSelect={handleSlotSelect}
-                        />
-                    </motion.div>
-
-                    <motion.div
-                        initial={{ opacity: 0, x: 16 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
-                    >
+                    <div className="booking-card booking-form-card">
                         {selectedDate && selectedTime ? (
-                            <div className="mb-5 p-4 rounded-2xl bg-blue-50 border border-blue-200 flex items-center gap-3">
-                                <Calendar className="w-4 h-4 text-blue-700 flex-shrink-0" />
-                                <div>
-                                    <p className="text-navy-900 font-bold text-sm">{selectedDate.label}</p>
-                                    <p className="text-blue-800 text-xs mt-0.5">{selectedTime}〜（60分）</p>
-                                </div>
-                                <button
-                                    onClick={() => { setSelectedDate(null); setSelectedTime(''); }}
-                                    className="ml-auto text-blue-600 hover:text-blue-800 text-xs underline"
-                                >
-                                    変更
-                                </button>
+                            <div className="selected-slot">
+                                <span>選択中</span>
+                                <strong>{selectedDate.label} {selectedTime}</strong>
                             </div>
                         ) : (
-                            <div className="mb-5 p-4 rounded-2xl bg-stone-50 border border-stone-200 text-stone-400 text-sm text-center">
-                                左のカレンダーから希望の日時を選択してください
+                            <div className="booking-empty">
+                                左のカレンダーから希望日時を選択してください。
                             </div>
                         )}
 
                         {handoff && submitResult !== 'success' && (
-                            <div className="mb-5 p-4 rounded-2xl bg-amber-50 border border-amber-200 flex items-start gap-3">
-                                <Sparkles className="w-4 h-4 text-amber-700 flex-shrink-0 mt-0.5" />
-                                <div className="flex-1 min-w-0">
-                                    <p className="text-amber-900 font-bold text-sm">
-                                        シミュレーション結果を添付しています
-                                    </p>
-                                    <p className="text-amber-800/80 text-xs mt-0.5 leading-relaxed">
-                                        「ご相談の概要」欄に試算サマリをプレフィルしました。送信前に編集できます。
-                                    </p>
-                                </div>
-                                <button
-                                    type="button"
-                                    onClick={detachHandoff}
-                                    className="text-amber-700 hover:text-amber-900 text-xs underline whitespace-nowrap"
-                                >
-                                    添付を解除
-                                </button>
+                            <div className="handoff-note">
+                                <Sparkles size={16} aria-hidden="true" />
+                                <span>ライフプランシミュレーションの結果を相談概要に添付しています。</span>
+                                <button type="button" onClick={detachHandoff}>解除</button>
                             </div>
                         )}
 
                         {submitResult === 'success' ? (
-                            <div className="p-8 rounded-3xl bg-emerald-50 border border-emerald-200 text-center">
-                                <CheckCircle className="w-10 h-10 text-emerald-500 mx-auto mb-3" />
-                                <p className="text-emerald-800 font-bold text-lg">予約を受け付けました</p>
-                                <p className="text-emerald-700/70 text-sm mt-2 [text-wrap:pretty]">
-                                    ありがとうございます。
-                                    <br />
-                                    Zoom URLを含む詳細のご返信は土日中にメールでお送りいたします。
-                                </p>
-                                <p className="text-emerald-700/60 text-xs mt-3">
-                                    予約の変更・キャンセル用URLも、確認メールに記載しております。
-                                </p>
+                            <div className="booking-success">
+                                <CheckCircle size={38} aria-hidden="true" />
+                                <h3>予約を受け付けました</h3>
+                                <p>詳細とオンライン面談URLをメールでお送りします。</p>
                                 {(emailStatus === 'partial' || emailStatus === 'failed') && (
-                                    <div className="mt-5 p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs leading-relaxed text-left">
-                                        <p className="font-bold flex items-center gap-1.5">
-                                            <AlertCircle className="w-3.5 h-3.5 flex-shrink-0" />
-                                            確認メールの送信状況
-                                        </p>
-                                        <p className="mt-1 text-amber-800/90">
-                                            {emailStatus === 'partial'
-                                                ? '予約は登録されましたが、確認メールの一部送信に失敗しました。橋本より個別にご連絡いたします。'
-                                                : '予約は登録されましたが、確認メールの送信に失敗しました。お手数ですが hashimoto@sharoushi-t.com まで直接ご連絡いただくか、土日中の橋本からのご連絡をお待ちください。'}
-                                        </p>
-                                    </div>
+                                    <p className="booking-alert">
+                                        予約は登録されましたが、確認メール送信に失敗した可能性があります。
+                                    </p>
                                 )}
                             </div>
                         ) : (
-                            <form onSubmit={handleSubmit} className="relative bg-white rounded-3xl border border-blue-100 shadow-sm p-6 space-y-5">
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div className="col-span-2 sm:col-span-1">
-                                        <label className="block text-stone-700 text-xs font-bold mb-1.5">
-                                            お名前 <span className="text-red-400">*</span>
-                                        </label>
+                            <form onSubmit={handleSubmit} className="editorial-form">
+                                <div className="form-grid">
+                                    <label className="field">
+                                        <span>NAME</span>
                                         <input
                                             type="text"
                                             value={form.name}
-                                            onChange={e => setForm(p => ({ ...p, name: e.target.value }))}
+                                            onChange={e => setForm(prev => ({ ...prev, name: e.target.value }))}
                                             required
                                             placeholder="山田 太郎"
-                                            className="w-full px-4 py-3 rounded-xl border border-stone-200 focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-100 text-stone-800 text-sm transition-all"
                                         />
-                                    </div>
-                                    <div className="col-span-2 sm:col-span-1">
-                                        <label className="block text-stone-700 text-xs font-bold mb-1.5">
-                                            メールアドレス <span className="text-red-400">*</span>
-                                        </label>
+                                    </label>
+                                    <label className="field">
+                                        <span>EMAIL</span>
                                         <input
                                             type="email"
                                             value={form.email}
-                                            onChange={e => setForm(p => ({ ...p, email: e.target.value }))}
+                                            onChange={e => setForm(prev => ({ ...prev, email: e.target.value }))}
                                             required
                                             placeholder="example@email.com"
-                                            className="w-full px-4 py-3 rounded-xl border border-stone-200 focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-100 text-stone-800 text-sm transition-all"
                                         />
-                                    </div>
+                                    </label>
                                 </div>
 
-                                <div>
-                                    <label className="block text-stone-700 text-xs font-bold mb-2">
-                                        相談内容 <span className="text-red-400">*</span>
-                                    </label>
-                                    <div className="grid sm:grid-cols-2 gap-2">
-                                        {CONSULTATION_TYPES.map(type => (
-                                            <label
-                                                key={type}
-                                                className={`flex items-center gap-2 px-3 py-2.5 rounded-xl border cursor-pointer transition-all duration-150 ${
-                                                    form.type === type
-                                                        ? 'border-blue-400 bg-blue-50 text-blue-800'
-                                                        : 'border-stone-200 text-stone-500 hover:border-blue-200 hover:bg-blue-50/50'
-                                                }`}
-                                            >
-                                                <input
-                                                    type="radio"
-                                                    name="type"
-                                                    value={type}
-                                                    checked={form.type === type}
-                                                    onChange={e => setForm(p => ({ ...p, type: e.target.value }))}
-                                                    className="accent-blue-700"
-                                                />
-                                                <span className="text-xs font-medium leading-tight">{type}</span>
-                                            </label>
-                                        ))}
-                                    </div>
-                                </div>
+                                <label className="field full">
+                                    <span>CONSULTATION</span>
+                                    <select
+                                        value={form.type}
+                                        onChange={e => setForm(prev => ({ ...prev, type: e.target.value }))}
+                                        required
+                                    >
+                                        <option value="">相談内容を選択</option>
+                                        {CONSULTATION_TYPES.map(type => <option key={type}>{type}</option>)}
+                                    </select>
+                                </label>
 
-                                <div>
-                                    <label className="block text-stone-700 text-xs font-bold mb-1.5">
-                                        ご相談の概要（任意）
-                                    </label>
+                                <label className="field full">
+                                    <span>MESSAGE</span>
                                     <textarea
                                         value={form.message}
-                                        onChange={e => setForm(p => ({ ...p, message: e.target.value }))}
-                                        rows={3}
-                                        placeholder="現在の状況や相談したい内容をご記入ください"
-                                        className="w-full px-4 py-3 rounded-xl border border-stone-200 focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-100 text-stone-800 text-sm transition-all resize-none"
+                                        onChange={e => setForm(prev => ({ ...prev, message: e.target.value }))}
+                                        rows={4}
+                                        placeholder="現在の状況や相談したい内容を簡単にご記入ください。"
                                     />
-                                </div>
+                                </label>
 
-                                <div aria-hidden="true" className="absolute left-[-9999px] top-auto w-px h-px overflow-hidden">
+                                <div aria-hidden="true" className="honeypot">
                                     <label>
-                                        ウェブサイト（入力しないでください）
+                                        入力しないでください
                                         <input
                                             type="text"
                                             tabIndex={-1}
                                             autoComplete="off"
                                             value={form.website}
-                                            onChange={e => setForm(p => ({ ...p, website: e.target.value }))}
+                                            onChange={e => setForm(prev => ({ ...prev, website: e.target.value }))}
                                         />
                                     </label>
                                 </div>
 
-                                <label className="flex items-start gap-2 cursor-pointer select-none">
+                                <label className="agree">
                                     <input
                                         type="checkbox"
                                         checked={agreed}
                                         onChange={e => setAgreed(e.target.checked)}
-                                        className="mt-0.5 accent-blue-700"
                                     />
-                                    <span className="text-stone-600 text-xs leading-relaxed">
-                                        <a href="#/legal/privacy" className="text-blue-800 hover:underline">プライバシーポリシー</a>
-                                        および
-                                        <a href="#/legal/terms" className="text-blue-800 hover:underline">利用規約</a>
-                                        に同意します
+                                    <span>
+                                        <a href="#/legal/privacy">プライバシーポリシー</a> と
+                                        <a href="#/legal/terms">利用規約</a> に同意します。
                                     </span>
                                 </label>
 
                                 {submitResult === 'conflict' && (
-                                    <div className="flex items-start gap-2 p-3 rounded-xl bg-blue-50 border border-blue-200 text-blue-800 text-xs">
-                                        <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5" />
-                                        <span>
-                                            誠に申し訳ございません。ご選択いただいた日時は直前に他の方のご予約が確定したため埋まってしまいました。
-                                            別の時間帯をお選びのうえ、再度お試しください。
-                                        </span>
+                                    <div className="form-error">
+                                        <AlertCircle size={16} aria-hidden="true" />
+                                        直前に別の予約が入りました。別の日時をお選びください。
                                     </div>
                                 )}
                                 {submitResult === 'error' && (
-                                    <div className="flex items-center gap-2 p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs">
-                                        <AlertCircle className="w-4 h-4 flex-shrink-0" />
-                                        送信に失敗しました。恐れ入りますがメールにてお問い合わせください。
+                                    <div className="form-error">
+                                        <AlertCircle size={16} aria-hidden="true" />
+                                        送信に失敗しました。時間をおいて再度お試しください。
                                     </div>
                                 )}
 
                                 <button
                                     type="submit"
+                                    className="submit-btn"
                                     disabled={submitting || !selectedDate || !selectedTime || !form.name || !form.email || !form.type || !agreed}
-                                    className="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-xl text-white font-bold text-sm bg-blue-700 hover:bg-blue-800 disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-200 shadow-[0_4px_20px_rgba(37,99,235,0.35)]"
                                 >
-                                    {submitting
-                                        ? <><Loader2 className="w-4 h-4 animate-spin" />送信中…</>
-                                        : <><Send className="w-4 h-4" />予約を申し込む</>
-                                    }
+                                    {submitting ? <Loader2 size={16} className="spin" /> : <Send size={16} />}
+                                    この日時で予約する
                                 </button>
-                                <p className="text-stone-400 text-xs text-center">
-                                    送信すると予約が確定します。Zoom URL等の詳細は土日中にメールでお送りします。
-                                </p>
                             </form>
                         )}
-                    </motion.div>
+                    </div>
+                </div>
+
+                <div className="contact-info-strip">
+                    <aside>
+                        <div className="ttl">EMAIL</div>
+                        <div className="val">hashimoto@sharoushi-t.com</div>
+                        <div className="sub">お問い合わせはメールでも受け付けています。</div>
+                    </aside>
+                    <aside>
+                        <div className="ttl">STYLE</div>
+                        <div className="val">オンライン相談中心</div>
+                        <div className="sub">Zoom / Google Meet に対応します。</div>
+                    </aside>
+                    <aside>
+                        <div className="ttl">HOURS</div>
+                        <div className="val">土日祝 10:00-17:00</div>
+                        <div className="sub">平日の返信は週末にまとまる場合があります。</div>
+                    </aside>
                 </div>
             </div>
         </section>

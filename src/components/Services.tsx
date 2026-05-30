@@ -1,163 +1,177 @@
-import { PenTool, Users, Wallet, FileText, Briefcase, Shield, Download, ArrowRight, Tag } from 'lucide-react';
-import { motion } from 'framer-motion';
+const rulesProcess = [
+    ['ヒアリング', 'WEEK 1 / 90 MIN', '経営者・担当者から事業の状態、雇用形態、現在の運用を伺います。'],
+    ['現場確認', 'WEEK 2', '必要に応じて管理職や現場の声も確認し、規程が動く前提をそろえます。'],
+    ['レビュー', 'WEEK 3-4', '既存規程や運用の課題を洗い出し、優先順位をつけます。'],
+    ['起草・調整', 'WEEK 5-10', '規程案を作成し、説明しながら複数回の修正を行います。'],
+    ['納品・届出', 'WEEK 11-12', '就業規則一式、運用ハンドブック、労基署届出まで支援します。'],
+];
 
-type Service = {
+type SvcCardProps = {
+    tag: string;
     num: string;
+    photo: string;
+    photoAlt: string;
     title: string;
-    description: string;
-    icon: typeof PenTool;
-    price?: string;
-    priceNote?: string;
-    download?: { label: string; href: string; filename?: string };
-    link?: { label: string; href: string };
+    sub: string;
+    body: string;
+    items: [string, string][];
+    href: string;
+    hrefLabel: string;
 };
 
+const SvcCard = ({ tag, num, photo, photoAlt, title, sub, body, items, href, hrefLabel }: SvcCardProps) => (
+    <article className="svc">
+        <div className="svc-photo">
+            <img src={photo} alt={photoAlt} loading="lazy" />
+            <div className="svc-tag">{tag}</div>
+        </div>
+        <div className="svc-inner">
+            <span className="num" style={{ marginBottom: 18 }}>{num}</span>
+            <h3>{title}</h3>
+            <div className="ja-sub">{sub}</div>
+            <p>{body}</p>
+            <ul>
+                {items.map(([label, note]) => (
+                    <li key={label}>{label} <span className="mn">{note}</span></li>
+                ))}
+            </ul>
+            <a className="more" href={href}>{hrefLabel}</a>
+        </div>
+    </article>
+);
+
 export const Services = () => {
-    const services: Service[] = [
-        {
-            num: '01',
-            title: '執筆・監修',
-            description: '金融・年金・社会保険に関する記事の執筆と監修。難解な制度を読者に分かりやすく解説します。',
-            icon: PenTool,
-            price: '個別見積',
-            priceNote: '文字数・媒体により',
-        },
-        {
-            num: '02',
-            title: '個別相談（法人・個人）',
-            description: '法人・個人どちらにも対応する個別コンサルティング。実際には副業されている個人事業主やフリーランスの方からのご依頼が中心で、労務とお金、両面の課題を一度に整理します。',
-            icon: Users,
-            price: '初回60分無料',
-            priceNote: '継続 5,500円 / 60分（税込）',
-        },
-        {
-            num: '03',
-            title: '個人向けFP・資産形成相談',
-            description: '会社員・副業者・小規模事業者の方を対象に、社会保険・年金・働き方からNISA・iDeCo・保険まで、ライフプラン全体を1級ファイナンシャル・プランニング技能士の視点で横断的に整理します。',
-            icon: Wallet,
-            price: '初回60分無料',
-            priceNote: '継続 5,500円 / 60分（税込）',
-            link: {
-                label: 'ライフプランシミュレーション',
-                href: '#/lifeplan',
-            },
-        },
-        {
-            num: '04',
-            title: '行政手続代行',
-            description: '助成金申請や各種社会保険手続きの代行など、煩雑な業務をサポートします（将来展開予定）。',
-            icon: FileText,
-        },
-        {
-            num: '05',
-            title: '就業規則作成',
-            description: '開業したて・個人事業主・副業の方・初めて従業員を雇う方向けに、最小構成からスタートできる就業規則の作成を支援。実務目線の雛形と運用ガイドをセットでご提供します。',
-            icon: Briefcase,
-            price: '個別見積',
-            priceNote: 'ひな形サンプルは無料DL可',
-            download: {
-                label: 'サンプル雛形をダウンロード（Word）',
-                href: '/samples/syuugyou-kisoku-sample.docx',
-                filename: 'syuugyou-kisoku-sample.docx',
-            },
-        },
-        {
-            num: '06',
-            title: '労務監査',
-            description: '労務リスクの可視化と改善提案。労働法令に沿った運用が出来ているかをチェックし、対応プランを策定します（将来展開予定）。',
-            icon: Shield,
-        },
-    ];
-
     return (
-        <section id="services" className="py-24 relative overflow-hidden bg-surface-100/50">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-blue-100/30 rounded-full blur-3xl" />
-
-            <div className="relative max-w-6xl mx-auto px-6 lg:px-8">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="mb-16"
-                >
-                    <p className="section-label mb-3">03 — Services</p>
-                    <h2 className="font-display text-3xl sm:text-4xl font-bold text-navy-900">業務内容</h2>
-                    <div className="mt-4 h-px w-16 bg-gradient-to-r from-blue-600 to-transparent" />
-                    <p className="mt-4 text-stone-500 max-w-xl leading-relaxed [text-wrap:pretty]">
-                        人事・労務の現場をシンプルにし、企業の未来をサポートする。
-                        <br className="hidden sm:block" />
-                        執筆・相談・手続きまで、社労士＋FP1級の両軸でワンストップ対応します。
-                    </p>
-
-                    <div className="mt-6 inline-flex items-center gap-3 px-5 py-3 rounded-2xl bg-white border border-blue-200 shadow-sm">
-                        <Tag className="w-4 h-4 text-blue-700 flex-shrink-0" aria-hidden="true" />
-                        <p className="text-sm text-stone-700 leading-relaxed">
-                            <span className="font-bold text-navy-900">料金の目安</span>
-                            <span className="text-stone-400 mx-2">|</span>
-                            個別相談 <span className="font-bold text-blue-800">初回60分無料</span>
-                            <span className="text-stone-400 mx-1.5">・</span>
-                            継続 <span className="font-bold text-blue-800">5,500円 / 60分（税込）</span>
-                        </p>
-                    </div>
-                </motion.div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                    {services.map((service, index) => (
-                        <motion.div
-                            key={service.title}
-                            initial={{ opacity: 0, y: 24 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.45, delay: (index % 3) * 0.08 }}
-                            className="group relative bg-white rounded-2xl border border-blue-100 p-6 hover:border-blue-300 hover:shadow-md transition-all duration-300"
-                        >
-                            <div className="flex items-center justify-between mb-5">
-                                <div className="w-11 h-11 rounded-lg bg-blue-50 flex items-center justify-center group-hover:bg-blue-100 transition-colors">
-                                    <service.icon className="w-5 h-5 text-blue-700" />
-                                </div>
-                                <span className="text-blue-200 font-bold text-xs tracking-widest">{service.num}</span>
-                            </div>
-                            <h3 className="text-navy-900 font-bold text-base mb-2.5">
-                                {service.title}
-                            </h3>
-                            <p className="text-stone-500 text-sm leading-relaxed [text-wrap:pretty]">
-                                {service.description}
+        <>
+            {/* 法人・事業主 / 個人 2カード */}
+            <section id="services" className="paper-section">
+                <div className="wrap">
+                    <div className="sec-head">
+                        <div className="label"><span className="num">02 / SERVICES</span></div>
+                        <div>
+                            <h2>会社の労務整備と、個人のライフプランを二本立てで支援します。</h2>
+                            <p className="lede">
+                                中小企業・事業主向けの就業規則・労務サポートと、
+                                働く個人向けのFP相談を中心に、「制度をどう使うか」まで一緒に考えます。
                             </p>
-                            {service.price && (
-                                <div className="mt-4 flex items-center gap-2 px-3 py-2 rounded-lg bg-blue-50/70 border border-blue-100">
-                                    <Tag className="w-3.5 h-3.5 text-blue-700 flex-shrink-0" aria-hidden="true" />
-                                    <div className="leading-tight">
-                                        <p className="text-blue-800 font-bold text-xs">{service.price}</p>
-                                        {service.priceNote && (
-                                            <p className="text-stone-500 text-[10px] mt-0.5">{service.priceNote}</p>
-                                        )}
-                                    </div>
-                                </div>
-                            )}
-                            {service.download && (
-                                <a
-                                    href={service.download.href}
-                                    download={service.download.filename}
-                                    className="mt-4 inline-flex items-center gap-2 px-3.5 py-2 text-xs font-semibold rounded-lg bg-blue-50 border border-blue-200 text-blue-800 hover:bg-blue-100 hover:border-blue-300 transition-colors"
-                                >
-                                    <Download className="w-3.5 h-3.5" aria-hidden="true" />
-                                    {service.download.label}
+                        </div>
+                    </div>
+
+                    {/* 法人・事業主向け */}
+                    <div className="svc-section-label">
+                        <span className="mono">A / 法人・事業主向け</span>
+                    </div>
+                    <div className="svc-grid">
+                        <SvcCard
+                            tag="SERVICE 01"
+                            num="就業規則の作成・見直し"
+                            photo="/mock/documents-detail.png"
+                            photoAlt="就業規則と書類の確認"
+                            title="就業規則の作成・見直し"
+                            sub="RULES OF EMPLOYMENT"
+                            body="会社の働き方に合わせて、読みやすく運用しやすい就業規則へ整えます。現場ヒアリング、規程レビュー、運用ガイドまで含めた支援です。"
+                            items={[
+                                ['初回ヒアリング', '90 MIN'],
+                                ['現行規程レビュー', '2 WEEKS'],
+                                ['規程ドラフト', '4 WEEKS'],
+                                ['運用ガイド作成', 'INCLUDED'],
+                                ['労基署届出支援', 'OPTION'],
+                            ]}
+                            href="#service-rules"
+                            hrefLabel="作成プロセスを見る →"
+                        />
+
+                        <SvcCard
+                            tag="SERVICE 02"
+                            num="労務・社会保険手続き"
+                            photo="/mock/quiet-office.png"
+                            photoAlt="静かな事務所での手続き対応"
+                            title="労務・社会保険手続き"
+                            sub="LABOR & SOCIAL INSURANCE"
+                            body="入退社手続き、産育休の申請、月次社会保険手続き、助成金申請など、継続的な労務サポートに対応します。"
+                            items={[
+                                ['入退社・資格取得喪失', 'MONTHLY'],
+                                ['産育休・休業給付', 'AS NEEDED'],
+                                ['助成金申請', 'OPTION'],
+                                ['月次相談・緊急対応', 'RETAINER'],
+                            ]}
+                            href="#booking"
+                            hrefLabel="まず相談する →"
+                        />
+                    </div>
+
+                    {/* 個人向け */}
+                    <div className="svc-section-label" style={{ marginTop: 64 }}>
+                        <span className="mono">B / 個人向け</span>
+                    </div>
+                    <div className="svc-grid">
+                        <SvcCard
+                            tag="SERVICE 03"
+                            num="ライフプラン・年金相談"
+                            photo="/mock/consultation-desk.png"
+                            photoAlt="ライフプラン相談のデスク"
+                            title="ライフプラン・年金・FP相談"
+                            sub="PERSONAL FINANCIAL PLANNING"
+                            body="退職、転職、独立、副業、年金、保険、NISA・iDeCoなどを横断して、働き方とお金の見通しを整理します。"
+                            items={[
+                                ['初回相談', '60 MIN / FREE'],
+                                ['ライフプラン整理', '2 WEEKS'],
+                                ['年金・社会保険の確認', 'INCLUDED'],
+                                ['退職金・資産形成相談', 'AS NEEDED'],
+                                ['オンライン全国対応', 'ONLINE'],
+                            ]}
+                            href="#/lifeplan"
+                            hrefLabel="シミュレーションを試す →"
+                        />
+
+                        {/* 初回相談でできることカード */}
+                        <article className="svc svc--cta-card">
+                            <div className="svc-inner svc-inner--center">
+                                <span className="num" style={{ marginBottom: 10 }}>SERVICE 04</span>
+                                <div className="ja-sub">FIRST CONSULTATION</div>
+                                <h3>初回60分無料相談で<br />できること</h3>
+                                <ul className="svc-cta-list">
+                                    <li>労務・社保の現状整理と優先順位付け</li>
+                                    <li>就業規則の必要性・見直し範囲の確認</li>
+                                    <li>退職・転職・独立のお金の見通し</li>
+                                    <li>年金・保険の受け取り方の確認</li>
+                                    <li>副業・フリーランスの社保と税の整理</li>
+                                </ul>
+                                <div className="svc-cta-note">無理な契約のおすすめは一切しません。</div>
+                                <a className="cta svc-cta-btn" href="#booking">
+                                    初回60分無料で相談する <span className="mono">→</span>
                                 </a>
-                            )}
-                            {service.link && (
-                                <a
-                                    href={service.link.href}
-                                    className="mt-4 inline-flex items-center gap-2 px-3.5 py-2 text-xs font-semibold rounded-lg bg-blue-50 border border-blue-200 text-blue-800 hover:bg-blue-100 hover:border-blue-300 transition-colors"
-                                >
-                                    {service.link.label}
-                                    <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
-                                </a>
-                            )}
-                        </motion.div>
-                    ))}
+                            </div>
+                        </article>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+
+            {/* 就業規則プロセス */}
+            <section id="service-rules">
+                <div className="wrap">
+                    <div className="sec-head">
+                        <div className="label"><span className="num">03 / RULES PROCESS</span></div>
+                        <div>
+                            <h2>「作って終わり」にしない、3か月の就業規則プロセス。</h2>
+                            <p className="lede">
+                                会社の現状を聞き、現場で使われる形へ落とし込むため、標準では約3か月を想定しています。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="process">
+                        {rulesProcess.map(([title, duration, desc]) => (
+                            <article className="step" key={title}>
+                                <div className="pn" />
+                                <h3>{title}</h3>
+                                <div className="dur">{duration}</div>
+                                <p>{desc}</p>
+                            </article>
+                        ))}
+                    </div>
+                </div>
+            </section>
+        </>
     );
 };

@@ -10,18 +10,18 @@ export function getUpcomingWeekends(count: number): WeekendDay[] {
     d.setDate(d.getDate() + 1);
 
     while (dates.length < count) {
-        const dow = d.getDay();
-        if (dow === 0 || dow === 6) {
+        const dayOfWeek = d.getDay();
+        if (dayOfWeek === 0 || dayOfWeek === 6) {
             const y = d.getFullYear();
             const m = d.getMonth() + 1;
             const day = d.getDate();
             const value = `${y}-${String(m).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-            const dowLabel: '土' | '日' = dow === 6 ? '土' : '日';
+            const dow: WeekendDay['dow'] = dayOfWeek === 6 ? '土' : '日';
             dates.push({
                 value,
-                label: `${y}年${m}月${day}日（${dowLabel}）`,
-                short: `${m}/${day}（${dowLabel}）`,
-                dow: dowLabel,
+                label: `${y}年${m}月${day}日 (${dow})`,
+                short: `${m}/${day} (${dow})`,
+                dow,
             });
         }
         d.setDate(d.getDate() + 1);

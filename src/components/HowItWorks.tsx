@@ -1,117 +1,34 @@
-import { motion } from 'framer-motion';
-import { CalendarCheck, PencilLine, Mailbox, Video, Banknote, XCircle } from 'lucide-react';
-
 const steps = [
-    {
-        num: '01',
-        icon: CalendarCheck,
-        title: '日時を選ぶ',
-        desc: '予約カレンダーから空いている時間枠をクリック。土日祝の10:00〜16:00から1時間単位でお選びいただけます。',
-    },
-    {
-        num: '02',
-        icon: PencilLine,
-        title: 'フォームを送信',
-        desc: 'お名前・メールアドレス・ご相談内容を入力。事前にお伺いした内容をもとに、当日の進行を組み立てます。',
-    },
-    {
-        num: '03',
-        icon: Mailbox,
-        title: '確認メールを受信',
-        desc: '送信後すぐに予約受付メールが自動送信されます。個別のご返信やZoom URL送付は土日中に行います。',
-    },
-    {
-        num: '04',
-        icon: Video,
-        title: 'オンラインで面談',
-        desc: '当日はZoomまたはGoogle Meetで相談スタート。顔を合わせての対話を大切にした60分間です。',
-    },
+    ['日時を選ぶ', '予約カレンダーから空いている土日祝の時間枠を選択します。'],
+    ['相談内容を送る', 'お名前、メールアドレス、相談したい内容を簡単に入力してください。'],
+    ['確認メールを受け取る', '予約内容とオンライン面談の詳細をメールでお送りします。'],
+    ['オンラインで相談', 'ZoomまたはGoogle Meetで、60分じっくり整理します。'],
 ];
 
 export const HowItWorks = () => {
     return (
-        <section id="how-it-works" className="py-24 relative overflow-hidden">
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(37,99,235,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(37,99,235,0.03)_1px,transparent_1px)] bg-[size:80px_80px]" />
-            <div className="absolute top-1/3 right-0 w-80 h-80 bg-blue-100/25 rounded-full blur-3xl" />
-
-            <div className="relative max-w-6xl mx-auto px-6 lg:px-8">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="mb-14"
-                >
-                    <p className="section-label mb-3">05 — How it works</p>
-                    <h2 className="font-display text-3xl sm:text-4xl font-bold text-stone-800">ネット相談の流れ</h2>
-                    <div className="mt-4 h-px w-16 bg-gradient-to-r from-blue-600 to-transparent" />
-                    <p className="mt-4 text-stone-500 max-w-xl leading-relaxed [text-wrap:pretty]">
-                        初めての方でもスムーズにご相談いただけるよう、
-                        <br className="hidden sm:block" />
-                        予約から面談までの4ステップをご用意しています。
-                    </p>
-                </motion.div>
-
-                <div className="relative">
-                    <div className="hidden lg:block absolute top-12 left-[8%] right-[8%] h-px bg-gradient-to-r from-transparent via-blue-300 to-transparent" />
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {steps.map((step, i) => (
-                            <motion.div
-                                key={step.num}
-                                initial={{ opacity: 0, y: 24 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: i * 0.08 }}
-                                className="relative bg-white rounded-2xl border border-stone-200 shadow-sm p-6 hover:border-blue-300 hover:shadow-[0_8px_30px_rgba(37,99,235,0.1)] transition-all duration-300 group"
-                            >
-                                <div className="relative z-10 flex flex-col items-center text-center">
-                                    <div className="w-16 h-16 rounded-full bg-white border-4 border-blue-200 flex items-center justify-center mb-4 shadow-sm group-hover:border-blue-400 group-hover:scale-105 transition-all duration-300">
-                                        <step.icon className="w-6 h-6 text-blue-700" />
-                                    </div>
-                                    <p className="font-display text-xs tracking-[0.2em] text-blue-800 font-bold mb-2">STEP {step.num}</p>
-                                    <h3 className="text-stone-800 font-bold text-base mb-2">{step.title}</h3>
-                                    <p className="text-stone-500 text-xs leading-relaxed [text-wrap:pretty]">{step.desc}</p>
-                                </div>
-                            </motion.div>
-                        ))}
+        <section id="how-it-works" className="paper-section">
+            <div className="wrap">
+                <div className="sec-head">
+                    <div className="label"><span className="num">06 / FLOW</span></div>
+                    <div>
+                        <h2>初めての方でも、相談まで迷わない流れです。</h2>
+                        <p className="lede">
+                            「まず話して整理したい」という段階でも大丈夫です。初回相談で無理な契約をおすすめすることはありません。
+                        </p>
                     </div>
                 </div>
 
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.3 }}
-                    className="mt-10 grid sm:grid-cols-2 gap-4"
-                >
-                    <div className="flex items-start gap-4 p-5 rounded-2xl bg-blue-50 border border-blue-200">
-                        <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0">
-                            <Banknote className="w-5 h-5 text-blue-800" />
-                        </div>
-                        <div>
-                            <p className="text-navy-900 font-bold text-sm mb-1">料金について</p>
-                            <p className="text-blue-800/80 text-xs leading-relaxed [text-wrap:pretty]">
-                                初回60分は<span className="font-bold">無料</span>。継続相談は1時間 ¥5,500（税込）を予定。
-                                <br />
-                                ※お見積りはご相談後に改めてご案内します。
-                            </p>
-                        </div>
-                    </div>
-                    <div className="flex items-start gap-4 p-5 rounded-2xl bg-stone-50 border border-stone-200">
-                        <div className="w-10 h-10 rounded-xl bg-white border border-stone-200 flex items-center justify-center flex-shrink-0">
-                            <XCircle className="w-5 h-5 text-stone-500" />
-                        </div>
-                        <div>
-                            <p className="text-stone-800 font-bold text-sm mb-1">キャンセルポリシー</p>
-                            <p className="text-stone-500 text-xs leading-relaxed [text-wrap:pretty]">
-                                前日までのご連絡で<span className="font-bold">無料</span>でキャンセル可能です。
-                                <br />
-                                やむを得ず当日キャンセルが発生した場合も柔軟に対応いたします。
-                            </p>
-                        </div>
-                    </div>
-                </motion.div>
+                <div className="process process-four">
+                    {steps.map(([title, body]) => (
+                        <article className="step" key={title}>
+                            <div className="pn" />
+                            <h3>{title}</h3>
+                            <div className="dur">ONLINE / 60 MIN</div>
+                            <p>{body}</p>
+                        </article>
+                    ))}
+                </div>
             </div>
         </section>
     );

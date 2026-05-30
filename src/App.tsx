@@ -1,20 +1,19 @@
 import { lazy, Suspense } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
+import { PageGuide } from './components/PageGuide';
 import { PainPoints } from './components/PainPoints';
 import { Services } from './components/Services';
 import { WhyUs } from './components/WhyUs';
 import { HowItWorks } from './components/HowItWorks';
-import { CTABanner } from './components/CTABanner';
 import { Profile } from './components/Profile';
 import { Booking } from './components/Booking';
-import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { NoteArticles } from './components/NoteArticles';
+import { CtaStrip } from './components/CtaStrip';
 import { MockDesign } from './components/MockDesign';
 import { useLegalRoute, useBookingManageToken, useLifeplanRoute } from './lib/useHashRoute';
 
-// ルートレベルのページは遅延読み込み（初回 JS サイズ削減）
 const Tokushoho = lazy(() =>
     import('./components/Legal/Tokushoho').then((m) => ({ default: m.Tokushoho })),
 );
@@ -33,7 +32,7 @@ const LifeplanSimulation = lazy(() =>
 
 const RouteFallback = () => (
     <div className="min-h-screen flex items-center justify-center bg-surface-50">
-        <div className="w-8 h-8 border-2 border-blue-200 border-t-blue-700 rounded-full animate-spin" />
+        <div className="w-8 h-8 border-2 border-t-transparent rounded-full animate-spin" style={{ borderColor: 'var(--line)', borderTopColor: 'var(--accent)' }} />
     </div>
 );
 
@@ -82,21 +81,50 @@ function App() {
     }
 
     return (
-        <div className="design-mock min-h-screen font-sans text-stone-800">
+        <div className="handoff-page min-h-screen">
             <Header />
             <main>
                 <Hero visualSrc="/mock/consultation-desk.png" />
+                <PageGuide />
                 <PainPoints />
                 <Services />
+                <CtaStrip
+                    label="BOOKING"
+                    message="初回60分は無料です。就業規則、社保手続き、個人のライフプランなど、まず話して整理したい段階でも構いません。"
+                    primaryHref="#booking"
+                    primaryText="初回60分無料で相談する"
+                    ghostHref="#how-it-works"
+                    ghostText="相談の流れを見る"
+                />
                 <WhyUs />
+                <CtaStrip
+                    label="LIFEPLAN"
+                    message="退職・独立・転職の前に、資産推移をざっくり確認できます。相談前の整理ツールとしてご利用ください。"
+                    primaryHref="#/lifeplan"
+                    primaryText="ライフプランを試算する"
+                    ghostHref="#booking"
+                    ghostText="直接相談する"
+                />
                 <HowItWorks />
-                <CTABanner />
                 <Profile />
+                <CtaStrip
+                    label="CONSULTATION"
+                    message="会社員として働く視点と、専門家の知識を両方持っています。制度を使えるアドバイスにこだわります。"
+                    primaryHref="#booking"
+                    primaryText="初回60分無料で相談する"
+                    ghostHref="#services"
+                    ghostText="サービス詳細を見る"
+                />
                 <NoteArticles />
-                <div id="booking">
-                    <Booking />
-                </div>
-                <Contact />
+                <CtaStrip
+                    label="BOOKING"
+                    message="記事で気になったテーマを、実際の状況に当てはめて整理します。初回60分は無料です。"
+                    primaryHref="#booking"
+                    primaryText="予約カレンダーへ"
+                    ghostHref="https://note.com/brainy_racoon772"
+                    ghostText="noteを読む"
+                />
+                <Booking />
             </main>
             <Footer />
         </div>
