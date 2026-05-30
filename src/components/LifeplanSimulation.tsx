@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import {
-    ArrowLeft,
     ArrowRight,
     Calendar,
     Wallet,
